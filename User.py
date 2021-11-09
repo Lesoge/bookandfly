@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
         autoincrement=True)
     username = db.Column(db.String(1024), nullable=False, unique=True)
     password = db.Column(db.String(1024), nullable=False)
-    email = db.Column(db.String(1024), nullable=True, unique=False)
+    email = db.Column(db.String(1024), nullable=True, unique=True)
 
     # relation booked flights
     # first_name = db.Column(db.String(1024), nullable=False)
@@ -46,8 +46,8 @@ class Flight(db.Model):
     arrAirport_id = db.Column(db.Integer, db.ForeignKey('airports.id'))
     depAirport = db.relationship('Airport', backref='flightdeplist')
     arrAirport = db.relationship('Airport', backref='flightarrlist')
-    depTime = db.Column(db.DateTime, nullable=False, unique=True)
-    arrTime = db.Column(db.DateTime, nullable=False, unique=True)
+    depTime = db.Column(db.DateTime, nullable=False)
+    arrTime = db.Column(db.DateTime, nullable=False)
     plane_id = db.Column(db.Integer, db.ForeignKey('planes.id'))
     plane = db.relationship('Plane', backref='flightlist')
 
@@ -58,8 +58,8 @@ class Airport(db.Model):
         db.Integer,
         primary_key=True,
         autoincrement=True)
-    town = db.Column(db.String(1024), nullable=False, unique=True)
-    country = db.Column(db.String(1024), nullable=False, unique=True)
+    town = db.Column(db.String(1024), nullable=False)
+    country = db.Column(db.String(1024), nullable=False)
     name = db.Column(db.String(1024), nullable=False, unique=True)
     iata = db.Column(db.String(3), nullable=False, unique=True)
 
@@ -71,7 +71,7 @@ class Plane(db.Model):
         primary_key=True,
         autoincrement=True)
     planename = db.Column(db.String(100), nullable=False, unique=True)
-    seats = db.Column(db.Integer, nullable=False, unique=True)
+    seats = db.Column(db.Integer, nullable=False)
 
 
 class Booking(db.Model):
@@ -84,4 +84,5 @@ class Booking(db.Model):
     user = db.relationship('User', backref='bookinglist')
     flight_id = db.Column(db.Integer, db.ForeignKey('flights.id'))
     flight = db.relationship('User', backref='bookinglist')
+
 
