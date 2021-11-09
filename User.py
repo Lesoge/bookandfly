@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(1024), nullable=False, unique=True)
     password = db.Column(db.String(1024), nullable=False)
     email = db.Column(db.String(1024), nullable=True, unique=False)
+
     # relation booked flights
     # first_name = db.Column(db.String(1024), nullable=False)
     # last_name = db.Column(db.String(1024), nullable=False)
@@ -34,34 +35,53 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+
 class Flight(db.Model):
     __tablename__ = 'flights'
     id = db.Column(
         db.Integer,
         primary_key=True,
         autoincrement=True)
-    DepAirport = db.Column(db.String(1024), nullable=False, unique=True)
-    ArrAirport = db.Column(db.String(1024), nullable=False, unique=True)
-    # DepTime =
-    # ArrTime =
-    # Plane =
+    depAirport_id = db.Column(db.Integer, db.ForeignKey('airports.id'))
+    arrAirport_id = db.Column(db.Integer, db.ForeignKey('airports.id'))
+    depAirport = db.relationship('Airport', backref='flightdeplist')
+    arrAirport = db.relationship('Airport', backref='flightarrlist')
+    depTime = db.Column(db.DateTime, nullable=False, unique=True)
+    arrTime = db.Column(db.DateTime, nullable=False, unique=True)
+    plane_id = db.Column(db.Integer, db.ForeignKey('planes.id'))
+    plane = db.relationship('Plane', backref='flightlist')
+
 
 class Airport(db.Model):
+    __tablename__ = 'airports'
     id = db.Column(
         db.Integer,
         primary_key=True,
         autoincrement=True)
+    town = db.Column(db.String(1024), nullable=False, unique=True)
+    country = db.Column(db.String(1024), nullable=False, unique=True)
+    name = db.Column(db.String(1024), nullable=False, unique=True)
+    iata = db.Column(db.String(3), nullable=False, unique=True)
 
 
 class Plane(db.Model):
+    __tablename__ = 'planes'
     id = db.Column(
         db.Integer,
         primary_key=True,
         autoincrement=True)
+    planename = db.Column(db.String(100), nullable=False, unique=True)
+    seats = db.Column(db.Integer, nullable=False, unique=True)
 
 
 class Booking(db.Model):
+    __tablename__ = 'bookings'
     id = db.Column(
         db.Integer,
         primary_key=True,
         autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship('User', backref='bookinglist')
+    flight_id = db.Column(db.Integer, db.ForeignKey('flights.id'))
+    flight = db.relationship('User', backref='bookinglist')
+
