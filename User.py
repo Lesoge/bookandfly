@@ -44,8 +44,8 @@ class Flight(db.Model):
         autoincrement=True)
     depAirport_id = db.Column(db.Integer, db.ForeignKey('airports.id'))
     arrAirport_id = db.Column(db.Integer, db.ForeignKey('airports.id'))
-    depAirport = db.relationship('Airport', backref='flightdeplist')
-    arrAirport = db.relationship('Airport', backref='flightarrlist')
+    depAirport = db.relationship('Airport', foreign_keys=[depAirport_id], backref='flightdeplist')
+    arrAirport = db.relationship('Airport', foreign_keys=[arrAirport_id], backref='flightarrlist')
     depTime = db.Column(db.DateTime, nullable=False)
     arrTime = db.Column(db.DateTime, nullable=False)
     plane_id = db.Column(db.Integer, db.ForeignKey('planes.id'))
@@ -83,6 +83,6 @@ class Booking(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('User', backref='bookinglist')
     flight_id = db.Column(db.Integer, db.ForeignKey('flights.id'))
-    flight = db.relationship('User', backref='bookinglist')
+    flight = db.relationship('Flight', backref='bookinglist')
 
 

@@ -53,7 +53,7 @@ def signup_post():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('app_auth.login'))
 
 
 @app_auth.route('/web/logout')
