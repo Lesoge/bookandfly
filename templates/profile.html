@@ -2,6 +2,14 @@
 
 {% block content %}
 <h1 class="title">
-   Welcome, {{ name }}!
+   Your Profile
 </h1>
+<h2 class="subtitle">
+   Profile Information
+</h2>
+   <p>Name: {{ user.username }}</p>
+   <p>Email: {{ user.email }}</p>
+<h2 class="subtitle">
+   Booked Flights
+</h2>
 {% endblock %}
