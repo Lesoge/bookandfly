@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from config import *
 from routes.auth import app_auth
 from routes.main import app_main
+from routes.mfa import app_mfa
 from User import db, User
 from flask_jwt_extended import (
     JWTManager
@@ -16,6 +17,7 @@ def create_app():
     main_app = Flask(__name__)
     main_app.register_blueprint(app_auth)
     main_app.register_blueprint(app_main)
+    main_app.register_blueprint(app_mfa)
 
     database_url = 'postgresql+psycopg2://' + dbuser + ':' + dbpassword + '@' + db_ip_and_port + '/' + dbname
     main_app.config['SQLALCHEMY_DATABASE_URI'] = database_url

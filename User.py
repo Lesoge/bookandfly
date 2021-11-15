@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(1024), nullable=False, unique=True)
     password = db.Column(db.String(1024), nullable=False)
     email = db.Column(db.String(1024), nullable=True, unique=True)
+    mfasecretkey = db.Column(db.String(1024), nullable=True, unique=False)
 
     # relation booked flights
     # first_name = db.Column(db.String(1024), nullable=False)
@@ -27,6 +28,8 @@ class User(db.Model, UserMixin):
     def __init__(self, username, email, password):
         self.email = email
         self.username = username
+        # i dont know if this is needed here
+        self.mfasecretkey = mfasecretkey
         self.password = generate_password_hash(
             password,
             method='sha256'

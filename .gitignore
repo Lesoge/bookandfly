@@ -129,3 +129,6 @@ dmypy.json
 .pyre/
 .idea/*
 config.py
+test.py
+static/qrcode.png
+config.py
