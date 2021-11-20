@@ -28,7 +28,6 @@ def create_app():
     db.init_app(main_app)
     login_manager.login_view = 'app_auth.login'
     login_manager.init_app(main_app)
-    jwt = JWTManager(main_app)
 
     @login_manager.user_loader
     def load_user(user_id):

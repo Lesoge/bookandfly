@@ -1,9 +1,9 @@
+import pyotp
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
-
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -15,7 +15,10 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(1024), nullable=False)
     email = db.Column(db.String(1024), nullable=True, unique=True)
     mfasecretkey = db.Column(db.String(1024), nullable=True, unique=False)
-
+    active = db.Column(db.Boolean())
+    confirmed_at = db.Column(db.DateTime())
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    role = db.relationship('Role', backref=db.backref('user_list'))
     # relation booked flights
     # first_name = db.Column(db.String(1024), nullable=False)
     # last_name = db.Column(db.String(1024), nullable=False)
@@ -28,15 +31,32 @@ class User(db.Model, UserMixin):
     def __init__(self, username, email, password):
         self.email = email
         self.username = username
-        # i dont know if this is needed here
-        self.mfasecretkey = mfasecretkey
         self.password = generate_password_hash(
             password,
-            method='sha256'
+            method='sha256',
         )
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+    def check_otp(self, otp):
+        return pyotp.TOTP(self.mfasecretkey).verify(otp)
+
+    def generate_otp(self):
+        self.mfasecretkey = pyotp.random_base32()
+
+class Role(db.Model):
+    __tablename__ = 'roles'
+    id = db.Column(
+        db.Integer,
+        primary_key=True,
+        autoincrement=True)
+    name = db.Column(db.String(80), unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 
 
 class Flight(db.Model):
