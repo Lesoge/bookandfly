@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+   Flight Nr. {{ flight.id }}
+</h1>
+   {% if flight %}
+      <p>From: {{ flight.depAirport.name }}</p>
+      <p>{{ flight.depTime }}</p>
+      <p>To: {{ flight.arrAirport.name }}</p>
+      <p>{{ flight.arrTime }}</p>
+   {% else %}
+      <p>Flight Nr.  not found</p>
+   {% endif %}
+{% endblock %}

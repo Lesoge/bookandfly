@@ -11,6 +11,7 @@
         <th>Departure</th>
         <th>Arrival</th>
         <th>Seats</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
           <td>{{ flight.depAirport.name }} {{ flight.depTime }}</td>
           <td>{{ flight.arrAirport.name }} {{ flight.arrTime }}</td>
           <td>{{ flight.plane.seats }}</td>
+          <td><a href="{{ url_for('app_main.flight', flightnr = flight.id) }}"> Book Now </a></td>
         </tr>
       {% endfor %}
     </tbody>

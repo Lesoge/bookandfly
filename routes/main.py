@@ -16,3 +16,12 @@ def index():
 @login_required
 def profile():
     return render_template('profile.html', user=current_user)
+
+
+@app_main.route("/flight/<int:flightnr>", methods=['GET'])
+def flight(flightnr):
+
+    flights = Flight.query
+    flight = flights.get_or_404(flightnr)
+
+    return render_template("flight.html", flight=flight)
