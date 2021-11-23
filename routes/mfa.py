@@ -14,6 +14,8 @@ app_mfa = Blueprint('app_mfa', __name__)
 @app_mfa.route('/signup/mfa', methods=['GET'])
 def signup_mfa():
     user = load_user_from_session()
+    if user is None:
+        return redirect(url_for('app_auth.login'))
     if user.mfasecretkey is not None:
         return redirect(url_for('app_auth.login'))
     user.generate_otp()
@@ -35,9 +37,13 @@ def signup_mfa():
 
 def load_user_from_session():
     if current_user.is_anonymous:
-        user_Id = session['user']
-        user = User.query.filter_by(
-            id=user_Id).first()
+        if 'user_id' in session:
+            user_id = session['user_id']
+            user = User.query.filter_by(
+                id=user_id).first()
+        else:
+            print('Dsasd')
+            user = None
     else:
         user = current_user
     return user
@@ -50,20 +56,22 @@ def signup_mfa_form():
 
 @app_mfa.route('/login/mfa', methods=['GET'])
 def login_mfa():
-    # todo remove secret rom htlm
-    secret = 'du HURENSOHN'
-    return render_template('login_mfa.html', secret=secret)
-
+    return render_template('login_mfa.html')
 
 @app_mfa.route('/login/mfa', methods=['POST'])
 def login_mfa_form():
     user = load_user_from_session()
+    if user is None:
+        return redirect(url_for('app_auth.login'))
     # getting OTP provided by user
     otp = int(request.form.get('otp'))
-
+    if 'remember' in session:
+        remember = session['remember']
+    else:
+        remember = False
     # verifying submitted OTP with PyOTP
     if user.check_otp(otp):
-        login_user(user)
+        login_user(user, remember=remember)
         return redirect(url_for('app_main.profile'))
     else:
         flash('You have supplied an invalid 2FA token!', 'danger')

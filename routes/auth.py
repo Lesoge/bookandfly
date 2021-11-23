@@ -29,31 +29,6 @@ def login_post():
     # if the above check passes, then we know the user has the right credentials
     session['remember'] = remember
     session['user_id'] = user.id
-
-    # TODO Sicherheitscheck laut flask login doc:
-    # @app.route('/login', methods=['GET', 'POST'])
-    # def login():
-    #     # Here we use a class of some kind to represent and validate our
-    #     # client-side form data. For example, WTForms is a library that will
-    #     # handle this for us, and we use a custom LoginForm to validate.
-    #     form = LoginForm()
-    #     if form.validate_on_submit():
-    #         # Login and validate the user.
-    #         # user should be an instance of your `User` class
-    #         login_user(user)
-    #
-    #         flask.flash('Logged in successfully.')
-    #
-    #         next = flask.request.args.get('next')
-    #         # is_safe_url should check if the url is safe for redirects.
-    #         # See http://flask.pocoo.org/snippets/62/ for an example.
-    #         if not is_safe_url(next):
-    #             return flask.abort(400)
-    #
-    #         return flask.redirect(next or flask.url_for('index'))
-    #     return flask.render_template('login.html', form=form)
-
-    # TODO redirect to mfa page
     if user.mfasecretkey is None:
         return redirect(url_for('app_mfa.signup_mfa'))
     else:
@@ -83,7 +58,7 @@ def signup_post():
     # add the new user to the database
     db.session.add(new_user)
     db.session.commit()
-    session['user'] = new_user.id
+    session['user_id'] = new_user.id
     return redirect(url_for('app_mfa.signup_mfa'))
 
 
