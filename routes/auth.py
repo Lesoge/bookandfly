@@ -1,5 +1,6 @@
 # login route for web interface
-from flask_login import login_user, logout_user
+import pyotp
+from flask_login import login_user, logout_user, current_user
 from flask import Blueprint, render_template, session, abort, flash
 from User import User, db
 from flask import (request, url_for, make_response,
@@ -19,16 +20,22 @@ def login_post():
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
     user = User.query.filter_by(email=email).first()
-
     # check if the user actually exists
     # take the user-supplied password, hash it, and compare it to the hashed password in the database
-    if not user or user.check_password(password):
+    if not user or not user.check_password(password):
         flash('Please check your login details and try again.')
         return redirect(url_for('app_auth.login'))  # if the user doesn't exist or password is wrong, reload the page
 
     # if the above check passes, then we know the user has the right credentials
-    login_user(user, remember=remember)
-    return redirect(url_for('app_main.profile'))
+    session['remember'] = remember
+    session['user_id'] = user.id
+    if user.mfasecretkey is None:
+        return redirect(url_for('app_mfa.signup_mfa'))
+    else:
+        return redirect(url_for('app_mfa.login_mfa'))
+
+    # old redirect to profile page
+    # return redirect(url_for('app_main.profile'))
 
 
 @app_auth.route('/signup', methods=['GET'])
@@ -48,12 +55,11 @@ def signup_post():
         return redirect(url_for('app_auth.signup'))
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
     new_user = User(username=name, email=email, password=password)
-
     # add the new user to the database
     db.session.add(new_user)
     db.session.commit()
-
-    return redirect(url_for('app_auth.login'))
+    session['user_id'] = new_user.id
+    return redirect(url_for('app_mfa.signup_mfa'))
 
 
 @app_auth.route('/web/logout')
