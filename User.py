@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(
@@ -15,11 +16,11 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(1024), nullable=False)
     email = db.Column(db.String(1024), nullable=True, unique=True)
     mfasecretkey = db.Column(db.String(1024), nullable=True, unique=False)
-    active = db.Column(db.Boolean())
-    confirmed_at = db.Column(db.DateTime())
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     role = db.relationship('Role', backref=db.backref('user_list'))
+
     # relation booked flights
+    # info for booking process
     # first_name = db.Column(db.String(1024), nullable=False)
     # last_name = db.Column(db.String(1024), nullable=False)
     # role_id = db.Column(UUID(as_uuid=True), db.ForeignKey('roles.id'))
@@ -45,6 +46,7 @@ class User(db.Model, UserMixin):
     def generate_otp(self):
         self.mfasecretkey = pyotp.random_base32()
 
+
 class Role(db.Model):
     __tablename__ = 'roles'
     id = db.Column(
@@ -57,6 +59,27 @@ class Role(db.Model):
         return self.name
 
 
+class Booking_adress(db.Model):
+    __tablename__ = 'bookingAdress'
+    id = db.Column(
+        db.Integer,
+        primary_key=True,
+        autoincrement=True)
+    first_name = db.Column(db.String(1024), nullable=False)
+    last_name = db.Column(db.String(1024), nullable=False)
+    street = db.Column(db.String(1024), nullable=False)
+    number = db.Column(db.String(1024), nullable=False)
+    town = db.Column(db.String(1024), nullable=False)
+    zipcode = db.Column(db.Integer(), nullable=False)
+
+
+class Payment_info(db.Model):
+    __tablename__ = 'paymentInfo'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    credit_card_number = db.Column(db.String(1024), nullable=False)
+    name_on_card = db.Column(db.String(1024), nullable=False)
+    expire_date = db.Column(db.DateTime, nullable=False)
+    security_code = db.Column(db.Integer, nullable=False)
 
 
 class Flight(db.Model):
@@ -107,5 +130,7 @@ class Booking(db.Model):
     user = db.relationship('User', backref='bookinglist')
     flight_id = db.Column(db.Integer, db.ForeignKey('flights.id'))
     flight = db.relationship('Flight', backref='bookinglist')
-
-
+    booking_adress_id = db.Column(db.Integer, db.ForeignKey('bookingAdress.id'))
+    booking_adress = db.relationship('Booking_adress', backref='bookingList')
+    payment_info_id = db.Column(db.Integer, db.ForeignKey('paymentInfo.id'))
+    payment_info = db.relationship('Payment_info', backref='bookingList')
