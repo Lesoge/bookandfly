@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
-
+from datetime import datetime
 from User import Flight
 
 app_main = Blueprint('app_main', __name__)
@@ -8,7 +8,7 @@ app_main = Blueprint('app_main', __name__)
 
 @app_main.route('/', methods=['GET'])
 def index():
-    flights = Flight.query
+    flights = Flight.query.filter(Flight.depTime >= datetime.now())
     return render_template('index.html', flights=flights)
 
 
@@ -23,5 +23,4 @@ def flight(flightnr):
 
     flights = Flight.query
     flight = flights.get_or_404(flightnr)
-
     return render_template("flight.html", flight=flight)

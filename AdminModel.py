@@ -1,5 +1,5 @@
 from flask_admin.contrib.sqla import ModelView
-from User import db, User, Role, Flight, Airport, Plane, Booking
+from User import db, User, Flight, Airport, Plane, Booking
 from flask_login import current_user
 from flask_admin.form import SecureForm
 
@@ -10,12 +10,11 @@ class AdminModelView(ModelView):
 
     def is_accessible(self):
         return (current_user.is_authenticated and
-                current_user.role.name == 'admin')
+                current_user.is_admin)
 
 
 def create_admin(admin):
     admin.add_view(AdminModelView(User, db.session))
-    admin.add_view(AdminModelView(Role, db.session))
     admin.add_view(AdminModelView(Flight, db.session))
     admin.add_view(AdminModelView(Airport, db.session))
     admin.add_view(AdminModelView(Plane, db.session))

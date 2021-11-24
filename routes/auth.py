@@ -47,14 +47,15 @@ def signup():
 def signup_post():
     # TODO ADD Input Validation
     email = request.form.get('email')
-    name = request.form.get('name')
+    username = request.form.get('name')
+
     password = request.form.get('password')
-    user = User.query.filter_by(
-        email=email).first()  # if this returns a user, then the email already exists in database
+    user = User.query.filter((User.email == email) | (User.username == username)).first() # if this returns a user, then the email already exists in database
     if user:  # if a user is found, we want to redirect back to signup page so user can try again
+        flash('Username or Email is already used')
         return redirect(url_for('app_auth.signup'))
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-    new_user = User(username=name, email=email, password=password)
+    new_user = User(username=username, email=email, password=password)
     # add the new user to the database
     db.session.add(new_user)
     db.session.commit()

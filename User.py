@@ -15,17 +15,10 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(1024), nullable=False, unique=True)
     password = db.Column(db.String(1024), nullable=False)
     email = db.Column(db.String(1024), nullable=True, unique=True)
-    mfasecretkey = db.Column(db.String(1024), nullable=True, unique=False)
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
-    role = db.relationship('Role', backref=db.backref('user_list'))
+    mfasecretkey = db.Column(db.String(1024), nullable=True)
+    is_admin = db.Column(db.Boolean, nullable=False, default=False)
 
     # relation booked flights
-    # info for booking process
-    # first_name = db.Column(db.String(1024), nullable=False)
-    # last_name = db.Column(db.String(1024), nullable=False)
-    # role_id = db.Column(UUID(as_uuid=True), db.ForeignKey('roles.id'))
-    # role = db.relationship('Role', backref='user_list')
-
     def __repr__(self):
         return '<User %r>' % self.username
 
@@ -45,18 +38,6 @@ class User(db.Model, UserMixin):
 
     def generate_otp(self):
         self.mfasecretkey = pyotp.random_base32()
-
-
-class Role(db.Model):
-    __tablename__ = 'roles'
-    id = db.Column(
-        db.Integer,
-        primary_key=True,
-        autoincrement=True)
-    name = db.Column(db.String(80), unique=True)
-
-    def __str__(self):
-        return self.name
 
 
 class Booking_adress(db.Model):
