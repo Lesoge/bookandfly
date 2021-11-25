@@ -2,7 +2,7 @@
 import pyotp
 from flask_login import login_user, logout_user, current_user
 from flask import Blueprint, render_template, session, abort, flash
-from User import User, db
+from User import User, db, db_commit
 from flask import (request, url_for, make_response,
                    redirect, render_template, session)
 
@@ -57,8 +57,7 @@ def signup_post():
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
     new_user = User(username=username, email=email, password=password)
     # add the new user to the database
-    db.session.add(new_user)
-    db.session.commit()
+    db_commit(new_user)
     session['user_id'] = new_user.id
     return redirect(url_for('app_mfa.signup_mfa'))
 

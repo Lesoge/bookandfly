@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session, redirect, url_for
 from flask_login import login_required, current_user
 from datetime import datetime
 from User import Flight
@@ -20,7 +20,10 @@ def profile():
 
 @app_main.route("/flight/<int:flightnr>", methods=['GET'])
 def flight(flightnr):
-
-    flights = Flight.query
-    flight = flights.get_or_404(flightnr)
+    flight = Flight.query.get_or_404(flightnr)
     return render_template("flight.html", flight=flight)
+
+@app_main.route("/flight/<int:flightnr>", methods=['POST'])
+def flight_post(flightnr):
+    session['flight_id'] = flightnr
+    return redirect(url_for('app_pay.pay'))
