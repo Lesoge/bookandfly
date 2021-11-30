@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Booking</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<h1 class="title">
+    Your Booking has the Number {{ bookingnr }}
+</h1>
+<h2 class="subtitle">
+    Pay now and finish your order.
+</h2>
+<form method="post">
+    <button name="pay">Pay & Complete Order</button>
+</form>
+{% endblock %}

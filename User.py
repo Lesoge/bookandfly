@@ -67,7 +67,7 @@ class Payment_info(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     credit_card_number = db.Column(db.String(1024), nullable=False)
     name_on_card = db.Column(db.String(1024), nullable=False)
-    expire_date = db.Column(db.DateTime, nullable=False)
+    expire_date = db.Column(db.String(5), nullable=False)
     security_code = db.Column(db.Integer, nullable=False)
 
     def __init__(self, cc_number, no_card, expire_date, securtiy_code):

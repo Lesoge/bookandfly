@@ -1,0 +1,64 @@
+from flask import Blueprint, render_template, session, request, redirect, url_for, abort, flash
+from flask_login import current_user, login_required
+
+from User import Payment_info, Booking_address, db_commit, Booking, Flight
+from Forms import PaymentForm
+
+app_pay = Blueprint('app_pay', __name__)
+
+
+@app_pay.route("/pay", methods=['GET', 'POST'])
+# @login_required todo remove comment login required only for development
+def pay():
+    flight_id = get_from_session('flight_id')
+    flight = Flight.query.get_or_404(flight_id)
+    # todo remove comment
+    #if flight.check_if_full():
+    #    flash('No more Tickets are available for this flight')
+    #    return redirect(url_for('app_main.flight', flightnr=flight.id))
+    form = PaymentForm(request.form)
+    if request.method == 'POST' and form.validate():
+        pay_address = Booking_address(
+            form.first_name.data,
+            form.last_name.data,
+            form.street.data,
+            form.street_number.data,
+            form.town.data,
+            form.zipcode.data
+        )
+        pay_info = Payment_info(
+            form.credit_card_number.data,
+            form.name_on_card.data,
+            form.expiry_date.data,
+            form.security_code.data
+        )
+        db_commit(pay_address, pay_info)
+        booking = Booking(
+            current_user.id,
+            flight.id,
+            pay_address.id,
+            pay_info.id)
+        db_commit(booking)
+        session['booking_id'] = booking.id
+        return redirect(url_for('app_pay.booking_info'))
+    return render_template('payment.html', flightnr=flight_id, form=form)
+
+
+@app_pay.route("/booking", methods=['GET', 'POST'])
+# @login_required
+def booking_info():
+    booking_id = get_from_session('booking_id')
+    booking = Booking.query.get_or_404(booking_id)
+    if request.method == 'POST':
+        booking.payed = True
+        db_commit(booking)
+        flash("You successfully finished your order. Have a nice flight!")
+        return redirect(url_for('app_main.index'))
+    return render_template('booking.html', bookingnr=booking_id)
+
+
+def get_from_session(key):
+    if key in session:
+        return session['flight_id']
+    else:
+        abort(404, description='you tried to access that page through an invalid path')

@@ -9,6 +9,9 @@
       <p>{{ flight.depTime }}</p>
       <p>To: {{ flight.arrAirport.name }}</p>
       <p>{{ flight.arrTime }}</p>
+      <form method="post">
+         <button name="book">Book Now</button>
+      </form>
    {% else %}
       <p>Flight Nr.  not found</p>
    {% endif %}

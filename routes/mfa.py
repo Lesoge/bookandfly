@@ -31,7 +31,6 @@ def signup_mfa():
     qr.make(fit=True)
     imgQR = qr.make_image(fill='black', back_color='white')
     imgQR.save('static/qrcode.png', compress_level=1)
-
     return render_template('signup_mfa.html', secret=secret, imgQR=imgQR)
 
 
