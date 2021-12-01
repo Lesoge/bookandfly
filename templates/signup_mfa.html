@@ -1,58 +1,6 @@
-{% block content %}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-12">
-            <div class="jumbotron text-center p-4">
-                <h2>Flask + 2FA Demo</h2>
-                <h4>Setup and Authenticate 2FA</h4>
-            </div>
-        </div>
-        <div class="col-lg-5">
-            <form>
-                <div>
-                    <h5>Instructions!</h5>
-                    <ul>
-                        <li>Download <a
-                                href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US"
-                                target="_blank">Google Authenticator</a> on your mobile.
-                        </li>
-                        <li>Create a new account with <strong>setup key</strong> method.</li>
-                        <li>Provide the required details (name, secret key).</li>
-                        <li>Select time-based authentication.</li>
-                        <li>Submit the generated key in the form.</li>
-                    </ul>
-                </div>
-                <div class="form-group">
-                    <label for="secret">Secret Token</label>
-                    <input type="text" class="form-control" id="secret" value="{{ secret }}" readonly>
-                </div>
-                <div class="text-center">
-                    <button type="button" class="btn btn-primary" onclick="copySecret()">Copy Secret</button>
-                </div>
-                <div>
-                    <p>
-                        <img src="{{url_for('static', filename='qrcode.png')}}" align="middle"/>
-                    </p>
-                </div>
-            </form>
-        </div>
-        <div class="col-lg-7">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            {% for category, message in messages %}
-            <div class="alert alert-{{ category }}" role="alert">
-                {{ message }}
-            </div>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
-            <a href="{{ url_for('app_auth.login') }}">
-                <input type="button" value="Login" />
-            </a>
-        </div>
-    </div>
-</div>
+{% extends "base.html" %}
 
+{% block content %}
 <script>
     function copySecret() {
         /* Get the text field */
@@ -68,4 +16,140 @@
         alert("Successfully copied TOTP secret token!");
     }
 </script>
+
+<section class="u-clearfix u-block-5d1f-1" custom-posts-hash="[]" data-style="blank" data-section-properties="{&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}" id="sec-df51" data-source="Blank" data-id="5d1f" style="">
+  <div class="u-clearfix u-sheet u-block-5d1f-2" style="min-height: 500px"><div class="u-layout-wrap u-clearfix u-expanded-width u-block-5d1f-3" data-layout-wrap-id="21" data-block="392" style="margin-top: 60px; margin-bottom: 60px; position: relative" data-block-type="Layout"><div class="u-layout">  <div class="u-layout-row"><div class="u-layout-cell u-container-style u-size-21 ui-draggable ui-droppable u-block-5d1f-4" data-cell-id="53" data-column-id="53" data-block="393" style="min-height: 400px" data-block-type="Cell"><div class="u-container-layout u-valign-middle u-block-5d1f-5" data-container-layout-dom="74" style="padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px" data-block-type="">
+<img class="u-image u-image-default u-preserve-proportions u-block-5d1f-8" src="{{url_for('static', filename='qrcode.png')}}" alt="" data-image-width="1280" data-image-height="1280" data-block="408" style="width: 255px; height: 255px; margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto" data-block-type="Image" data-uploaded-src="np://user.desktop.nicepage.com/Site_2500315441/images/2f63d51b78b59a7a71c91df8a03800f89dedceccb8ce6e5380a22db062e89456e9521f13a57c7b34ce6ac8dcdc312a638b56e8ffeb671a8e03de3e_1280.png"></div></div>
+<div class="u-layout-cell u-container-style u-size-39 ui-draggable ui-droppable u-block-5d1f-6" data-cell-id="54" data-column-id="54" data-block="394" style="min-height: 400px" data-block-type="Cell"><div class="u-container-layout u-block-5d1f-7" data-container-layout-dom="75" style="padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px" data-block-type="">
+<h1 class="u-text u-text-default u-block-5d1f-9" data-block="409" style="margin-bottom: 0px; margin-top: 0px" data-block-type="Text">Instructions<br></h1><ol class="u-text u-text-default u-block-5d1f-10" data-block="411" style="margin-left: 0px; margin-right: 0px; margin-bottom: 0px;" data-block-type="Text"><li data-block-type="">Download the <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en&amp;gl=US" class="u-btn u-button-style u-none u-hover-none u-active-none u-border-none u-button-link u-text-palette-1-base u-block-5d1f-11" data-block="412" style="background-image: none; padding: 0px;" data-block-type="Button,TextButton">Google Authenticator Application</a> on your mobile device</li><li data-block-type="">Scan the provided QR code</li></ol><p class="u-text u-text-default u-block-5d1f-12" data-block="413" style="margin-left: 0px; margin-right: 0px; margin-bottom: 0px;" data-block-type="Text">or</p><ol class="u-text u-text-default u-block-5d1f-13" data-block="414" style="margin-left: 0px; margin-right: 0px; margin-bottom: 0px;" data-block-type="Text"><li data-block-type="">​Download the <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en&amp;gl=US" data-block-type="Button,TextButton" class="u-btn u-button-style u-none u-hover-none u-active-none u-border-none u-text-palette-1-base u-block-5d1f-14" style="background-image: none; padding: 0px;">Google Authenticator Application</a> on your mobile device</li><li data-block-type="">Use the <span style="font-weight: 700;">Setup Key Method</span></li><li data-block-type="">Provide your username and the following Secret Key</li><li data-block-type="">Select the time-based authentication</li><li data-block-type="">Add the account</li></ol><p class="u-text u-text-default u-block-5d1f-15" data-block="463" style="margin-left: 0px; margin-right: 0px; margin-bottom: 0px;" data-block-type="Text">Now you can log in with the tokens generated from the Google Authenticator.</p></div></div>  </div></div></div></div>
+<style data-mode="XL">@media (max-width: 0px) { .u-block-5d1f-2 {min-height: 500px}
+.u-block-5d1f-3 {margin-top: 60px; margin-bottom: 60px; position: relative}
+.u-block-5d1f-4 {min-height: 400px}
+.u-block-5d1f-5 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-5d1f-8 {width: 255px; height: 255px; margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto}
+.u-block-5d1f-6 {min-height: 400px}
+.u-block-5d1f-7 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-5d1f-9 {margin-bottom: 0px; margin-top: 0px}
+.u-block-5d1f-10 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-11 {background-image: none; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px}
+.u-block-5d1f-12 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-13 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-14 {background-image: none; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px}
+.u-block-5d1f-15 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px} }</style><style data-mode="LG">@media (max-width: 0px) { .u-block-5d1f-2 {min-height: 430px}
+.u-block-5d1f-3 {margin-top: 60px; margin-bottom: 60px; position: relative}
+.u-block-5d1f-4 {min-height: 330px}
+.u-block-5d1f-5 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-5d1f-8 {width: 255px; height: 255px; margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto}
+.u-block-5d1f-6 {min-height: 330px}
+.u-block-5d1f-7 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-5d1f-9 {margin-bottom: 0px; margin-top: 0px}
+.u-block-5d1f-10 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-11 {background-image: none; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px}
+.u-block-5d1f-12 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-13 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-14 {background-image: none; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px}
+.u-block-5d1f-15 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px} }</style><style data-mode="MD">@media (max-width: 0px) { .u-block-5d1f-2 {min-height: 353px}
+.u-block-5d1f-3 {margin-top: 60px; margin-bottom: 60px; position: relative}
+.u-block-5d1f-4 {min-height: 253px}
+.u-block-5d1f-5 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-5d1f-8 {width: 255px; height: 255px; margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto}
+.u-block-5d1f-6 {min-height: 100px}
+.u-block-5d1f-7 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-5d1f-9 {margin-bottom: 0px; margin-top: 0px}
+.u-block-5d1f-10 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-11 {background-image: none; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px}
+.u-block-5d1f-12 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-13 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-14 {background-image: none; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px}
+.u-block-5d1f-15 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px} }</style><style data-mode="SM">@media (max-width: 0px) { .u-block-5d1f-2 {min-height: 860px}
+.u-block-5d1f-3 {margin-top: 60px; margin-bottom: 60px; position: relative}
+.u-block-5d1f-4 {min-height: 380px}
+.u-block-5d1f-5 {padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px}
+.u-block-5d1f-8 {width: 255px; height: 255px; margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto}
+.u-block-5d1f-6 {min-height: 100px}
+.u-block-5d1f-7 {padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px}
+.u-block-5d1f-9 {margin-bottom: 0px; margin-top: 0px}
+.u-block-5d1f-10 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-11 {background-image: none; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px}
+.u-block-5d1f-12 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-13 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-14 {background-image: none; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px}
+.u-block-5d1f-15 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px} }</style><style data-mode="XS">@media (max-width: 0px) { .u-block-5d1f-2 {min-height: 578px}
+.u-block-5d1f-3 {margin-top: 60px; margin-bottom: 60px; position: relative}
+.u-block-5d1f-4 {min-height: 239px}
+.u-block-5d1f-5 {padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px}
+.u-block-5d1f-8 {width: 255px; height: 255px; margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto}
+.u-block-5d1f-6 {min-height: 100px}
+.u-block-5d1f-7 {padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px}
+.u-block-5d1f-9 {margin-bottom: 0px; margin-top: 0px}
+.u-block-5d1f-10 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-11 {background-image: none; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px}
+.u-block-5d1f-12 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-13 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px}
+.u-block-5d1f-14 {background-image: none; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px}
+.u-block-5d1f-15 {margin-left: 0px; margin-right: 0px; margin-bottom: 0px} }</style></section>
+<section class="u-clearfix u-block-e89e-1" custom-posts-hash="[]" data-style="blank" data-section-properties="{&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}" id="sec-0ae2" data-source="Blank" data-id="e89e" style="">
+  <div class="u-clearfix u-sheet u-valign-middle u-block-e89e-2" style="min-height: 310px;" data-block-type="Sheet"><div class="u-layout-wrap u-clearfix u-gutter-100 u-expanded-width u-block-e89e-3" data-layout-wrap-id="22" data-block="445" style="margin-top: 60px; margin-bottom: 58.4px;" data-block-type="Layout"><div class="u-layout">  <div class="u-layout-row"><div class="u-layout-cell u-container-style u-size-36 u-block-e89e-4" data-cell-id="55" data-column-id="55" data-block="446" style="min-height: 288px;" data-block-type="Cell"><div class="u-container-layout u-block-e89e-5" data-container-layout-dom="76" style="padding: 11.8px 0px;" data-block-type="">
+<h2 class="u-text u-text-default u-block-e89e-8" data-block="448" style="margin: -0.0001px 30px 0px;" data-block-type="Text">Your Secret Key</h2><div class="u-form u-block-e89e-9" data-block="455" style="margin: 0px -80px 0px 30px; height: 125.6px;" data-block-type="Form">
+    <form action="#" method="POST" class="u-clearfix u-inner-form u-form-vertical u-form-spacing-10" source="custom" name="form" style="padding: 10px;">
+        <input type="hidden" id="siteId" name="siteId" value="2500315441">
+        <input type="hidden" id="pageId" name="pageId" value="34458439">
+
+        <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-e89e-10" data-block="456" data-block-type="FormField">
+            <label for="secret" class="u-label u-form-control-hidden u-block-e89e-11"></label>
+            <input type="text" placeholder="Enter your Name" id="secret" name="secret" class="u-input u-input-rectangle u-white u-border-1 u-border-grey-30 u-block-e89e-12" value="{{ secret }}" readonly>
+        </div>
+        <div class="u-form-group u-form-submit u-align-left u-block-e89e-13" data-block="459" data-block-type="FormField">
+            <a href="#" class="u-btn u-button-style u-btn-submit ui-draggable ui-draggable-handle u-palette-2-dark-2 u-border-none u-block-e89e-14" data-block="460" data-block-type="FormChild,FormButton" onclick="copySecret()" style="background-image: none; border-style: none;">Copy Key</a>
+        </div>
+    </form>
+</div></div></div>
+<div class="u-layout-cell u-container-style u-size-24 u-block-e89e-6" data-cell-id="56" data-column-id="56" data-block="447" style="min-height: 288px;" data-block-type="Cell"><div class="u-container-layout u-valign-bottom u-block-e89e-7" data-container-layout-dom="77" style="padding: 19.175px 30px;" data-block-type="">
+<a href="{{ url_for('app_auth.login') }}" class="u-btn u-button-style u-palette-2-dark-2 u-border-none u-block-e89e-15" data-block="462" style="margin: 0px -0.0001px 0px auto; padding: 9px 45.1337px 10.8px 44px; background-image: none; border-style: none;" data-block-type="Button">Log In</a></div></div>  </div></div></div></div>
+<style data-mode="XL">@media (max-width: 0px) { .u-block-e89e-2 {min-height: 310px}
+.u-block-e89e-3 {margin-top: 60px; margin-bottom: 58.4px}
+.u-block-e89e-4 {min-height: 288px}
+.u-block-e89e-5 {padding-top: 11.8px; padding-bottom: 11.8px; padding-left: 0px; padding-right: 0px}
+.u-block-e89e-8 {margin-top: -0.0001px; margin-left: 30px; margin-right: 30px; margin-bottom: 0px}
+.u-block-e89e-9 {height: 125.6px; margin-top: 0px; margin-right: -80px; margin-bottom: 0px; margin-left: 30px}
+.u-block-e89e-14 {background-image: none; border-style: none}
+.u-block-e89e-6 {min-height: 288px}
+.u-block-e89e-7 {padding-top: 19.175px; padding-bottom: 19.175px; padding-left: 30px; padding-right: 30px}
+.u-block-e89e-15 {background-image: none; border-style: none; margin-top: 0px; margin-right: -0.0001px; margin-bottom: 0px; margin-left: auto; padding-top: 9px; padding-right: 45.1337px; padding-bottom: 10.8px; padding-left: 44px} }</style><style data-mode="LG">@media (max-width: 0px) { .u-block-e89e-2 {min-height: 251px}
+.u-block-e89e-3 {margin-top: 60px; margin-bottom: 58.4px; position: relative}
+.u-block-e89e-4 {min-height: 237px}
+.u-block-e89e-5 {padding-top: 11.8px; padding-bottom: 11.8px; padding-left: 0px; padding-right: 0px}
+.u-block-e89e-8 {margin-top: -0.0001px; margin-left: 30px; margin-right: 30px; margin-bottom: 0px}
+.u-block-e89e-9 {height: 125.6px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 30px}
+.u-block-e89e-14 {background-image: none; border-style: none}
+.u-block-e89e-6 {min-height: 237px}
+.u-block-e89e-7 {padding-top: 19.175px; padding-bottom: 19.175px; padding-left: 30px; padding-right: 30px}
+.u-block-e89e-15 {margin-top: 0px; margin-left: auto; margin-right: 0px; margin-bottom: 0px; padding-top: 9px; padding-right: 45.1337px; padding-bottom: 10.8px; padding-left: 44px; background-image: none; border-style: none} }</style><style data-mode="MD">@media (max-width: 0px) { .u-block-e89e-2 {min-height: 174px}
+.u-block-e89e-3 {margin-top: 60px; margin-bottom: 58.4px; position: relative}
+.u-block-e89e-4 {min-height: 100px}
+.u-block-e89e-5 {padding-top: 11.8px; padding-bottom: 11.8px; padding-left: 0px; padding-right: 0px}
+.u-block-e89e-8 {margin-top: -0.0001px; margin-left: 30px; margin-right: 30px; margin-bottom: 0px}
+.u-block-e89e-9 {height: 125.6px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 30px}
+.u-block-e89e-14 {background-image: none; border-style: none}
+.u-block-e89e-6 {min-height: 100px}
+.u-block-e89e-7 {padding-top: 19.175px; padding-bottom: 19.175px; padding-left: 30px; padding-right: 30px}
+.u-block-e89e-15 {margin-top: 0px; margin-left: auto; margin-right: 0px; margin-bottom: 0px; padding-top: 9px; padding-right: 45.1337px; padding-bottom: 10.8px; padding-left: 44px; background-image: none; border-style: none} }</style><style data-mode="SM">@media (max-width: 0px) { .u-block-e89e-2 {min-height: 870px}
+.u-block-e89e-3 {margin-top: 60px; margin-bottom: 58.4px; position: relative}
+.u-block-e89e-4 {min-height: 100px}
+.u-block-e89e-5 {padding-top: 11.8px; padding-bottom: 11.8px; padding-left: 0px; padding-right: 0px}
+.u-block-e89e-8 {margin-top: -0.0001px; margin-left: 30px; margin-right: 30px; margin-bottom: 0px}
+.u-block-e89e-9 {height: 125.6px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 30px}
+.u-block-e89e-14 {background-image: none; border-style: none}
+.u-block-e89e-6 {min-height: 100px}
+.u-block-e89e-7 {padding-top: 19.175px; padding-bottom: 19.175px; padding-left: 10px; padding-right: 10px}
+.u-block-e89e-15 {margin-top: 0px; margin-left: auto; margin-right: 0px; margin-bottom: 0px; padding-top: 9px; padding-right: 45.1337px; padding-bottom: 10.8px; padding-left: 44px; background-image: none; border-style: none} }</style><style data-mode="XS">@media (max-width: 0px) { .u-block-e89e-2 {min-height: 588px}
+.u-block-e89e-3 {margin-top: 60px; margin-bottom: 58.4px; position: relative}
+.u-block-e89e-4 {min-height: 100px}
+.u-block-e89e-5 {padding-top: 11.8px; padding-bottom: 11.8px; padding-left: 0px; padding-right: 0px}
+.u-block-e89e-8 {margin-top: -0.0001px; margin-left: 30px; margin-right: 30px; margin-bottom: 0px}
+.u-block-e89e-9 {height: 125.6px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 30px}
+.u-block-e89e-14 {background-image: none; border-style: none}
+.u-block-e89e-6 {min-height: 100px}
+.u-block-e89e-7 {padding-top: 19.175px; padding-bottom: 19.175px; padding-left: 10px; padding-right: 10px}
+.u-block-e89e-15 {margin-top: 0px; margin-left: auto; margin-right: 0px; margin-bottom: 0px; padding-top: 9px; padding-right: 45.1337px; padding-bottom: 10.8px; padding-left: 44px; background-image: none; border-style: none} }</style></section>
 {% endblock %}
