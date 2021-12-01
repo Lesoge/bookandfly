@@ -1,36 +1,74 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="column is-4 is-offset-4">
-    <h3 class="title">Login</h3>
-    <div class="box">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div class="notification is-danger">
-            {{ messages[0] }}
+<section class="u-align-center u-clearfix u-grey-10 u-block-0aa2-1" custom-posts-hash="T" data-section-properties="{&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}" data-id="0aa2" data-posts-content="[{'images':[],'maps':[],'videos':[],'icons':[],'textWidth':584,'textHeight':514,'id':1,'headingProp':'h3','textProp':'text'}]" data-style="login-form-3" id="sec-1074" data-source="Sketch" style="background-image: none">
+  <div class="u-clearfix u-sheet u-block-0aa2-2" style="min-height: 633px">
+    <div class="u-align-center u-container-style u-group u-radius-50 u-shape-round u-white u-block-0aa2-3" style="width: 584px; min-height: 514px; margin-top: 25px; margin-left: auto; margin-right: auto; margin-bottom: 60px" data-block="472" data-block-type="Group" data-block-selected="true">
+      <div class="u-container-layout u-valign-middle u-block-0aa2-4" style="padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px" data-container-layout-dom="78">
+        <h3 class="u-text u-text-default u-block-0aa2-5" style="font-size: 2.25rem; margin-top: 0; margin-bottom: 0; margin-left: auto; margin-right: auto" data-block="473">Login</h3>
+        <div class="u-expanded-width u-form u-login-control u-block-0aa2-6" style="margin-top: 30px; margin-left: 0; margin-right: 0; margin-bottom: 0" data-block="474">
+          <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-35 u-form-vertical u-inner-form" source="custom" name="form-2" style="padding: 10px;">
+            <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-0aa2-7" style="" data-block="475" data-block-type="FormField">
+              <label for="email-708d" class="u-form-control-hidden u-label u-block-0aa2-8" style=""></label>
+              <input type="text" placeholder="Enter your Email" id="email-708d" name="email" class="u-grey-5 u-input u-input-rectangle u-block-0aa2-9" required="" style="">
+            </div>
+            <div class="u-form-group u-form-password ui-draggable ui-draggable-handle u-block-0aa2-10" style="" data-block="476" data-block-type="FormField">
+              <label for="password-708d" class="u-form-control-hidden u-label u-block-0aa2-11" style=""></label>
+              <input type="text" placeholder="Enter your Password" id="password-708d" name="password" class="u-grey-5 u-input u-input-rectangle u-block-0aa2-12" required="" style="">
+            </div>
+            <div class="u-form-checkbox u-form-group ui-draggable ui-draggable-handle u-block-0aa2-13" style="" data-block="477">
+              <input type="checkbox" id="checkbox-708d" name="remember" value="On">
+              <label for="checkbox-708d" class="u-label u-block-0aa2-14" style="">Remember me</label>
+            </div>
+            <div class="u-align-center u-form-group u-form-submit u-block-0aa2-15" style="" data-block="478">
+              <a href="#" class="u-btn u-btn-round u-btn-submit u-button-style u-radius-17 ui-draggable ui-draggable-handle u-block-0aa2-16" style="width: 50%; padding-top: 10px; padding-right: 31px; padding-bottom: 10px; padding-left: 29px" data-block="479">Log In</a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+          </form>
         </div>
-        {% endif %}
-        {% endwith %}
-        <form method="POST" action="/login">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="email" name="email" placeholder="Your Email" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Your Password">
-                </div>
-            </div>
-            <div class="field">
-                <label class="checkbox">
-                    <input type="checkbox">
-                    Remember me
-                </label>
-            </div>
-            <button class="button is-block is-info is-large is-fullwidth">Login</button>
-        </form>
+        <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-login-control u-login-forgot-password u-none u-text-palette-1-base u-block-0aa2-17" style="border-style: none none solid; margin-top: 20px; margin-left: auto; margin-right: auto; margin-bottom: 0; padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0" data-block="480">Forgot password?</a>
+      </div>
     </div>
-</div>
+  </div>
+  <style data-mode="XL" data-visited="true">@media (max-width: 0px) { .u-block-0aa2-1 {background-image: none}
+.u-block-0aa2-2 {min-height: 633px}
+.u-block-0aa2-3 {width: 584px; min-height: 514px; margin-top: 25px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-0aa2-4 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-0aa2-5 {font-size: 2.25rem; margin-top: 0; margin-bottom: 0; margin-left: auto; margin-right: auto}
+.u-block-0aa2-6 {margin-top: 30px; margin-left: 0; margin-right: 0; margin-bottom: 0}
+.u-block-0aa2-16 {width: 50%; padding-top: 10px; padding-right: 31px; padding-bottom: 10px; padding-left: 29px}
+.u-block-0aa2-17 {border-style: none none solid; margin-top: 20px; margin-left: auto; margin-right: auto; margin-bottom: 0; padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0} }</style>
+  <style data-mode="LG">@media (max-width: 0px) { .u-block-0aa2-1 {background-image: none}
+.u-block-0aa2-2 {min-height: 633px}
+.u-block-0aa2-3 {width: 584px; margin-top: 25px; margin-bottom: 60px; margin-left: auto; margin-right: auto; min-height: 514px}
+.u-block-0aa2-4 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-0aa2-5 {margin-top: 0; font-size: 2.25rem; margin-bottom: 0; margin-left: auto; margin-right: auto}
+.u-block-0aa2-6 {margin-top: 30px; margin-bottom: 0}
+.u-block-0aa2-16 {width: 50%; padding-top: 10px; padding-right: 31px; padding-bottom: 10px; padding-left: 29px}
+.u-block-0aa2-17 {border-style: none none solid; margin-top: 20px; margin-left: auto; margin-right: auto; margin-bottom: 0; padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0} }</style>
+  <style data-mode="MD">@media (max-width: 0px) { .u-block-0aa2-1 {background-image: none}
+.u-block-0aa2-2 {min-height: 633px}
+.u-block-0aa2-3 {width: 584px; margin-top: 25px; margin-bottom: 60px; margin-left: auto; margin-right: auto; min-height: 514px}
+.u-block-0aa2-4 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-0aa2-5 {margin-top: 0; font-size: 2.25rem; margin-bottom: 0; margin-left: auto; margin-right: auto}
+.u-block-0aa2-6 {margin-top: 30px; margin-bottom: 0}
+.u-block-0aa2-16 {width: 50%; padding-top: 10px; padding-right: 31px; padding-bottom: 10px; padding-left: 29px}
+.u-block-0aa2-17 {border-style: none none solid; margin-top: 20px; margin-left: auto; margin-right: auto; margin-bottom: 0; padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0} }</style>
+  <style data-mode="SM">@media (max-width: 0px) { .u-block-0aa2-1 {background-image: none}
+.u-block-0aa2-2 {min-height: 633px}
+.u-block-0aa2-3 {width: 540px; margin-top: 25px; margin-bottom: 60px; margin-left: auto; margin-right: auto; min-height: 514px}
+.u-block-0aa2-4 {padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px}
+.u-block-0aa2-5 {margin-top: 0; font-size: 2.25rem; margin-bottom: 0; margin-left: auto; margin-right: auto}
+.u-block-0aa2-6 {margin-top: 30px; margin-bottom: 0}
+.u-block-0aa2-16 {width: 50%; padding-top: 10px; padding-right: 31px; padding-bottom: 10px; padding-left: 29px}
+.u-block-0aa2-17 {border-style: none none solid; margin-top: 20px; margin-left: auto; margin-right: auto; margin-bottom: 0; padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0} }</style>
+  <style data-mode="XS">@media (max-width: 0px) { .u-block-0aa2-1 {background-image: none}
+.u-block-0aa2-2 {min-height: 633px}
+.u-block-0aa2-3 {width: 340px; margin-top: 25px; margin-bottom: 60px; margin-left: auto; margin-right: auto; min-height: 514px}
+.u-block-0aa2-4 {padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px}
+.u-block-0aa2-5 {margin-top: 0; font-size: 1.5rem; margin-bottom: 0; margin-left: auto; margin-right: auto}
+.u-block-0aa2-6 {margin-top: 30px; margin-bottom: 0}
+.u-block-0aa2-16 {width: 50%; padding-top: 10px; padding-right: 31px; padding-bottom: 10px; padding-left: 29px}
+.u-block-0aa2-17 {border-style: none none solid; margin-top: 20px; margin-left: auto; margin-right: auto; margin-bottom: 0; padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0} }</style>
+</section>
 {% endblock %}
