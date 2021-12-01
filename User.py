@@ -92,7 +92,7 @@ class Flight(db.Model):
     plane_id = db.Column(db.Integer, db.ForeignKey('planes.id'))
     plane = db.relationship('Plane', backref='flightlist')
 
-    # todo test function
+    # todo test function + available seats
     def check_if_full(self):
         return len(self.booking_list) >= self.plane.seats
 
