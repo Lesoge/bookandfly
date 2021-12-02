@@ -2,23 +2,46 @@
 
 {% block content %}
 {% from "_formhelpers.html" import render_field %}
-<h1 class="title">
-  Payment
-</h1>
-<h2 class="subtitle">
-  Book your ticket for flight {{ flightnr }}
-</h2>
-<form method=post>
-    {{ render_field(form.first_name) }}
-    {{ render_field(form.last_name) }}
-    {{ render_field(form.street) }}
-    {{ render_field(form.street_number) }}
-    {{ render_field(form.town) }}
-    {{ render_field(form.zipcode) }}
-    {{ render_field(form.credit_card_number) }}
-    {{ render_field(form.name_on_card) }}
-    {{ render_field(form.expiry_date) }}
-    {{ render_field(form.security_code) }}
-  <p><input type=submit value="Book Now">
+<section class="u-clearfix u-block-8116-1" custom-posts-hash="[]" data-style="blank" data-section-properties="{&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}" id="sec-70d6" data-source="Blank" data-id="8116" style="">
+  <div class="u-clearfix u-sheet u-block-8116-2" style="min-height: 500px" data-block-type="Sheet">
+      <h2 class="u-text u-text-default u-align-center u-block-8116-18" data-block="51" style="margin: 66.5px auto 0px;" data-block-type="Text">Flight Nr. {{flightnr}}<br>Booking Process: Payment</h2>
+      <p class="u-text u-text-default u-align-center u-block-8116-19" data-block="52" style="margin: 20.25px auto 0px;" data-block-type="Text">Enter your details below to book a ticket for flight nr. {{flightnr}}.<br>We will process the payment as soon as possible.</p>
+<div class="u-form u-block-8116-3" data-block="42" style="height: 183.2px; width: 570px; margin: 20.25px auto 60px;" data-block-type="Form">
+      <form method=post>
+        <div>
+            {{ render_field(form.first_name) }}
+            {{ render_field(form.last_name) }}
+            {{ render_field(form.street) }}
+            {{ render_field(form.street_number) }}
+            {{ render_field(form.town) }}
+            {{ render_field(form.zipcode) }}
+        </div><div>
+            {{ render_field(form.credit_card_number) }}
+            {{ render_field(form.name_on_card) }}
+            {{ render_field(form.expiry_date) }}
+            {{ render_field(form.security_code) }}
+        </div>
+    <p><input type=submit value="Book Now">
 </form>
+<style data-mode="XL">@media (max-width: 0px) { .u-block-8116-2 {min-height: 500px}
+.u-block-8116-18 {margin-top: 66.5px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-3 {height: 183.2px; width: 570px; margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-8116-13 {margin-left: 0px} }</style><style data-mode="LG">@media (max-width: 0px) { .u-block-8116-2 {min-height: 500px}
+.u-block-8116-18 {margin-top: 66.5px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-3 {width: 570px; margin-bottom: 60px; height: 183.2px; margin-top: 20.25px; margin-left: auto; margin-right: auto}
+.u-block-8116-13 {margin-left: 0px} }</style><style data-mode="MD">@media (max-width: 0px) { .u-block-8116-2 {min-height: 500px}
+.u-block-8116-18 {margin-top: 66.5px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-3 {width: 570px; margin-bottom: 60px; height: 183.2px; margin-top: 20.25px; margin-left: auto; margin-right: auto}
+.u-block-8116-13 {margin-left: 0px} }</style><style data-mode="SM">@media (max-width: 0px) { .u-block-8116-2 {min-height: 500px}
+.u-block-8116-18 {margin-top: 66.5px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-3 {width: 540px; margin-bottom: 60px; height: 183.2px; margin-top: 20.25px; margin-left: auto; margin-right: auto}
+.u-block-8116-13 {margin-left: 0px} }</style><style data-mode="XS">@media (max-width: 0px) { .u-block-8116-2 {min-height: 500px}
+.u-block-8116-18 {margin-top: 66.5px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-3 {width: 340px; margin-bottom: 60px; height: 183.2px; margin-top: 20.25px; margin-left: auto; margin-right: auto}
+.u-block-8116-13 {margin-left: 0px} }</style></section>
 {% endblock %}

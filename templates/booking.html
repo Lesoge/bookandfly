@@ -1,13 +1,315 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-    Your Booking has the Number {{ bookingnr }}
-</h1>
-<h2 class="subtitle">
-    Pay now and finish your order.
-</h2>
-<form method="post">
-    <button name="pay">Pay & Complete Order</button>
-</form>
+<section class="u-clearfix u-block-8116-1" custom-posts-hash="[]" data-style="blank"
+         data-section-properties="{&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}" id="sec-70d6"
+         data-source="Blank" data-id="8116" style="">
+    <div class="u-clearfix u-sheet u-valign-middle u-block-8116-2" style="min-height: 308px;" data-block-type="Sheet">
+        <h2 class="u-text u-text-default u-align-center u-block-8116-18" data-block="51" style="margin: 60px auto 0px;"
+            data-block-type="Text">Flight Nr. {{booking.flight.id}}<br>Booking Process: Confirmation</h2>
+        <p class="u-text u-text-default u-align-center u-block-8116-19" data-block="52"
+           style="margin: 20.25px auto 60px;" data-block-type="Text">We received your payment information.<br>A booking
+            with the number {{booking.id}} was created.<br>Please confirm the booking information once again.</p></div>
+    <style data-mode="XL">@media (max-width: 0px) { .u-block-8116-2 {min-height: 308px}
+.u-block-8116-18 {margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 60px} }
+
+
+    </style>
+    <style data-mode="LG">@media (max-width: 0px) { .u-block-8116-2 {min-height: 308px}
+.u-block-8116-18 {margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 60px} }
+
+
+    </style>
+    <style data-mode="MD">@media (max-width: 0px) { .u-block-8116-2 {min-height: 308px}
+.u-block-8116-18 {margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 60px} }
+
+
+    </style>
+    <style data-mode="SM">@media (max-width: 0px) { .u-block-8116-2 {min-height: 308px}
+.u-block-8116-18 {margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 60px} }
+
+
+    </style>
+    <style data-mode="XS">@media (max-width: 0px) { .u-block-8116-2 {min-height: 308px}
+.u-block-8116-18 {margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 60px} }
+
+
+    </style>
+</section>
+<section class="u-align-center u-clearfix u-block-8692-1" custom-posts-hash="[T,T,T,T]"
+         data-section-properties="{&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}" data-id="8692"
+         data-posts-content="[{'images':[],'maps':[],'videos':[],'icons':[],'textWidth':1140,'textHeight':650,'id':1,'groupId':1,'headingProp':'h2','textProp':'text'},{'images':[],'maps':[],'videos':[],'icons':[{}],'textWidth':1140,'textHeight':650,'id':2,'groupId':1,'headingProp':'h2','textProp':'text'},{'images':[],'maps':[],'videos':[],'icons':[{}],'textWidth':1140,'textHeight':650,'id':3,'groupId':1,'headingProp':'h2','textProp':'text'},{'images':[],'maps':[],'videos':[],'icons':[{}],'textWidth':1140,'textHeight':650,'id':4,'groupId':1,'headingProp':'h2','textProp':'text'}]"
+         style="" data-style="accordion-2" id="sec-d521" data-source="Sketch">
+    <div class="u-clearfix u-sheet u-block-8692-2" style="min-height: 341px">
+        <h2 class="u-text u-text-default u-block-8692-3"
+            style="font-weight: 700; margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 0px"
+            data-block="113" data-block-type="Text">Your Booking Information</h2>
+        <div class="u-accordion u-spacing-3 u-block-8692-4"
+             style="width: 800px; margin-top: 35px; margin-left: auto; margin-right: auto; margin-bottom: 60px"
+             data-block="114" data-block-type="Accordion">
+            <div class="u-accordion-item u-block-8692-5" style="" data-block="115">
+                <a class="u-accordion-link u-button-style u-grey-5 u-text-active-black u-text-grey-60 u-text-hover-black active u-block-8692-6"
+                   id="link-accordion-0781" aria-controls="accordion-0781" aria-selected="true"
+                   style="background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px"
+                   data-block="116" data-block-type="AccordionLink">
+                    <span class="u-accordion-link-text" data-block-type="">Flight Information</span><span
+                        class="u-accordion-link-icon u-icon u-text-grey-40 u-block-8692-21"
+                        style="height: 20px; width: 20px"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice"
+                                                               viewBox="0 0 512 512" style=""><use
+                        xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-efcb"></use></svg><svg
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        xml:space="preserve" class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-efcb"
+                        style="enable-background:new 0 0 512 512;"><g><g><path d="M509.121,125.966c-3.838-3.838-10.055-3.838-13.893,0L256.005,365.194L16.771,125.966c-3.838-3.838-10.055-3.838-13.893,0    c-3.838,3.838-3.838,10.055,0,13.893l246.18,246.175c1.842,1.842,4.337,2.878,6.947,2.878c2.61,0,5.104-1.036,6.946-2.878    l246.17-246.175C512.959,136.021,512.959,129.804,509.121,125.966z"></path>
+</g>
+</g></svg></span>
+                </a>
+                <div class="u-accordion-pane u-container-style u-accordion-active u-block-8692-7" id="accordion-0781"
+                     aria-labelledby="link-accordion-0781" style="min-height: 150px" data-block="117"
+                     data-block-type="AccordionPane">
+                    <div class="u-container-layout u-block-8692-8" style="padding: 30px 30px 30.0004px;"
+                         data-container-layout-dom="13" data-block-type="">
+
+
+                        <ul class="u-text u-text-default u-block-8692-32" data-block="136"
+                            style="margin-bottom: 0px; margin-top: 19.4px;" data-block-type="Text">
+                            <li data-block-type="">
+                                <div class="u-list-icon hidden u-block-8692-33"></div>
+                                From: {{booking.flight.depAirport.name}} {{booking.flight.depTime.strftime('%d.%m.%Y
+                                %H:%M')}}
+                            </li>
+                            <li data-block-type="">
+                                <div class="u-list-icon hidden u-block-8692-34"></div>
+                                To: {{booking.flight.arrAirport.name}} {{booking.flight.arrTime.strftime('%d.%m.%Y %H:%M')}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="u-accordion-item u-block-8692-9" style="" data-block="120">
+                <a class="u-accordion-link u-button-style u-grey-5 u-text-active-black u-text-grey-60 u-text-hover-black u-block-8692-10"
+                   id="link-accordion-4c47" aria-controls="accordion-4c47" aria-selected="false"
+                   style="background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px"
+                   data-block="121" data-block-type="AccordionLink">
+                    <span class="u-accordion-link-text" data-block-type="">Booking Address</span><span
+                        class="u-accordion-link-icon u-icon u-text-grey-40 u-block-8692-22"
+                        style="height: 20px; width: 20px"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice"
+                                                               viewBox="0 0 512 512" style=""><use
+                        xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-55f1"></use></svg><svg
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        xml:space="preserve" class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-55f1"
+                        style="enable-background:new 0 0 512 512;"><g><g><path d="M509.121,125.966c-3.838-3.838-10.055-3.838-13.893,0L256.005,365.194L16.771,125.966c-3.838-3.838-10.055-3.838-13.893,0    c-3.838,3.838-3.838,10.055,0,13.893l246.18,246.175c1.842,1.842,4.337,2.878,6.947,2.878c2.61,0,5.104-1.036,6.946-2.878    l246.17-246.175C512.959,136.021,512.959,129.804,509.121,125.966z"></path>
+</g>
+</g></svg></span>
+                </a>
+                <div class="u-accordion-pane u-container-style u-block-8692-11" id="accordion-4c47"
+                     aria-labelledby="link-accordion-4c47" style="min-height: 150px" data-block="122"
+                     data-block-type="AccordionPane">
+                    <div class="u-container-layout u-block-8692-12"
+                         style="padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px"
+                         data-container-layout-dom="14">
+                        <ul class="u-text u-block-8692-19"
+                            style="line-height: 1.8; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px"
+                            data-block="123" data-block-type="Text">
+                            <li data-block-type="">
+                                <div class="u-list-icon hidden u-block-8692-25" style=""></div>
+                                {{ booking.booking_address.first_name }}&nbsp;{{ booking.booking_address.last_name }}
+                            </li>
+                            <li>
+                                <div class="u-list-icon hidden u-block-8692-26" style=""></div>
+                                {{ booking.booking_address.street }}&nbsp;{{ booking.booking_address.street_number
+                                }}<br></li>
+                            <li>
+                                <div class="u-list-icon hidden u-block-8692-27" style=""></div>
+                                ​{{ booking.booking_address.zipcode }}&nbsp;{{ booking.booking_address.town }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="u-accordion-item u-block-8692-13" style="" data-block="124">
+                <a class="u-accordion-link u-button-style u-grey-5 u-text-active-black u-text-grey-60 u-text-hover-black u-block-8692-14"
+                   id="link-accordion-a910" aria-controls="accordion-a910" aria-selected="false"
+                   style="background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px"
+                   data-block="125" data-block-type="AccordionLink">
+                    <span class="u-accordion-link-text" data-block-type="">Payment Information</span><span
+                        class="u-accordion-link-icon u-icon u-text-grey-40 u-block-8692-23"
+                        style="height: 20px; width: 20px"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice"
+                                                               viewBox="0 0 512 512" style=""><use
+                        xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-6813"></use></svg><svg
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        xml:space="preserve" class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-6813"
+                        style="enable-background:new 0 0 512 512;"><g><g><path d="M509.121,125.966c-3.838-3.838-10.055-3.838-13.893,0L256.005,365.194L16.771,125.966c-3.838-3.838-10.055-3.838-13.893,0    c-3.838,3.838-3.838,10.055,0,13.893l246.18,246.175c1.842,1.842,4.337,2.878,6.947,2.878c2.61,0,5.104-1.036,6.946-2.878    l246.17-246.175C512.959,136.021,512.959,129.804,509.121,125.966z"></path>
+</g>
+</g></svg></span>
+                </a>
+                <div class="u-accordion-pane u-container-style u-block-8692-15" id="accordion-a910"
+                     aria-labelledby="link-accordion-a910" style="min-height: 150px" data-block="126"
+                     data-block-type="AccordionPane">
+                    <div class="u-container-layout u-block-8692-16"
+                         style="padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px"
+                         data-container-layout-dom="15" data-block-type="">
+
+                        <ul class="u-text u-text-default u-block-8692-28" data-block="131"
+                            style="margin-bottom: 0px; margin-top: 0px" data-block-type="Text">
+                            <li data-block-type="">
+                                <div class="u-list-icon hidden u-block-8692-29" style=""></div>
+                                Credit Card Number:&nbsp;{{ booking.payment_info.credit_card_number }}
+                            </li>
+                            <li>
+                                <div class="u-list-icon hidden u-block-8692-30" style=""></div>
+                                Credit Card Holder:&nbsp;{{ booking.payment_info.name_on_card }}
+                            </li>
+                            <li>
+                                <div class="u-list-icon hidden u-block-8692-31" style=""></div>
+                                Expiry Date:&nbsp;{{ booking.payment_info.expiry_date }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style data-mode="XL">@media (max-width: 0px) { .u-block-8692-2 {min-height: 341px}
+.u-block-8692-3 {font-weight: 700; margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8692-4 {width: 800px; margin-top: 35px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-8692-6 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-21 {height: 20px; width: 20px}
+.u-block-8692-7 {min-height: 150px}
+.u-block-8692-8 {padding-top: 30px; padding-left: 30px; padding-right: 30px; padding-bottom: 30.0004px}
+.u-block-8692-32 {margin-bottom: 0px; margin-top: 19.4px}
+.u-block-8692-10 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-22 {height: 20px; width: 20px}
+.u-block-8692-11 {min-height: 150px}
+.u-block-8692-12 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-19 {line-height: 1.8; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px}
+.u-block-8692-14 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-23 {height: 20px; width: 20px}
+.u-block-8692-15 {min-height: 150px}
+.u-block-8692-16 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-28 {margin-bottom: 0px; margin-top: 0px} }
+
+    </style>
+    <style data-mode="LG">@media (max-width: 0px) { .u-block-8692-2 {min-height: 271px}
+.u-block-8692-3 {font-weight: 700; margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8692-4 {width: 800px; margin-top: 35px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-8692-6 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-21 {height: 20px; width: 20px}
+.u-block-8692-7 {min-height: 150px}
+.u-block-8692-8 {padding-top: 30px; padding-bottom: 30.0004px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-32 {margin-bottom: 0px; margin-top: 19.4px}
+.u-block-8692-10 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-22 {height: 20px; width: 20px}
+.u-block-8692-11 {min-height: 150px}
+.u-block-8692-12 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-19 {line-height: 1.8; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px}
+.u-block-8692-14 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-23 {height: 20px; width: 20px}
+.u-block-8692-15 {min-height: 150px}
+.u-block-8692-16 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-28 {margin-bottom: 0px; margin-top: 0px} }
+
+    </style>
+    <style data-mode="MD" data-visited="true">@media (max-width: 0px) { .u-block-8692-2 {min-height: 194px}
+.u-block-8692-3 {font-weight: 700; margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8692-4 {width: 720px; margin-top: 35px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-8692-6 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-21 {height: 20px; width: 20px}
+.u-block-8692-7 {min-height: 150px}
+.u-block-8692-8 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-32 {margin-bottom: 0px; margin-top: 19.4px}
+.u-block-8692-10 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-22 {height: 20px; width: 20px}
+.u-block-8692-11 {min-height: 150px}
+.u-block-8692-12 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-19 {line-height: 1.8; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px}
+.u-block-8692-14 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-23 {height: 20px; width: 20px}
+.u-block-8692-15 {min-height: 150px}
+.u-block-8692-16 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-28 {margin-bottom: 0px; margin-top: 0px} }
+
+    </style>
+    <style data-mode="SM" data-visited="true">@media (max-width: 0px) { .u-block-8692-2 {min-height: 1079px}
+.u-block-8692-3 {font-weight: 700; margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8692-4 {width: 540px; margin-top: 35px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-8692-6 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-21 {height: 20px; width: 20px}
+.u-block-8692-7 {min-height: 150px}
+.u-block-8692-8 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-32 {margin-bottom: 0px; margin-top: 19.4px}
+.u-block-8692-10 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-22 {height: 20px; width: 20px}
+.u-block-8692-11 {min-height: 150px}
+.u-block-8692-12 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-19 {line-height: 1.8; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px}
+.u-block-8692-14 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-23 {height: 20px; width: 20px}
+.u-block-8692-15 {min-height: 150px}
+.u-block-8692-16 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-28 {margin-bottom: 0px; margin-top: 0px} }
+
+    </style>
+    <style data-mode="XS" data-visited="true">@media (max-width: 0px) { .u-block-8692-2 {min-height: 657px}
+.u-block-8692-3 {font-weight: 700; margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-8692-4 {width: 340px; margin-top: 35px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-8692-6 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-21 {height: 20px; width: 20px}
+.u-block-8692-7 {min-height: 150px}
+.u-block-8692-8 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-32 {margin-bottom: 0px; margin-top: 19.4px}
+.u-block-8692-10 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-22 {height: 20px; width: 20px}
+.u-block-8692-11 {min-height: 150px}
+.u-block-8692-12 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-19 {line-height: 1.8; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px}
+.u-block-8692-14 {background-image: none; text-transform: uppercase; padding-top: 20px; padding-bottom: 20px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-23 {height: 20px; width: 20px}
+.u-block-8692-15 {min-height: 150px}
+.u-block-8692-16 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-8692-28 {margin-bottom: 0px; margin-top: 0px} }
+
+    </style>
+</section>
+<section class="u-align-center u-clearfix u-block-19cd-1" custom-posts-hash="T" style="" data-post-id="3575130877"
+         data-section-properties="{&quot;align&quot;:&quot;center&quot;,&quot;stretch&quot;:true}" data-id="19cd"
+         data-posts-content="[{'images':[],'maps':[],'videos':[],'icons':[],'textWidth':1140,'textHeight':294,'id':1,'headingProp':'h2','textProp':'text'}]"
+         data-style="cta-text-button-centered-3-v2" id="sec-8038" data-source="Sketch">
+    <div class="u-align-center u-clearfix u-sheet u-valign-middle u-block-19cd-2" style="min-height: 294px">
+
+
+        <p class="u-text u-text-default u-block-19cd-8" data-block="137" style="margin: 17px auto 0px;"
+           data-block-type="Text">Please confirm the booking information above to finish the booking process.</p>
+        <form method="post">
+        <button
+            name="pay"
+            style="margin: 17px auto 60px; border-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;"
+            class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-block-19cd-7" data-block="130"
+            data-block-type="Button">Confirm Booking & Pay</button></form>
+    </div>
+    <style data-mode="XL">@media (max-width: 0px) { .u-block-19cd-2 {min-height: 294px}
+.u-block-19cd-8 {margin-top: 17px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-19cd-7 {border-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 17px; margin-left: auto; margin-right: auto; margin-bottom: 60px} }
+    </style>
+    <style data-mode="LG">@media (max-width: 0px) { .u-block-19cd-2 {min-height: 294px}
+.u-block-19cd-8 {margin-top: 17px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-19cd-7 {margin-top: 17px; margin-left: auto; margin-right: auto; margin-bottom: 60px; border-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 1px} }
+    </style>
+    <style data-mode="MD">@media (max-width: 0px) { .u-block-19cd-2 {min-height: 294px}
+.u-block-19cd-8 {margin-top: 17px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-19cd-7 {margin-top: 17px; margin-left: auto; margin-right: auto; margin-bottom: 60px; border-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 1px} }
+    </style>
+    <style data-mode="SM">@media (max-width: 0px) { .u-block-19cd-2 {min-height: 294px}
+.u-block-19cd-8 {margin-top: 17px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-19cd-7 {margin-top: 17px; margin-left: auto; margin-right: auto; margin-bottom: 60px; border-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 1px} }
+    </style>
+    <style data-mode="XS">@media (max-width: 0px) { .u-block-19cd-2 {min-height: 294px}
+.u-block-19cd-8 {margin-top: 17px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-19cd-7 {margin-top: 17px; margin-left: auto; margin-right: auto; margin-bottom: 60px; border-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 1px} }
+    </style>
+</section>
 {% endblock %}
