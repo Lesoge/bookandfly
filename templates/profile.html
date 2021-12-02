@@ -1,15 +1,221 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-   Your Profile
-</h1>
-<h2 class="subtitle">
-   Profile Information
-</h2>
-   <p>Name: {{ user.username }}</p>
-   <p>Email: {{ user.email }}</p>
-<h2 class="subtitle">
-   Booked Flights
-</h2>
+<section class="u-align-center u-clearfix u-white u-block-2074-1" custom-posts-hash="[]" data-style="blank"
+         data-section-properties="{&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}" id="carousel_51b4"
+         data-source="fix" data-id="2074" style="background-image: none">
+    <div class="u-clearfix u-sheet u-block-2074-2" style="min-height: 500px;" data-block-type="Sheet"><h1
+            class="u-text u-block-2074-3" style="width: 525px; font-weight: 700; margin: 60px auto;" data-block="13"
+            data-block-type="Text">Your Profile</h1>
+        <div class="u-layout-wrap u-clearfix u-expanded-width u-block-2074-4" data-layout-wrap-id="2" data-block="29"
+             style="margin-top: 60px; margin-bottom: 60px; position: relative;" data-block-type="Layout">
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    <div class="u-size-30 u-layout-cell u-container-style ui-draggable ui-droppable u-image u-block-2074-5"
+                         data-cell-id="4" data-column-id="1" data-block="30"
+                         style="min-height: 400px; background-image: url(&quot;https://pixabay.com/get/gb8a757fc6454f5a5408fc78c2dd466be568b6e0c7f0ce2f880c03d79fc2def8773e4ed750423e35a78cac2c19a0468657ec7a2de52dc92081cdfa28e724f0b7b_1280.jpg&quot;);"
+                         data-image-width="150" data-image-height="96"
+                         data-uploaded-src="np://user.desktop.nicepage.com/Site_2500315441/images/54f5a5408fc78c2dd466be568b6e0c7f0ce2f880c03d79fc2def8773e4ed750423e35a78cac2c19a0468657ec7a2de52dc92081cdfa28e724f0b7b_1280.jpg"
+                         data-block-type="Cell,BackgroundImage">
+                        <div class="u-container-layout u-block-2074-6" data-container-layout-dom="4"
+                             style="padding: 30px;" data-block-type="">
+                        </div>
+                    </div>
+                    <div class="u-size-30 u-layout-cell u-container-style ui-draggable ui-droppable u-block-2074-7"
+                         data-cell-id="5" data-column-id="2" data-block="31" style="min-height: 400px;"
+                         data-block-type="Cell">
+                        <div class="u-container-layout u-block-2074-8" data-container-layout-dom="5"
+                             style="padding: 30px;" data-block-type="">
+                            <h3 class="u-text u-text-default u-align-left u-block-2074-10" data-block="34"
+                                style="margin: 59.525px auto 0px 0px;" data-block-type="Text">Account Information</h3>
+                            <p class="u-text u-text-default u-align-left u-block-2074-9" data-block="33"
+                               style="margin: 48.875px auto 0px 0px; font-size: 1.5rem;" data-block-type="Text">
+                                Username:&nbsp;{{ user.username }}&nbsp;<br>Email: {{ user.email }}<br></p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style data-mode="XL">@media (max-width: 0px) { .u-block-2074-1 {background-image: none}
+.u-block-2074-2 {min-height: 500px}
+.u-block-2074-3 {width: 525px; font-weight: 700; margin-top: 60px; margin-bottom: 60px; margin-left: auto; margin-right: auto}
+.u-block-2074-4 {margin-top: 60px; margin-bottom: 60px; position: relative}
+.u-block-2074-5 {min-height: 400px; background-image: url("https://pixabay.com/get/gb8a757fc6454f5a5408fc78c2dd466be568b6e0c7f0ce2f880c03d79fc2def8773e4ed750423e35a78cac2c19a0468657ec7a2de52dc92081cdfa28e724f0b7b_1280.jpg")}
+.u-block-2074-6 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-2074-7 {min-height: 400px}
+.u-block-2074-8 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-2074-10 {margin-top: 59.525px; margin-right: auto; margin-bottom: 0px; margin-left: 0px}
+.u-block-2074-9 {font-size: 1.5rem; margin-top: 48.875px; margin-right: auto; margin-bottom: 0px; margin-left: 0px} }
+
+
+    </style>
+    <style data-mode="LG">@media (max-width: 0px) { .u-block-2074-1 {background-image: none}
+.u-block-2074-2 {min-height: 430px}
+.u-block-2074-3 {width: 525px; font-weight: 700; margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-2074-4 {margin-top: 60px; margin-bottom: 60px; position: relative}
+.u-block-2074-5 {background-image: url("https://pixabay.com/get/gb8a757fc6454f5a5408fc78c2dd466be568b6e0c7f0ce2f880c03d79fc2def8773e4ed750423e35a78cac2c19a0468657ec7a2de52dc92081cdfa28e724f0b7b_1280.jpg"); min-height: 330px}
+.u-block-2074-6 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-2074-7 {min-height: 330px}
+.u-block-2074-8 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-2074-10 {margin-top: 59.525px; margin-right: auto; margin-bottom: 0px; margin-left: 0px}
+.u-block-2074-9 {margin-bottom: 0px; margin-top: 48.875px; margin-right: auto; margin-left: 0px; font-size: 1.5rem} }
+
+
+    </style>
+    <style data-mode="MD">@media (max-width: 0px) { .u-block-2074-1 {background-image: none}
+.u-block-2074-2 {min-height: 353px}
+.u-block-2074-3 {width: 525px; font-weight: 700; margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-2074-4 {margin-top: 60px; margin-bottom: 60px; position: relative}
+.u-block-2074-5 {background-image: url("https://pixabay.com/get/gb8a757fc6454f5a5408fc78c2dd466be568b6e0c7f0ce2f880c03d79fc2def8773e4ed750423e35a78cac2c19a0468657ec7a2de52dc92081cdfa28e724f0b7b_1280.jpg"); min-height: 253px}
+.u-block-2074-6 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-2074-7 {min-height: 100px}
+.u-block-2074-8 {padding-top: 30px; padding-bottom: 30px; padding-left: 30px; padding-right: 30px}
+.u-block-2074-10 {margin-top: 59.525px; margin-right: auto; margin-bottom: 0px; margin-left: 0px}
+.u-block-2074-9 {margin-bottom: 0px; margin-top: 48.875px; margin-right: auto; margin-left: 0px; font-size: 1.5rem} }
+
+
+    </style>
+    <style data-mode="SM" data-visited="true">@media (max-width: 0px) { .u-block-2074-1 {background-image: none}
+.u-block-2074-2 {min-height: 580px}
+.u-block-2074-3 {width: 525px; font-weight: 700; margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-2074-4 {margin-top: 60px; margin-bottom: 60px; position: relative}
+.u-block-2074-5 {background-image: url("https://pixabay.com/get/gb8a757fc6454f5a5408fc78c2dd466be568b6e0c7f0ce2f880c03d79fc2def8773e4ed750423e35a78cac2c19a0468657ec7a2de52dc92081cdfa28e724f0b7b_1280.jpg"); min-height: 380px}
+.u-block-2074-6 {padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px}
+.u-block-2074-7 {min-height: 100px}
+.u-block-2074-8 {padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px}
+.u-block-2074-10 {margin-top: 59.525px; margin-right: auto; margin-bottom: 0px; margin-left: 0px}
+.u-block-2074-9 {margin-bottom: 0px; margin-top: 48.875px; margin-right: auto; margin-left: 0px; font-size: 1.5rem} }
+
+
+    </style>
+    <style data-mode="XS" data-visited="true">@media (max-width: 0px) { .u-block-2074-1 {background-image: none}
+.u-block-2074-2 {min-height: 439px}
+.u-block-2074-3 {width: 340px; font-weight: 700; margin-top: 60px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-2074-4 {margin-top: 60px; margin-bottom: 60px; position: relative}
+.u-block-2074-5 {background-image: url("https://pixabay.com/get/gb8a757fc6454f5a5408fc78c2dd466be568b6e0c7f0ce2f880c03d79fc2def8773e4ed750423e35a78cac2c19a0468657ec7a2de52dc92081cdfa28e724f0b7b_1280.jpg"); min-height: 239px}
+.u-block-2074-6 {padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px}
+.u-block-2074-7 {min-height: 100px}
+.u-block-2074-8 {padding-top: 30px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px}
+.u-block-2074-10 {margin-top: 59.525px; margin-right: auto; margin-bottom: 0px; margin-left: 0px}
+.u-block-2074-9 {margin-bottom: 0px; margin-top: 48.875px; margin-right: auto; margin-left: 0px; font-size: 1.5rem} }
+
+
+    </style>
+</section>
+<section class="u-align-center u-clearfix u-block-f4aa-1" custom-posts-hash="T" data-post-id="2502854279"
+         data-section-properties="{&quot;width&quot;:&quot;sheet&quot;,&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}"
+         data-id="f4aa"
+         data-state="{&quot;min-height&quot;:{&quot;canCollapse&quot;:{&quot;XL&quot;:null,&quot;LG&quot;:null,&quot;MD&quot;:null,&quot;SM&quot;:null,&quot;XS&quot;:null}}}"
+         data-posts-content="[{'images':[],'maps':[],'videos':[],'icons':[],'textWidth':1140,'textHeight':177,'id':1,'headingProp':'h1','textProp':'text'}]"
+         style="" data-style="text-heading-only" id="sec-9015" data-source="Sketch">
+    <div class="u-clearfix u-sheet u-block-f4aa-2" style="min-height: 66px;" data-block-type="Sheet">
+        <h3 class="u-text u-text-default u-block-f4aa-3" style="margin: 0.3334px auto 29.675px;" data-block="35"
+            data-block-type="Text">Your booked flights</h3>
+    </div>
+    <style data-mode="XL">@media (max-width: 0px) { .u-block-f4aa-2 {min-height: 66px}
+.u-block-f4aa-3 {margin-top: 0.3334px; margin-left: auto; margin-right: auto; margin-bottom: 29.675px; font-weight: normal} }
+    </style>
+    <style data-mode="LG">@media (max-width: 0px) { .u-block-f4aa-2 {min-height: 66px}
+.u-block-f4aa-3 {font-weight: normal; margin-top: 0.3334px; margin-bottom: 29.675px; margin-left: auto; margin-right: auto} }
+    </style>
+    <style data-mode="MD">@media (max-width: 0px) { .u-block-f4aa-2 {min-height: 66px}
+.u-block-f4aa-3 {font-weight: normal; margin-top: 0.3334px; margin-bottom: 29.675px; margin-left: auto; margin-right: auto} }
+    </style>
+    <style data-mode="SM">@media (max-width: 0px) { .u-block-f4aa-2 {min-height: 66px}
+.u-block-f4aa-3 {font-weight: normal; margin-top: 0.3334px; margin-bottom: 29.675px; margin-left: auto; margin-right: auto} }
+    </style>
+    <style data-mode="XS">@media (max-width: 0px) { .u-block-f4aa-2 {min-height: 66px}
+.u-block-f4aa-3 {font-weight: normal; margin-top: 0.3334px; margin-bottom: 29.675px; margin-left: auto; margin-right: auto} }
+    </style>
+</section>
+<section class="u-align-center u-clearfix u-block-6529-1" custom-posts-hash="[]"
+         data-section-properties="{&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}" data-id="6529"
+         data-posts-content="[]" style="" data-style="table-8" id="sec-d090" data-source="Sketch">
+    <div class="u-clearfix u-sheet u-block-6529-2" style="min-height: 153px;">
+        <div class="u-expanded-width u-table u-table-responsive u-block-6529-40"
+             style="margin: 1.0668px auto 30.3376px 0px;" data-block="66" data-block-type="Table">
+            <div class="hidden u-first-col-div u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-block-6529-46"
+                 data-block-type=""></div>
+            <div class="hidden u-table-header-style-div u-border-1 u-border-grey-50 u-block-6529-47"
+                 data-block-type=""></div>
+            <div class="hidden u-table-footer-style-div u-block-6529-48" data-block-type=""></div>
+            <div class="hidden u-table-body-style-div u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-block-6529-49"
+                 data-block-type="" style=""></div>
+            <table class="u-table-entity u-block-6529-3" style="">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <thead class="u-grey-50 u-table-header u-block-6529-4" style="font-weight: 700; background-image: none">
+                <tr style="height: 42px;">
+                    <th class="u-border-1 u-border-grey-50 u-table-cell u-block-6529-10" style="" data-block="67"
+                        data-block-type="TableCell">Booking Nr.
+                    </th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell u-block-6529-11" style="" data-block="68"
+                        data-block-type="TableCell">From
+                    </th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell u-block-6529-12" style="" data-block="69"
+                        data-block-type="TableCell">To
+                    </th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell u-block-6529-34" style="" data-block="70"
+                        data-block-type="TableCell">Date
+                    </th>
+                </tr>
+                </thead>
+                <tbody class="u-table-body u-block-6529-9" style="">
+                {% for booking in bookings %}
+                <tr style="height: 75px;">
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell u-block-6529-13"
+                        style="" data-block="71" data-block-type="TableCell">{{ booking.id }}
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell u-block-6529-14"
+                        style="" data-block="72" data-block-type="TableCell">{{ booking.flight.depAirport.name }}
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell u-block-6529-15"
+                        style="" data-block="73" data-block-type="TableCell">{{ booking.flight.arrAirport.name }}
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell u-block-6529-30"
+                        style="" data-block="74">{{ booking.flight.depTime.strftime('%d.%m.%Y %H:%M') }}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot class="hidden u-table-footer u-block-6529-35" style="">
+                <tr class="hidden u-block-6529-41">
+                    <td class="u-table-cell u-block-6529-42" style="" data-block="87"></td>
+                    <td class="u-table-cell u-block-6529-43" style="" data-block="88"></td>
+                    <td class="u-table-cell u-block-6529-44" style="" data-block="89"></td>
+                    <td class="u-table-cell u-block-6529-45" style="" data-block="90"></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <style data-mode="XL">@media (max-width: 0px) { .u-block-6529-2 {min-height: 153px}
+.u-block-6529-40 {margin-top: 1.0668px; margin-right: auto; margin-bottom: 30.3376px; margin-left: 0px}
+.u-block-6529-4 {font-weight: 700; background-image: none} }
+    </style>
+    <style data-mode="LG">@media (max-width: 0px) { .u-block-6529-2 {min-height: 153px}
+.u-block-6529-40 {margin-top: 1.0668px; margin-bottom: 30.3376px}
+.u-block-6529-3 {min-height: 100px}
+.u-block-6529-4 {font-weight: 700; background-image: none} }
+    </style>
+    <style data-mode="MD">@media (max-width: 0px) { .u-block-6529-2 {min-height: 153px}
+.u-block-6529-40 {margin-top: 1.0668px; margin-bottom: 30.3376px}
+.u-block-6529-3 {min-height: 100px}
+.u-block-6529-4 {font-weight: 700; background-image: none} }
+    </style>
+    <style data-mode="SM">@media (max-width: 0px) { .u-block-6529-2 {min-height: 153px}
+.u-block-6529-40 {margin-top: 1.0668px; margin-bottom: 30.3376px}
+.u-block-6529-3 {min-height: 100px}
+.u-block-6529-4 {font-weight: 700; background-image: none} }
+    </style>
+    <style data-mode="XS">@media (max-width: 0px) { .u-block-6529-2 {min-height: 153px}
+.u-block-6529-40 {margin-top: 1.0668px; margin-bottom: 30.3376px}
+.u-block-6529-3 {min-height: 100px}
+.u-block-6529-4 {font-weight: 700; background-image: none} }
+    </style>
+</section>
 {% endblock %}

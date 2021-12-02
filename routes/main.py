@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, session, redirect, url_for
 from flask_login import login_required, current_user
 from datetime import datetime
-from User import Flight
+from User import Flight, Booking
 
 app_main = Blueprint('app_main', __name__)
 
@@ -15,7 +15,8 @@ def index():
 @app_main.route('/profile', methods=['GET'])
 @login_required
 def profile():
-    return render_template('profile.html', user=current_user)
+    bookings = Booking.query.filter(Booking.user == current_user, Booking.payed == True)
+    return render_template('profile.html', user=current_user, bookings=bookings)
 
 
 @app_main.route("/flight/<int:flightnr>", methods=['GET'])
