@@ -59,6 +59,6 @@ def booking_info():
 
 def get_from_session(key):
     if key in session:
-        return session['flight_id']
+        return session[key]
     else:
         abort(404, description='you tried to access that page through an invalid path')
