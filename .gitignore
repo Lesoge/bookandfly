@@ -133,3 +133,4 @@ test.py
 static/qrcode.png
 config.py
 createDB.py
+/generateAdmin.py
