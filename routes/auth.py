@@ -2,7 +2,9 @@
 import pyotp
 from flask_login import login_user, logout_user, current_user
 from flask import Blueprint, render_template, session, abort, flash
-from User import User, db, db_commit
+from flask_security.utils import hash_password
+
+from User import User, db, db_commit, user_datastore
 from flask import (request, url_for, make_response,
                    redirect, render_template, session)
 
@@ -55,9 +57,12 @@ def signup_post():
         flash('Username or Email is already used')
         return redirect(url_for('app_auth.signup'))
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-    new_user = User(username=username, email=email, password=password)
-    # add the new user to the database
-    db_commit(new_user)
+    password = hash_password(password)
+    user_datastore.create_user(username=username, email=email, password=password)
+    user_datastore.add_role_to_user(email, 'end-user')
+    user_datastore.commit()
+    new_user = user_datastore.get_user(email)
+    user_datastore.commit()
     session['user_id'] = new_user.id
     return redirect(url_for('app_mfa.signup_mfa'))
 

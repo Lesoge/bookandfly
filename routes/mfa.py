@@ -1,8 +1,9 @@
 # login route for web interface
 import pyotp
-from flask_login import login_user, current_user, login_required
+from flask_security import current_user, login_required
+from flask_security.utils import login_user
 from flask import Blueprint, render_template, session, abort, flash
-from User import User, db
+from User import User, db, security
 from flask import (request, url_for, make_response,
                    redirect, render_template, session)
 import qrcode
@@ -70,7 +71,7 @@ def login_mfa_form():
         remember = False
     # verifying submitted OTP with PyOTP
     if user.check_otp(otp):
-        login_user(user, remember=remember)
+        login_user(user, remember)
         return redirect(url_for('app_main.profile'))
     else:
         flash('You have supplied an invalid 2FA token!', 'danger')
