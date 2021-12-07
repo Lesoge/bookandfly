@@ -1,9 +1,16 @@
 import pyotp
-from flask_login import UserMixin
+from flask_security import SQLAlchemyUserDatastore, RoleMixin, UserMixin, Security
+from flask_security.utils import hash_password, verify_password
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
+security = Security()
+roles_users = db.Table(
+    'roles_users',
+    db.Column('user_id', db.Integer(), db.ForeignKey('users.id')),
+    db.Column('role_id', db.Integer(), db.ForeignKey('roles.id'))
+)
 
 
 class User(db.Model, UserMixin):
@@ -17,27 +24,47 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(1024), nullable=True, unique=True)
     mfasecretkey = db.Column(db.String(1024), nullable=True)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
+    active = db.Column(db.Boolean())
+    confirmed_at = db.Column(db.DateTime())
+    roles = db.relationship(
+        'Role',
+        secondary=roles_users,
+        backref=db.backref('users', lazy='dynamic')
+    )
 
     # relation booked flights
     def __repr__(self):
         return '<User %r>' % self.username
 
-    def __init__(self, username, email, password):
-        self.email = email
-        self.username = username
-        self.password = generate_password_hash(
-            password,
-            method='sha256',
-        )
-
     def check_password(self, password):
-        return check_password_hash(self.password, password)
+        print('PASSSWORD:'+password)
+        return verify_password(password, self.password)
 
     def check_otp(self, otp):
         return pyotp.TOTP(self.mfasecretkey).verify(otp)
 
     def generate_otp(self):
         self.mfasecretkey = pyotp.random_base32()
+
+
+class Role(db.Model, RoleMixin):
+    __tablename__ = 'roles'
+    # Our Role has three fields, ID, name and description
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    description = db.Column(db.String(255))
+
+    # __str__ is required by Flask-Admin, so we can have human-readable values for the Role when editing a User.
+    # If we were using Python 2.7, this would be __unicode__ instead.
+    def __str__(self):
+        return self.name
+
+    # __hash__ is required to avoid the exception TypeError: unhashable type: 'Role' when saving a User
+    def __hash__(self):
+        return hash(self.name)
+
+
+user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 
 
 class Booking_address(db.Model):
