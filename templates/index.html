@@ -1,169 +1,202 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <section class="u-clearfix u-image u-shading u-section-1" id="carousel_6085">
-      <div class="u-clearfix u-sheet u-sheet-1">
+<section class="u-clearfix u-image u-shading u-section-1" id="carousel_6085">
+    <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-container-style u-expanded-width u-group u-similar-fill u-group-1">
-          <div class="u-container-layout">
-            <h1 class="u-align-center u-heading-font u-text u-title u-text-1">Comparing The Domestic Flight Experience On Delta And American</h1>
-          </div>
+            <div class="u-container-layout">
+                <h1 class="u-align-center u-heading-font u-text u-title u-text-1">Comparing The Domestic Flight
+                    Experience On Delta And American</h1>
+            </div>
         </div>
-      </div>
-    </section>
-    <section class="u-align-center u-clearfix u-section-2" id="sec-b884">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+    </div>
+</section>
+<section class="u-align-center u-clearfix u-section-2" id="sec-b884">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-expanded-width u-table u-table-responsive u-table-1">
-          <table class="u-table-entity u-table-entity-1">
-            <colgroup>
-              <col width="20%">
-              <col width="20%">
-              <col width="20%">
-              <col width="20%">
-              <col width="20%">
-            </colgroup>
-            <thead class="u-grey-50 u-table-header u-table-header-1">
-              <tr style="height: 21px;">
-                <th class="u-border-1 u-border-grey-50 u-table-cell">From</th>
-                <th class="u-border-1 u-border-grey-50 u-table-cell">To</th>
-                <th class="u-border-1 u-border-grey-50 u-table-cell">Date</th>
-                <th class="u-border-1 u-border-grey-50 u-table-cell">Available Seats</th>
-                <th class="u-border-1 u-border-grey-50 u-table-cell"></th>
-              </tr>
-            </thead>
-            <tbody class="u-table-body">
-            {% for flight in flights %}
-              <tr style="height: 75px;">
-                <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{ flight.depAirport.town }}</td>
-                <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{ flight.arrAirport.town }}</td>
-                <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{ flight.depTime.strftime('%d.%m.%Y %H:%M') }}</td>
-                <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{ flight.plane.seats }}</td>
-                <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><a href="{{ url_for('app_main.flight', flightnr = flight.id) }}" class="u-btn u-button-style u-palette-2-dark-2 u-btn-1"> Book Now </a></td>
-              </tr>
-            {% endfor %}
-            </tbody>
-          </table>
+            <table class="u-table-entity u-table-entity-1">
+                <colgroup>
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                </colgroup>
+                <thead class="u-grey-50 u-table-header u-table-header-1">
+                <tr style="height: 21px;">
+                    <th class="u-border-1 u-border-grey-50 u-table-cell">From</th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell">To</th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell">Date</th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell">Available Seats</th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell"></th>
+                </tr>
+                </thead>
+                <tbody class="u-table-body">
+                {% for flight in flights %}
+                <tr style="height: 75px;">
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{
+                        flight.depAirport.town }}
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{
+                        flight.arrAirport.town }}
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{
+                        flight.depTime.strftime('%d.%m.%Y %H:%M') }}
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{
+                        flight.available_seats(bookings) }} / {{ flight.plane.seats }}
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><a
+                            href="{{ url_for('app_main.flight', flightnr = flight.id) }}"
+                            class="u-btn u-button-style u-palette-2-dark-2 u-btn-1"> Book Now </a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
-      </div>
-    </section>
-    <section class="u-clearfix u-palette-2-dark-2 u-section-2" id="carousel_64d4">
-      <div class="u-clearfix u-sheet u-sheet-1">
+    </div>
+</section>
+<section class="u-clearfix u-palette-2-dark-2 u-section-2" id="carousel_64d4">
+    <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-          <div class="u-gutter-0 u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-left u-container-style u-layout-cell u-left-cell u-similar-fill u-size-49 u-layout-cell-1">
-                <div class="u-container-layout u-valign-middle u-container-layout-1">
-                  <p class="u-text u-text-1">In the interest of full disclosure, One Mile At A Time earns a referral bonus for anyone that’s approved through some of the below links. These are the best publicly available offers that we have found for each card. Please
-                                    check out our advertiser policy for further details about the partners we work with. Thanks for your support!</p>
+            <div class="u-gutter-0 u-layout">
+                <div class="u-layout-row">
+                    <div class="u-align-left u-container-style u-layout-cell u-left-cell u-similar-fill u-size-49 u-layout-cell-1">
+                        <div class="u-container-layout u-valign-middle u-container-layout-1">
+                            <p class="u-text u-text-1">In the interest of full disclosure, One Mile At A Time earns a
+                                referral bonus for anyone that’s approved through some of the below links. These are the
+                                best publicly available offers that we have found for each card. Please
+                                check out our advertiser policy for further details about the partners we work with.
+                                Thanks for your support!</p>
+                        </div>
+                    </div>
+                    <div class="u-align-left u-container-style u-layout-cell u-right-cell u-similar-fill u-size-11 u-layout-cell-2">
+                        <div class="u-container-layout u-valign-middle u-container-layout-2">
+                            <a href="{{ url_for('app_main.index') }}" class="u-btn u-button-style u-grey-60 u-btn-1">Check
+                                out</a>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-similar-fill u-size-11 u-layout-cell-2">
-                <div class="u-container-layout u-valign-middle u-container-layout-2">
-                  <a href="{{ url_for('app_main.index') }}" class="u-btn u-button-style u-grey-60 u-btn-1">Check out</a>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <section class="u-clearfix u-white u-section-3" id="carousel_9760">
-      <div class="u-clearfix u-sheet u-sheet-1">
+    </div>
+</section>
+<section class="u-clearfix u-white u-section-3" id="carousel_9760">
+    <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-container-style u-layout-cell u-left-cell u-similar-fill u-size-30 u-layout-cell-1">
-                <div class="u-container-layout">
-                  <div class="u-border-7 u-border-palette-2-dark-2 u-line u-line-vertical u-line-1"></div>
-                  <h5 class="u-text u-text-1">About Us</h5>
-                  <h2 class="u-text u-text-2">Onboard amenities</h2>
-                  <p class="u-text u-text-3">If you’re flying first class on Delta, you’ll board to find a small bottle of water, a packaged blanket, and a pillow at your seat. Even on a regional jet. <br>
-                    <br>Unless you’re flying a premium transcon route, American doesn’t stock pillows, but each seat will have a blanket. <br>
-                    <br>Both airlines advertise pre-departure beverages, but American flight attendants don’t like to serve them. My Delta crews have been great about offering drinks during boarding, and will generally take “once we’re
-                                    in the air” orders ahead of time as well.
-                  </p>
-                  <a href="{{ url_for('app_main.index') }}" class="u-btn u-button-style u-palette-2-dark-2 u-btn-1">read more</a>
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    <div class="u-container-style u-layout-cell u-left-cell u-similar-fill u-size-30 u-layout-cell-1">
+                        <div class="u-container-layout">
+                            <div class="u-border-7 u-border-palette-2-dark-2 u-line u-line-vertical u-line-1"></div>
+                            <h5 class="u-text u-text-1">About Us</h5>
+                            <h2 class="u-text u-text-2">Onboard amenities</h2>
+                            <p class="u-text u-text-3">If you’re flying first class on Delta, you’ll board to find a
+                                small bottle of water, a packaged blanket, and a pillow at your seat. Even on a regional
+                                jet. <br>
+                                <br>Unless you’re flying a premium transcon route, American doesn’t stock pillows, but
+                                each seat will have a blanket. <br>
+                                <br>Both airlines advertise pre-departure beverages, but American flight attendants
+                                don’t like to serve them. My Delta crews have been great about offering drinks during
+                                boarding, and will generally take “once we’re
+                                in the air” orders ahead of time as well.
+                            </p>
+                            <a href="{{ url_for('app_main.index') }}"
+                               class="u-btn u-button-style u-palette-2-dark-2 u-btn-1">read more</a>
+                        </div>
+                    </div>
+                    <div class="u-container-style u-image u-layout-cell u-right-cell u-similar-fill u-size-30 u-image-1">
+                        <div class="u-container-layout"></div>
+                    </div>
                 </div>
-              </div>
-              <div class="u-container-style u-image u-layout-cell u-right-cell u-similar-fill u-size-30 u-image-1">
-                <div class="u-container-layout"></div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <section class="u-clearfix u-image u-shading u-section-4" src="" id="carousel_6bc8">
-      <div class="u-clearfix u-sheet u-sheet-1">
+    </div>
+</section>
+<section class="u-clearfix u-image u-shading u-section-4" src="" id="carousel_6bc8">
+    <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-center u-container-style u-layout-cell u-left-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-1">
-                <div class="u-container-layout u-valign-middle u-container-layout-1">
-                  <h1 class="u-text u-title u-text-1">250</h1>
-                  <p class="u-text u-text-2">Aircraft<br>
-                  </p>
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    <div class="u-align-center u-container-style u-layout-cell u-left-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-1">
+                        <div class="u-container-layout u-valign-middle u-container-layout-1">
+                            <h1 class="u-text u-title u-text-1">250</h1>
+                            <p class="u-text u-text-2">Aircraft<br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="u-align-center u-container-style u-layout-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-2">
+                        <div class="u-container-layout u-valign-middle u-container-layout-2">
+                            <h1 class="u-text u-title u-text-3">630</h1>
+                            <p class="u-text u-text-4">Employees&nbsp;<br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="u-align-center u-container-style u-layout-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-3">
+                        <div class="u-container-layout u-valign-middle u-container-layout-3">
+                            <h1 class="u-text u-title u-text-5">40</h1>
+                            <p class="u-text u-text-6">Winning<br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="u-align-center u-container-style u-layout-cell u-right-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-4">
+                        <div class="u-container-layout u-valign-middle u-container-layout-4">
+                            <h1 class="u-text u-title u-text-7">2.5 m</h1>
+                            <p class="u-text u-text-8">Passengers<br>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="u-align-center u-container-style u-layout-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-2">
-                <div class="u-container-layout u-valign-middle u-container-layout-2">
-                  <h1 class="u-text u-title u-text-3">630</h1>
-                  <p class="u-text u-text-4">Employees&nbsp;<br>
-                  </p>
-                </div>
-              </div>
-              <div class="u-align-center u-container-style u-layout-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-3">
-                <div class="u-container-layout u-valign-middle u-container-layout-3">
-                  <h1 class="u-text u-title u-text-5">40</h1>
-                  <p class="u-text u-text-6">Winning<br>
-                  </p>
-                </div>
-              </div>
-              <div class="u-align-center u-container-style u-layout-cell u-right-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-4">
-                <div class="u-container-layout u-valign-middle u-container-layout-4">
-                  <h1 class="u-text u-title u-text-7">2.5 m</h1>
-                  <p class="u-text u-text-8">Passengers<br>
-                  </p>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <section class="u-clearfix u-white u-section-5" id="carousel_3c8c">
-      <div class="u-clearfix u-sheet u-sheet-1">
+    </div>
+</section>
+<section class="u-clearfix u-white u-section-5" id="carousel_3c8c">
+    <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-container-style u-layout-cell u-left-cell u-similar-fill u-size-30 u-layout-cell-1">
-                <div class="u-container-layout">
-                  <div class="u-border-7 u-border-palette-2-dark-2 u-line u-line-vertical u-line-1"></div>
-                  <h2 class="u-text u-text-1">Overhead bin space</h2>
-                  <h4 class="u-text u-text-2">
-                    <a href="">SkyClub Seattle</a>
-                  </h4>
-                  <p class="u-text u-text-3">Unless you’re traveling with small children or otherwise need extra time, it seems the only reason folks board right away is to secure bin space. <br>
-                    <br>Delta proactively and aggressively blocks first class bins for first class passengers. Some American flight attendants will take it upon themselves to do the same, but it’s definitely not consistent. <br>
-                    <br>I’ve also found that Delta agents are much more insistent during the pre-boarding announcements that unneeded carry-on bags should be checked. Like, multiple announcements, even on flights that aren’t full.
-                  </p>
-                  <a href="{{ url_for('app_main.index') }}" class="u-btn u-button-style u-palette-2-dark-2 u-btn-1">read more</a>
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    <div class="u-container-style u-layout-cell u-left-cell u-similar-fill u-size-30 u-layout-cell-1">
+                        <div class="u-container-layout">
+                            <div class="u-border-7 u-border-palette-2-dark-2 u-line u-line-vertical u-line-1"></div>
+                            <h2 class="u-text u-text-1">Overhead bin space</h2>
+                            <h4 class="u-text u-text-2">
+                                <a href="">SkyClub Seattle</a>
+                            </h4>
+                            <p class="u-text u-text-3">Unless you’re traveling with small children or otherwise need
+                                extra time, it seems the only reason folks board right away is to secure bin space. <br>
+                                <br>Delta proactively and aggressively blocks first class bins for first class
+                                passengers. Some American flight attendants will take it upon themselves to do the same,
+                                but it’s definitely not consistent. <br>
+                                <br>I’ve also found that Delta agents are much more insistent during the pre-boarding
+                                announcements that unneeded carry-on bags should be checked. Like, multiple
+                                announcements, even on flights that aren’t full.
+                            </p>
+                            <a href="{{ url_for('app_main.index') }}"
+                               class="u-btn u-button-style u-palette-2-dark-2 u-btn-1">read more</a>
+                        </div>
+                    </div>
+                    <div class="u-container-style u-image u-layout-cell u-right-cell u-shading u-size-30 u-image-1">
+                        <div class="u-container-layout"></div>
+                    </div>
                 </div>
-              </div>
-              <div class="u-container-style u-image u-layout-cell u-right-cell u-shading u-size-30 u-image-1">
-                <div class="u-container-layout"></div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <section class="u-clearfix u-palette-2-dark-2 u-section-6" id="carousel_345c">
-      <div class="u-clearfix u-sheet u-sheet-1">
+    </div>
+</section>
+<section class="u-clearfix u-palette-2-dark-2 u-section-6" id="carousel_345c">
+    <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-clearfix u-expanded-width u-gutter-30 u-layout-spacing-vertical u-layout-wrap u-layout-wrap-1">
-          <div class="u-gutter-0 u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-center u-container-style u-layout-cell u-left-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-1">
-                <div class="u-container-layout u-container-layout-1"><span class="u-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 480 480" style="undefined"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-e248"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-e248" x="0px" y="0px" viewBox="0 0 480 480" style="enable-background:new 0 0 480 480;" xml:space="preserve" class="u-svg-content"><g><g><path d="M328,0H152c-22.08,0.026-39.974,17.92-40,40v400c0.026,22.08,17.92,39.974,40,40h176c22.08-0.026,39.974-17.92,40-40V40    C367.974,17.92,350.08,0.026,328,0z M208.208,464H152c-13.255,0-24-10.745-24-24v-24h80.208    C197.267,430.13,197.267,449.87,208.208,464z M240,464c-13.255,0-24-10.745-24-24s10.745-24,24-24s24,10.745,24,24    S253.255,464,240,464z M352,440c0,13.255-10.745,24-24,24h-56.208c10.941-14.13,10.941-33.87,0-48H352V440z M352,400H128V88h224    V400z M352,72H128V40c0-13.255,10.745-24,24-24h176c13.255,0,24,10.745,24,24V72z"></path>
+            <div class="u-gutter-0 u-layout">
+                <div class="u-layout-row">
+                    <div class="u-align-center u-container-style u-layout-cell u-left-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-1">
+                        <div class="u-container-layout u-container-layout-1"><span class="u-icon u-icon-1"><svg
+                                class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 480 480"
+                                style="undefined"><use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                       xlink:href="#svg-e248"></use></svg><svg
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                version="1.1" id="svg-e248" x="0px" y="0px" viewBox="0 0 480 480"
+                                style="enable-background:new 0 0 480 480;" xml:space="preserve" class="u-svg-content"><g><g><path d="M328,0H152c-22.08,0.026-39.974,17.92-40,40v400c0.026,22.08,17.92,39.974,40,40h176c22.08-0.026,39.974-17.92,40-40V40    C367.974,17.92,350.08,0.026,328,0z M208.208,464H152c-13.255,0-24-10.745-24-24v-24h80.208    C197.267,430.13,197.267,449.87,208.208,464z M240,464c-13.255,0-24-10.745-24-24s10.745-24,24-24s24,10.745,24,24    S253.255,464,240,464z M352,440c0,13.255-10.745,24-24,24h-56.208c10.941-14.13,10.941-33.87,0-48H352V440z M352,400H128V88h224    V400z M352,72H128V40c0-13.255,10.745-24,24-24h176c13.255,0,24,10.745,24,24V72z"></path>
 </g>
 </g><g><g><rect x="184" y="40" width="80" height="16"></rect>
 </g>
@@ -182,67 +215,99 @@
 </g><g><g><rect x="280" y="40" width="16" height="16"></rect>
 </g>
 </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></span>
-                  <h3 class="u-text u-text-1">Mobile apps</h3>
-                  <div class="u-align-left u-border-7 u-border-color-1-base u-line u-line-horizontal u-line-1"></div>
-                </div>
-              </div>
-              <div class="u-align-center u-container-style u-layout-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-2"><span class="u-icon u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 611.996 611.996" style="undefined"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-54cc"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-54cc" x="0px" y="0px" viewBox="0 0 611.996 611.996" style="enable-background:new 0 0 611.996 611.996;" xml:space="preserve" class="u-svg-content"><g><g><path d="M588.63,113.193L213.812,33.871c-15.858-3.355-31.576,6.876-34.931,22.734l-7.121,45.762l432.477,91.519l7.121-45.762    C614.713,132.272,604.488,116.549,588.63,113.193z"></path><path d="M431.009,203.591c-4.378-15.766-20.854-25.085-36.615-20.714L323.24,202.63l-167.742-35.5l-18.448,87.165L21.786,286.287    c-15.76,4.372-25.079,20.848-20.708,36.609l64.958,234.078c4.378,15.76,20.855,25.085,36.615,20.708l372.608-103.403    c15.76-4.378,25.079-20.848,20.708-36.615l-11.15-40.184l41.789,8.835c15.858,3.361,31.576-6.87,34.931-22.728l26.439-124.937    L437.45,226.797L431.009,203.591z M474.04,322.559l9.215-43.552c1.384-6.521,7.85-10.727,14.37-9.35l43.552,9.221    c6.527,1.384,10.733,7.843,9.356,14.37l-9.215,43.552c-1.384,6.521-7.849,10.733-14.37,9.35l-43.552-9.215    C476.863,335.546,472.656,329.08,474.04,322.559z M28.27,309.646l103.115-28.606l243.299-67.517l26.181-7.274    c0.478-0.129,0.955-0.19,1.421-0.19c2.1,0,4.611,1.378,5.345,4.017l3.074,11.07l9.631,34.704L37.148,362.186l-12.705-45.768    C23.647,313.546,25.399,310.442,28.27,309.646z M472.601,444.141c0.49,1.776-0.024,3.245-0.545,4.164    c-0.514,0.918-1.506,2.119-3.282,2.608L96.173,554.316c-0.471,0.129-0.955,0.196-1.421,0.196c-2.1,0-4.611-1.384-5.345-4.023    L51.519,413.955l383.188-106.342l23.371,84.208L472.601,444.141z"></path><path d="M156.379,453.484c-1.788-6.429-8.499-10.225-14.928-8.443l-43.515,12.08c-6.423,1.782-10.225,8.499-8.437,14.928    l12.074,43.509c1.788,6.429,8.499,10.225,14.928,8.437l43.515-12.074c6.429-1.782,10.225-8.499,8.443-14.928L156.379,453.484z"></path>
+                            <h3 class="u-text u-text-1">Mobile apps</h3>
+                            <div class="u-align-left u-border-7 u-border-color-1-base u-line u-line-horizontal u-line-1"></div>
+                        </div>
+                    </div>
+                    <div class="u-align-center u-container-style u-layout-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-2">
+                        <div class="u-container-layout u-container-layout-2"><span class="u-icon u-icon-2"><svg
+                                class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 611.996 611.996"
+                                style="undefined"><use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                       xlink:href="#svg-54cc"></use></svg><svg
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                version="1.1" id="svg-54cc" x="0px" y="0px" viewBox="0 0 611.996 611.996"
+                                style="enable-background:new 0 0 611.996 611.996;" xml:space="preserve"
+                                class="u-svg-content"><g><g><path d="M588.63,113.193L213.812,33.871c-15.858-3.355-31.576,6.876-34.931,22.734l-7.121,45.762l432.477,91.519l7.121-45.762    C614.713,132.272,604.488,116.549,588.63,113.193z"></path><path
+                                d="M431.009,203.591c-4.378-15.766-20.854-25.085-36.615-20.714L323.24,202.63l-167.742-35.5l-18.448,87.165L21.786,286.287    c-15.76,4.372-25.079,20.848-20.708,36.609l64.958,234.078c4.378,15.76,20.855,25.085,36.615,20.708l372.608-103.403    c15.76-4.378,25.079-20.848,20.708-36.615l-11.15-40.184l41.789,8.835c15.858,3.361,31.576-6.87,34.931-22.728l26.439-124.937    L437.45,226.797L431.009,203.591z M474.04,322.559l9.215-43.552c1.384-6.521,7.85-10.727,14.37-9.35l43.552,9.221    c6.527,1.384,10.733,7.843,9.356,14.37l-9.215,43.552c-1.384,6.521-7.849,10.733-14.37,9.35l-43.552-9.215    C476.863,335.546,472.656,329.08,474.04,322.559z M28.27,309.646l103.115-28.606l243.299-67.517l26.181-7.274    c0.478-0.129,0.955-0.19,1.421-0.19c2.1,0,4.611,1.378,5.345,4.017l3.074,11.07l9.631,34.704L37.148,362.186l-12.705-45.768    C23.647,313.546,25.399,310.442,28.27,309.646z M472.601,444.141c0.49,1.776-0.024,3.245-0.545,4.164    c-0.514,0.918-1.506,2.119-3.282,2.608L96.173,554.316c-0.471,0.129-0.955,0.196-1.421,0.196c-2.1,0-4.611-1.384-5.345-4.023    L51.519,413.955l383.188-106.342l23.371,84.208L472.601,444.141z"></path><path
+                                d="M156.379,453.484c-1.788-6.429-8.499-10.225-14.928-8.443l-43.515,12.08c-6.423,1.782-10.225,8.499-8.437,14.928    l12.074,43.509c1.788,6.429,8.499,10.225,14.928,8.437l43.515-12.074c6.429-1.782,10.225-8.499,8.443-14.928L156.379,453.484z"></path>
 </g>
 </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></span>
-                  <h3 class="u-text u-text-2">Outlets</h3>
-                  <div class="u-align-left u-border-7 u-border-color-1-base u-line u-line-horizontal u-line-2"></div>
-                </div>
-              </div>
-              <div class="u-align-center u-container-style u-layout-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-3">
-                <div class="u-container-layout u-container-layout-3"><span class="u-icon u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 489.3 489.3" style="undefined"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-0442"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-0442" x="0px" y="0px" viewBox="0 0 489.3 489.3" style="enable-background:new 0 0 489.3 489.3;" xml:space="preserve" class="u-svg-content"><g><g><path d="M79.55,229.675c-10.2,10.2-10.2,26.8,0,37.1c10.2,10.2,26.8,10.2,37.1,0c70.6-70.6,185.5-70.6,256.1,0    c5.1,5.1,11.8,7.7,18.5,7.7s13.4-2.6,18.5-7.7c10.2-10.2,10.2-26.8,0-37.1C318.75,138.575,170.55,138.575,79.55,229.675z"></path><path d="M150.35,300.475c-10.2,10.2-10.2,26.8,0,37.1c10.2,10.2,26.8,10.2,37.1,0c31.5-31.6,82.9-31.6,114.4,0    c5.1,5.1,11.8,7.7,18.5,7.7s13.4-2.6,18.5-7.7c10.2-10.2,10.2-26.8,0-37C286.95,248.475,202.35,248.475,150.35,300.475z"></path><circle cx="244.65" cy="394.675" r="34.9"></circle><path d="M481.65,157.675c-130.7-130.6-343.3-130.6-474,0c-10.2,10.2-10.2,26.8,0,37.1c10.2,10.2,26.8,10.2,37.1,0    c110.2-110.3,289.6-110.3,399.9,0c5.1,5.1,11.8,7.7,18.5,7.7s13.4-2.6,18.5-7.7C491.85,184.575,491.85,167.975,481.65,157.675z"></path>
+                            <h3 class="u-text u-text-2">Outlets</h3>
+                            <div class="u-align-left u-border-7 u-border-color-1-base u-line u-line-horizontal u-line-2"></div>
+                        </div>
+                    </div>
+                    <div class="u-align-center u-container-style u-layout-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-3">
+                        <div class="u-container-layout u-container-layout-3"><span class="u-icon u-icon-3"><svg
+                                class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 489.3 489.3"
+                                style="undefined"><use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                       xlink:href="#svg-0442"></use></svg><svg
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                version="1.1" id="svg-0442" x="0px" y="0px" viewBox="0 0 489.3 489.3"
+                                style="enable-background:new 0 0 489.3 489.3;" xml:space="preserve"
+                                class="u-svg-content"><g><g><path d="M79.55,229.675c-10.2,10.2-10.2,26.8,0,37.1c10.2,10.2,26.8,10.2,37.1,0c70.6-70.6,185.5-70.6,256.1,0    c5.1,5.1,11.8,7.7,18.5,7.7s13.4-2.6,18.5-7.7c10.2-10.2,10.2-26.8,0-37.1C318.75,138.575,170.55,138.575,79.55,229.675z"></path><path
+                                d="M150.35,300.475c-10.2,10.2-10.2,26.8,0,37.1c10.2,10.2,26.8,10.2,37.1,0c31.5-31.6,82.9-31.6,114.4,0    c5.1,5.1,11.8,7.7,18.5,7.7s13.4-2.6,18.5-7.7c10.2-10.2,10.2-26.8,0-37C286.95,248.475,202.35,248.475,150.35,300.475z"></path><circle
+                                cx="244.65" cy="394.675" r="34.9"></circle><path
+                                d="M481.65,157.675c-130.7-130.6-343.3-130.6-474,0c-10.2,10.2-10.2,26.8,0,37.1c10.2,10.2,26.8,10.2,37.1,0    c110.2-110.3,289.6-110.3,399.9,0c5.1,5.1,11.8,7.7,18.5,7.7s13.4-2.6,18.5-7.7C491.85,184.575,491.85,167.975,481.65,157.675z"></path>
 </g>
 </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></span>
-                  <h3 class="u-text u-text-3">Connections</h3>
-                  <div class="u-align-left u-border-7 u-border-color-1-base u-line u-line-horizontal u-line-3"></div>
-                </div>
-              </div>
-              <div class="u-align-center u-container-style u-layout-cell u-right-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-4">
-                <div class="u-container-layout u-container-layout-4"><span class="u-icon u-icon-4"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512" style="undefined"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-4c9a"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-4c9a" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" class="u-svg-content"><g><g><path d="M330.884,222.012v-89.969H59.979v89.969H0V511.91h29.99v-29.99h330.884v29.99h29.99V222.012H330.884z M89.969,162.033    h210.926v138.024c-8.83-5.121-19.068-8.069-29.99-8.069H119.958c-10.921,0-21.16,2.948-29.99,8.069V162.033z M89.969,351.966    c0-16.536,13.453-29.99,29.99-29.99h150.947c16.536,0,29.99,13.453,29.99,29.99v39.986H89.969V351.966z M360.874,451.932H29.99    v-199.93h29.99v169.941h270.905V252.001h29.99V451.932z"></path>
+                            <h3 class="u-text u-text-3">Connections</h3>
+                            <div class="u-align-left u-border-7 u-border-color-1-base u-line u-line-horizontal u-line-3"></div>
+                        </div>
+                    </div>
+                    <div class="u-align-center u-container-style u-layout-cell u-right-cell u-similar-fill u-size-15 u-size-30-md u-layout-cell-4">
+                        <div class="u-container-layout u-container-layout-4"><span class="u-icon u-icon-4"><svg
+                                class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512"
+                                style="undefined"><use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                       xlink:href="#svg-4c9a"></use></svg><svg
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                version="1.1" id="svg-4c9a" x="0px" y="0px" viewBox="0 0 512 512"
+                                style="enable-background:new 0 0 512 512;" xml:space="preserve" class="u-svg-content"><g><g><path d="M330.884,222.012v-89.969H59.979v89.969H0V511.91h29.99v-29.99h330.884v29.99h29.99V222.012H330.884z M89.969,162.033    h210.926v138.024c-8.83-5.121-19.068-8.069-29.99-8.069H119.958c-10.921,0-21.16,2.948-29.99,8.069V162.033z M89.969,351.966    c0-16.536,13.453-29.99,29.99-29.99h150.947c16.536,0,29.99,13.453,29.99,29.99v39.986H89.969V351.966z M360.874,451.932H29.99    v-199.93h29.99v169.941h270.905V252.001h29.99V451.932z"></path>
 </g>
 </g><g><g><path d="M499.732,0.09H371.963l-12.268,161.943h61.158V511.91h29.99V162.033H512L499.732,0.09z M392.043,132.043l7.724-101.964    h72.162l7.725,101.964H392.043z"></path>
 </g>
 </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></span>
-                  <h3 class="u-text u-text-4">Lounges</h3>
-                  <div class="u-align-left u-border-7 u-border-color-1-base u-line u-line-horizontal u-line-4"></div>
+                            <h3 class="u-text u-text-4">Lounges</h3>
+                            <div class="u-align-left u-border-7 u-border-color-1-base u-line u-line-horizontal u-line-4"></div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <section class="u-clearfix u-white u-section-7" id="carousel_1316">
-      <div class="u-clearfix u-sheet u-sheet-1">
+    </div>
+</section>
+<section class="u-clearfix u-white u-section-7" id="carousel_1316">
+    <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-clearfix u-expanded-width u-gutter-20 u-layout-wrap u-layout-wrap-1">
-          <div class="u-gutter-0 u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-left u-container-style u-expand-resize u-image u-layout-cell u-left-cell u-similar-fill u-size-30 u-image-1">
-                <div class="u-container-layout"></div>
-              </div>
-              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-similar-fill u-size-30 u-layout-cell-2">
-                <div class="u-container-layout">
-                  <div class="u-border-7 u-border-palette-2-dark-2 u-line u-line-vertical u-line-1"></div>
-                  <h2 class="u-text u-text-1">Lounges</h2>
-                  <h4 class="u-text u-text-2">
-                    <a href="">SkyClub Detroit</a>
-                  </h4>
-                  <p class="u-text u-text-3">American’s Flagship lounges and dining are vastly better than anything Delta has to offer, but most people, most of the time, are just going to be using the standard SkyClubs and Admirals Clubs. <br>
-                    <br>The caliber of the lounges varies dramatically with both airlines. Some, like the Seattle SkyClub, are either newly constructed or recently refurbished, with bright spaces and updated furniture.
-                  </p>
-                  <a href="{{ url_for('app_main.index') }}" class="u-btn u-button-style u-palette-2-dark-2 u-btn-1">read more</a>
-                  <img src="{{ url_for('static',filename='styles/images/646ee42ae705317d18dd33184ccb16ff.jpeg') }}" alt="" class="u-image u-image-default u-image-2">
-                  <img src="{{ url_for('static',filename='styles/images/79812b3ae83e361860afcc60262f06a4.jpeg') }}" alt="" class="u-image u-image-default u-image-3">
+            <div class="u-gutter-0 u-layout">
+                <div class="u-layout-row">
+                    <div class="u-align-left u-container-style u-expand-resize u-image u-layout-cell u-left-cell u-similar-fill u-size-30 u-image-1">
+                        <div class="u-container-layout"></div>
+                    </div>
+                    <div class="u-align-left u-container-style u-layout-cell u-right-cell u-similar-fill u-size-30 u-layout-cell-2">
+                        <div class="u-container-layout">
+                            <div class="u-border-7 u-border-palette-2-dark-2 u-line u-line-vertical u-line-1"></div>
+                            <h2 class="u-text u-text-1">Lounges</h2>
+                            <h4 class="u-text u-text-2">
+                                <a href="">SkyClub Detroit</a>
+                            </h4>
+                            <p class="u-text u-text-3">American’s Flagship lounges and dining are vastly better than
+                                anything Delta has to offer, but most people, most of the time, are just going to be
+                                using the standard SkyClubs and Admirals Clubs. <br>
+                                <br>The caliber of the lounges varies dramatically with both airlines. Some, like the
+                                Seattle SkyClub, are either newly constructed or recently refurbished, with bright
+                                spaces and updated furniture.
+                            </p>
+                            <a href="{{ url_for('app_main.index') }}"
+                               class="u-btn u-button-style u-palette-2-dark-2 u-btn-1">read more</a>
+                            <img src="{{ url_for('static',filename='styles/images/food_small_1.jpeg') }}"
+                                 alt="" class="u-image u-image-default u-image-2">
+                            <img src="{{ url_for('static',filename='styles/images/food_small_2.jpeg') }}"
+                                 alt="" class="u-image u-image-default u-image-3">
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 {% endblock %}

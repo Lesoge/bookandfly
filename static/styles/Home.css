@@ -1,5 +1,5 @@
  .u-section-1 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("images/9c519a589639319dd64da3b08916ebb3.jpeg");
+  background-image: linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("images/window.jpeg");
   background-position: 50% 50%;
 }
 
@@ -237,7 +237,7 @@
 }
 
 .u-section-3 .u-image-1 {
-  background-image: url("images/4d2eb615d0c4b3951a4cca16876c0b74.jpeg");
+  background-image: url("images/on_board.jpeg");
   min-height: 575px;
   background-position: 50% 50%;
 }
@@ -352,7 +352,7 @@
     margin-left: 6px;
   }
 } .u-section-4 {
-  background-image: linear-gradient(0deg, rgba(219,84,90,0.5), rgba(219,84,90,0.5)), url("images/39daa827b42483c458feaf262f332e9f.jpeg");
+  background-image: linear-gradient(0deg, rgba(219,84,90,0.5), rgba(219,84,90,0.5)), url("images/airport_interior.jpeg");
   background-position: 50% 50%;
 }
 
@@ -682,7 +682,7 @@
 }
 
 .u-section-5 .u-image-1 {
-  background-image: linear-gradient(0deg, rgba(71,138,201,0.2), rgba(71,138,201,0.2)), url("images/f1c3bab971841d38c2c52880d83adacb.jpeg");
+  background-image: linear-gradient(0deg, rgba(71,138,201,0.2), rgba(71,138,201,0.2)), url("images/lounge.jpeg");
   min-height: 643px;
   background-position: 50% 50%;
 }
@@ -1096,7 +1096,7 @@
 
 .u-section-7 .u-image-1 {
   min-height: 635px;
-  background-image: url("images/114af6ee57989b4e34863be97c58a1c7.jpeg");
+  background-image: url("images/food_big.jpeg");
   background-position: 50% 50%;
 }
 

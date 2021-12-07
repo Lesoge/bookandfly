@@ -70,11 +70,11 @@ class Payment_info(db.Model):
     expire_date = db.Column(db.String(5), nullable=False)
     security_code = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, cc_number, no_card, expire_date, securtiy_code):
+    def __init__(self, cc_number, no_card, expire_date, security_code):
         self.credit_card_number = cc_number
         self.name_on_card = no_card
         self.expire_date = expire_date
-        self.security_code = securtiy_code
+        self.security_code = security_code
 
 
 class Flight(db.Model):
@@ -95,6 +95,9 @@ class Flight(db.Model):
     # todo test function + available seats
     def check_if_full(self):
         return len(self.booking_list) >= self.plane.seats
+
+    def available_seats(self, bookings):
+        return self.plane.seats - bookings.filter(Booking.flight == self).count()
 
 
 class Airport(db.Model):

@@ -27,14 +27,14 @@
                                data-block="16" data-block-type="Text">{{flight.depAirport.town}}&nbsp;&nbsp;<br><span
                                     class="u-icon u-block-787e-13" data-block-type="Icon" data-block="19"
                                     style="color: rgb(17, 17, 17) !important"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 32 32" data-color="rgb(17, 17, 17)" style="width: 1em; height: 1em;"><g data-name="Layer 2" id="Layer_2"><path d="M22,9a1,1,0,0,0,0,1.42l4.6,4.6H3.06a1,1,0,1,0,0,2H26.58L22,21.59A1,1,0,0,0,22,23a1,1,0,0,0,1.41,0l6.36-6.36a.88.88,0,0,0,0-1.27L23.42,9A1,1,0,0,0,22,9Z"></path></g></svg><img></span>​
-                                {{flight.arrAirport.town}}<br><br>{{ flight.depTime.strftime('%d.%m.%Y %H:%M') }}<br>{{flight.plane.seats}}
+                                {{flight.arrAirport.town}}<br><br>{{ flight.depTime.strftime('%d.%m.%Y %H:%M') }}<br>{{flight.available_seats(bookings)}}
                                 available seats
                             </p>
 
                         </div>
                     </div>
                     <div class="u-align-center u-container-style u-image u-layout-cell u-right-cell u-size-xs-60 ui-draggable ui-droppable u-size-36 u-block-787e-4"
-                         style="min-height: 431px; background-image: url(&quot;https://pixabay.com/get/gc9cf7c1b1841640ae6758152764f5103a02b6fa83ad99f470f06d184bb84cc99222f852a0aea32b9eebf1fc109424fac86afb5e25b7f009b221c7bf3b17a1feb_1280.jpg&quot;); background-position: 50% 50%"
+                         style="min-height: 431px; background-image: url({{ url_for('static',filename='styles/images/flight.jpg') }}); background-position: 50% 50%"
                          src="" data-brightness="" data-image-width="150" data-image-height="100" data-cell-id="2"
                          data-column-id="2" data-block="18" data-block-type="Cell,BackgroundImage">
                         <div class="u-container-layout u-valign-middle u-block-787e-5" src=""
@@ -168,7 +168,7 @@
                              data-block-type="">
                             <h3 class="u-text u-align-center u-block-5158-18" data-block="73"
                                 style="margin: 53.25px 0.4px 0px;" data-block-type="Text"><span
-                                    style="font-weight: 700;">{{flight.plane.seats}}</span> seats left.<br>Get your
+                                    style="font-weight: 700;">{{flight.available_seats(bookings)}}</span> seats left.<br>Get your
                                 ticket now!</h3>
                             <form method="post">
                                 <button class="u-btn u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-round u-block-5158-19"
