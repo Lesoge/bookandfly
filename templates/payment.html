@@ -15,21 +15,26 @@
         <div class="u-form u-block-8116-3" data-block="42"
              style="height: 183.2px; width: 570px; margin: 20.25px auto 60px;" data-block-type="Form">
             <form method=post>
-                <div>
-                    {{ render_field(form.first_name) }}
-                    {{ render_field(form.last_name) }}
-                    {{ render_field(form.street) }}
-                    {{ render_field(form.street_number) }}
-                    {{ render_field(form.town) }}
-                    {{ render_field(form.zipcode) }}
+                <div class="u-layout-row">
+                <div style="margin: auto">
+                    {{ render_field(form.first_name, placeholder="John") }}
+                    {{ render_field(form.last_name, placeholder="Doe") }}
+                    {{ render_field(form.street, placeholder="Main Street") }}
+                    {{ render_field(form.street_number, placeholder="XX") }}
+                    {{ render_field(form.town, placeholder="Anytown") }}
+                    {{ render_field(form.zipcode, placeholder="XXXXX") }}
                 </div>
-                <div>
-                    {{ render_field(form.credit_card_number) }}
-                    {{ render_field(form.name_on_card) }}
-                    {{ render_field(form.expiry_date) }}
-                    {{ render_field(form.security_code) }}
+                <div style="margin: auto">
+                    {{ render_field(form.credit_card_number, placeholder="XXXX XXXX XXXX XXXX") }}
+                    {{ render_field(form.name_on_card, placeholder="John Doe") }}
+                    {{ render_field(form.expiry_date, placeholder="MM/YY") }}
+                    {{ render_field(form.security_code, placeholder="XXX") }}
                 </div>
-                <p><input type=submit value="Book Now">
+                </div>
+                <div class="u-form-group u-form-submit u-align-center u-block-b8c0-13">
+                    <a class="u-btn u-button-style u-btn-submit ui-draggable ui-draggable-handle u-hover-palette-1-dark-1 u-palette-1-base" style="letter-spacing: 1px; border-style: none; font-weight: 700; text-transform: uppercase;">Submit</a>
+                    <input type=submit value="Submit" class="u-form-control-hidden">
+                </div>
             </form>
             <style data-mode="XL">@media (max-width: 0px) { .u-block-8116-2 {min-height: 500px}
 .u-block-8116-18 {margin-top: 66.5px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
