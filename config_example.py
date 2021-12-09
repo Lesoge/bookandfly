@@ -7,6 +7,7 @@ echomode = ''
 database_url = 'postgresql+psycopg2://' + dbuser + ':' + dbpassword + '@' + db_ip_and_port + '/' + dbname
 SQLALCHEMY_DATABASE_URI = database_url
 SQLALCHEMY_ECHO = True
+SQLALCHEMY_TRACK_MODIFICATIONS = 'FALSE'
 
 #flask config
 SECRET_KEY = ''

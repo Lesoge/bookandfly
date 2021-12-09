@@ -2,7 +2,7 @@
 import pyotp
 from flask_login import login_user, logout_user, current_user
 from flask import Blueprint, render_template, session, abort, flash
-from flask_security import hash_password, password_breached_validator
+from flask_security import hash_password, password_breached_validator, password_length_validator
 from flask_security import password_complexity_validator
 from User import User, db, db_commit, user_datastore, security
 from flask import (request, url_for, make_response,
@@ -59,6 +59,7 @@ def signup_post():
         return redirect(url_for('app_auth.signup'))
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
     text = check_password_complexity(password)
+
     if text:
         flash(text)
         return redirect(url_for('app_auth.signup'))
@@ -71,6 +72,9 @@ def signup_post():
 
 def check_password_complexity(password):
     password_message = []
+    password_length_message = password_length_validator(password)
+    if password_length_message:
+        password_message += password_length_message
     password_complexity_message = password_complexity_validator(password, True)
     if password_complexity_message:
         password_message += password_complexity_message
