@@ -1,6 +1,6 @@
 import getpass
 
-from flask_security.utils import hash_password
+from flask_security import hash_password
 
 from app import create_app, user_datastore
 from User import db

@@ -21,17 +21,7 @@ def create_app():
     main_app.register_blueprint(app_main)
     main_app.register_blueprint(app_mfa)
     main_app.register_blueprint(app_pay)
-
-    database_url = 'postgresql+psycopg2://' + dbuser + ':' + dbpassword + '@' + db_ip_and_port + '/' + dbname
-    main_app.config['SQLALCHEMY_DATABASE_URI'] = database_url
-    main_app.config['SQLALCHEMY_ECHO'] = echomode
-    main_app.config['SECRET_KEY'] = Secret_Key
-    main_app.config['JWT_SECRET_KEY'] = JWT_Key
-    main_app.config['SECURITY_LOGIN_USER_TEMPLATE'] = 'templates/login.html'
-    main_app.config['SECURITY_PASSWORD_HASH'] = 'sha512_crypt'
-    # Replace this with your own salt.
-    main_app.config['SECURITY_PASSWORD_SALT'] = 'test'
-
+    main_app.config.from_pyfile('config.py')
     admin.init_app(main_app)
     create_admin(admin)
     db.init_app(main_app)

@@ -2,11 +2,11 @@
 import pyotp
 from flask_login import login_user, logout_user, current_user
 from flask import Blueprint, render_template, session, abort, flash
-from flask_security.utils import hash_password
-
-from User import User, db, db_commit, user_datastore
+from flask_security import hash_password, password_breached_validator
+from flask_security import password_complexity_validator
+from User import User, db, db_commit, user_datastore, security
 from flask import (request, url_for, make_response,
-                   redirect, render_template, session)
+                   redirect, render_template, session, current_app)
 
 app_auth = Blueprint('app_auth', __name__)
 
@@ -52,19 +52,38 @@ def signup_post():
     username = request.form.get('name')
 
     password = request.form.get('password')
-    user = User.query.filter((User.email == email) | (User.username == username)).first() # if this returns a user, then the email already exists in database
+    user = User.query.filter((User.email == email) | (
+                User.username == username)).first()  # if this returns a user, then the email already exists in database
     if user:  # if a user is found, we want to redirect back to signup page so user can try again
         flash('Username or Email is already used')
         return redirect(url_for('app_auth.signup'))
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
+    text = check_password_complexity(password)
+    if text:
+        flash(text)
+        return redirect(url_for('app_auth.signup'))
     password = hash_password(password)
-    user_datastore.create_user(username=username, email=email, password=password)
-    user_datastore.add_role_to_user(email, 'end-user')
-    user_datastore.commit()
-    new_user = user_datastore.get_user(email)
+    new_user = user_datastore.create_user(username=username, email=email, password=password, roles=['end-user'])
     user_datastore.commit()
     session['user_id'] = new_user.id
     return redirect(url_for('app_mfa.signup_mfa'))
+
+
+def check_password_complexity(password):
+    password_message = []
+    password_complexity_message = password_complexity_validator(password, True)
+    if password_complexity_message:
+        password_message += password_complexity_message
+
+    password_breached_message = password_breached_validator(password)
+    if password_breached_message:
+        password_message += password_breached_message
+    text = ''
+    if password_message:
+        for message in password_message:
+            text += message
+            text += '\n' 
+    return text
 
 
 @app_auth.route('/web/logout')

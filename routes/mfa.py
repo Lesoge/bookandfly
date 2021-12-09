@@ -42,7 +42,6 @@ def load_user_from_session():
             user = User.query.filter_by(
                 id=user_id).first()
         else:
-            print('Dsasd')
             user = None
     else:
         user = current_user

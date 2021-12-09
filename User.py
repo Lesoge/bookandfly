@@ -26,6 +26,7 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
     active = db.Column(db.Boolean())
     confirmed_at = db.Column(db.DateTime())
+    fs_uniquifier = db.Column(db.String(255), unique=True, nullable=False)
     roles = db.relationship(
         'Role',
         secondary=roles_users,
@@ -37,7 +38,6 @@ class User(db.Model, UserMixin):
         return '<User %r>' % self.username
 
     def check_password(self, password):
-        print('PASSSWORD:'+password)
         return verify_password(password, self.password)
 
     def check_otp(self, otp):
