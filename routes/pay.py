@@ -35,7 +35,7 @@ def pay():
         pay_info = Payment_info(
             form.credit_card_number.data,
             form.name_on_card.data,
-            datetime.strptime(form.expiry_date.data, '%m/%y'),
+            form.expiry_date.data,
             form.security_code.data
         )
         db_commit(pay_address, pay_info)

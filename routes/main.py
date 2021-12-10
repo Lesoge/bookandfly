@@ -8,8 +8,9 @@ app_main = Blueprint('app_main', __name__)
 
 @app_main.route('/', methods=['GET'])
 def index():
-    flights = Flight.query.filter(Flight.depTime >= datetime.now())
     bookings = Booking.query
+    flights = Flight.query.filter(Flight.depTime >= datetime.now())
+    flights = [f for f in flights if f.available_seats(bookings) > 0]
     return render_template('index.html', flights=flights, bookings=bookings)
 
 
