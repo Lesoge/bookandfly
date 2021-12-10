@@ -118,13 +118,14 @@ class Flight(db.Model):
     arrTime = db.Column(db.DateTime, nullable=False)
     plane_id = db.Column(db.Integer, db.ForeignKey('planes.id'))
     plane = db.relationship('Plane', backref='flightlist')
+    ticket_price = db.Column(db.Numeric(6, 2), nullable=False)
 
     # todo test function + available seats
     def check_if_full(self):
         return len(self.booking_list) >= self.plane.seats
 
     def available_seats(self, bookings):
-        return self.plane.seats - bookings.filter(Booking.flight == self).count()
+        return self.plane.seats - bookings.filter(Booking.flight == self, Booking.payed).count()
 
 
 class Airport(db.Model):

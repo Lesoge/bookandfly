@@ -16,7 +16,7 @@ def index():
 @app_main.route('/profile', methods=['GET'])
 @login_required
 def profile():
-    bookings = Booking.query.filter(Booking.user == current_user, Flight.depTime >= datetime.now(), Booking.payed == True)
+    bookings = Booking.query.filter(Booking.user == current_user, Flight.depTime >= datetime.now(), Booking.payed)
     return render_template('profile.html', user=current_user, bookings=bookings)
 
 

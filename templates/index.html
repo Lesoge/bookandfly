@@ -5,8 +5,8 @@
     <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-container-style u-expanded-width u-group u-similar-fill u-group-1">
             <div class="u-container-layout">
-                <h1 class="u-align-center u-heading-font u-text u-title u-text-1">Comparing The Domestic Flight
-                    Experience On Delta And American</h1>
+                <h1 class="u-align-center u-heading-font u-text u-title u-text-1">Explore destinations around
+                    the world with Falcon Airways<sup>&reg</sup></h1>
             </div>
         </div>
     </div>
@@ -19,7 +19,8 @@
                     <col width="20%">
                     <col width="20%">
                     <col width="20%">
-                    <col width="20%">
+                    <col width="10%">
+                    <col width="10%">
                     <col width="20%">
                 </colgroup>
                 <thead class="u-grey-50 u-table-header u-table-header-1">
@@ -27,7 +28,8 @@
                     <th class="u-border-1 u-border-grey-50 u-table-cell">From</th>
                     <th class="u-border-1 u-border-grey-50 u-table-cell">To</th>
                     <th class="u-border-1 u-border-grey-50 u-table-cell">Date</th>
-                    <th class="u-border-1 u-border-grey-50 u-table-cell">Available Seats</th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell">Available seats</th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell">Current ticket price</th>
                     <th class="u-border-1 u-border-grey-50 u-table-cell"></th>
                 </tr>
                 </thead>
@@ -46,9 +48,12 @@
                     <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{
                         flight.available_seats(bookings) }} / {{ flight.plane.seats }}
                     </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{
+                        flight.ticket_price }}€
+                    </td>
                     <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><a
                             href="{{ url_for('app_main.flight', flightnr = flight.id) }}"
-                            class="u-btn u-button-style u-palette-2-dark-2 u-btn-1"> Book Now </a></td>
+                            class="u-btn u-button-style u-palette-2-dark-2 u-btn-1">Show more</a></td>
                 </tr>
                 {% endfor %}
                 </tbody>

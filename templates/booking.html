@@ -97,6 +97,10 @@
                                 To: {{booking.flight.arrAirport.name}} {{booking.flight.arrTime.strftime('%d.%m.%Y
                                 %H:%M')}}
                             </li>
+                            <li data-block-type="">
+                                <div class="u-list-icon hidden u-block-8692-34"></div>
+                                Ticket price: {{booking.flight.ticket_price}}€
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -304,7 +308,10 @@
 
 
         <p class="u-text u-text-default u-block-19cd-8" data-block="137" style="margin: 17px auto 0px;"
-           data-block-type="Text">Please confirm the booking information above to finish the booking process.</p>
+           data-block-type="Text">
+            Please confirm the booking information above to finish the booking process.<br>
+            The ticket price of {{ booking.flight.ticket_price }}€ will be booked from the provided credit card.
+        </p>
         <form method="post">
             <button
                     name="pay"
