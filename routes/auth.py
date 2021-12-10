@@ -5,6 +5,7 @@ from flask import Blueprint, render_template, session, abort, flash
 from User import User, db, db_commit
 from flask import (request, url_for, make_response,
                    redirect, render_template, session)
+from Forms import LogInForm, SignUpForm
 
 app_auth = Blueprint('app_auth', __name__)
 
@@ -16,9 +17,20 @@ def login():
 
 @app_auth.route('/login', methods=['POST'])
 def login_post():
-    email = request.form.get('email')
-    password = request.form.get('password')
-    remember = True if request.form.get('remember') else False
+    form = LogInForm(request.form)
+    if not form.validate():
+        flash('Invalid inputs')
+        return redirect(url_for('app_auth.login'))
+
+    email = form.email.data
+    password = form.password.data
+    remember = True if form.remember.data else False
+
+    # TODO remove comments if working
+    # email = request.form.get('email')
+    # password = request.form.get('password')
+    # remember = True if request.form.get('remember') else False
+
     user = User.query.filter_by(email=email).first()
     # check if the user actually exists
     # take the user-supplied password, hash it, and compare it to the hashed password in the database
@@ -46,10 +58,20 @@ def signup():
 @app_auth.route('/signup', methods=['POST'])
 def signup_post():
     # TODO ADD Input Validation
-    email = request.form.get('email')
-    username = request.form.get('name')
 
-    password = request.form.get('password')
+
+    # implements WTForms
+    form = SignUpForm(request.form)
+    if not form.validate():
+        flash('Invalid inputs')
+        return redirect(url_for('app_auth.signup'))
+
+    email = form.username.data
+    username = form.username.data
+    password = form.password.data
+
+
+
     user = User.query.filter((User.email == email) | (User.username == username)).first() # if this returns a user, then the email already exists in database
     if user:  # if a user is found, we want to redirect back to signup page so user can try again
         flash('Username or Email is already used')

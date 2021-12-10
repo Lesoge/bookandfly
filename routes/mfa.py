@@ -5,6 +5,7 @@ from flask import Blueprint, render_template, session, abort, flash
 from User import User, db
 from flask import (request, url_for, make_response,
                    redirect, render_template, session)
+from Forms import MfaForm
 import qrcode
 
 app_mfa = Blueprint('app_mfa', __name__)
@@ -62,8 +63,18 @@ def login_mfa_form():
     user = load_user_from_session()
     if user is None:
         return redirect(url_for('app_auth.login'))
-    # getting OTP provided by user
-    otp = int(request.form.get('otp'))
+
+    # old getting OTP provided by user:
+    # otp = int(request.form.get('otp'))
+
+    # TODO sb has to check if this is right:
+    # TODO WTForms implement
+    form = MfaForm(request.form)
+    if not form.validate():
+        flash('You have supplied an invalid 2FA token!', 'danger')
+        return redirect(url_for('app_mfa.login_mfa'))
+    otp = form.otp.data
+
     if 'remember' in session:
         remember = session['remember']
     else:
