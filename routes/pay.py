@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import Blueprint, render_template, session, request, redirect, url_for, abort, flash
 from flask_login import current_user, login_required
 
@@ -13,11 +15,15 @@ def pay():
     flight_id = get_from_session('flight_id')
     flight = Flight.query.get_or_404(flight_id)
     # todo remove comment
-    #if flight.check_if_full():
+    # if flight.check_if_full():
     #    flash('No more Tickets are available for this flight')
     #    return redirect(url_for('app_main.flight', flightnr=flight.id))
     form = PaymentForm(request.form)
-    if request.method == 'POST' and form.validate():
+
+    if not form.validate():
+        return render_template('payment.html', flightnr=flight_id, form=form)
+
+    if request.method == 'POST':
         pay_address = Booking_address(
             form.first_name.data,
             form.last_name.data,
@@ -29,7 +35,7 @@ def pay():
         pay_info = Payment_info(
             form.credit_card_number.data,
             form.name_on_card.data,
-            form.expiry_date.data,
+            datetime.strptime(form.expiry_date.data, '%m/%y'),
             form.security_code.data
         )
         db_commit(pay_address, pay_info)
