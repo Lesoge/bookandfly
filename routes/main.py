@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect, url_for
+from flask import Blueprint, render_template, session, redirect, url_for, flash
 from flask_login import login_required, current_user
 from datetime import datetime
 from User import Flight, Booking
@@ -29,5 +29,10 @@ def flight(flightnr):
 
 @app_main.route("/flight/<int:flightnr>", methods=['POST'])
 def flight_post(flightnr):
+    flight = Flight.query.get_or_404(flightnr)
+    bookings = Booking.query
+    if flight.available_seats(bookings) == 0:
+        flash('No more Tickets are available for this flight')
+        return redirect(url_for('app_main.flight', flightnr=flight.id))
     session['flight_id'] = flightnr
     return redirect(url_for('app_pay.pay'))
