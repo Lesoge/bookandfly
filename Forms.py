@@ -41,5 +41,9 @@ class LogInForm(Form):
     remember = BooleanField('Remember me')
 
 
+class ResetPasswordForm(Form):
+    password = PasswordField('Password', [validators.InputRequired()])
+
+
 class MfaForm(Form):
     otp = StringField('Enter your MFA Token', [validators.InputRequired(), validators.Regexp('\d{6}$')])

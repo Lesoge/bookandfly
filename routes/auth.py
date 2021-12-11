@@ -9,7 +9,7 @@ from dbModel import User, db, db_commit, user_datastore, security
 from help_functions import get_from_session
 from flask import (request, url_for, make_response,
                    redirect, render_template, session, current_app)
-from Forms import LogInForm, SignUpForm
+from Forms import LogInForm, SignUpForm, ResetPasswordForm
 
 app_auth = Blueprint('app_auth', __name__)
 logger = logging.getLogger('web_logger')
@@ -97,7 +97,7 @@ def signup_post():
 def set_new_password():
     if 'breached' not in session:
         return redirect(url_for('app_main.index'))
-    return render_template('asdf')
+    return render_template('setpw.html')
 
 
 @app_auth.route('/setpw', methods=['POST'])
@@ -105,14 +105,15 @@ def set_new_password():
 def set_new_password_post():
     if 'breached' not in session:
         return redirect(url_for('app_main.index'))
-    password = ''
-    password = hash_password(password)
+    form = ResetPasswordForm(request.form)
+    password = form.password.data
     text = check_password_complexity(password)
     if text:
         logger.info('tried to create a user with an weak password',
                     extra={'ip': request.remote_addr, 'user': current_user.email})
         flash(text)
         return redirect(url_for('app_auth.set_new_pw'))
+    password = hash_password(password)
     current_user.password = password
     db_commit(current_user)
     session['breached'] = None
