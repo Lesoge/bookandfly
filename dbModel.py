@@ -1,4 +1,7 @@
+import logging
+
 import pyotp
+from flask import session, abort
 from flask_security import SQLAlchemyUserDatastore, RoleMixin, UserMixin, Security
 from flask_security.utils import hash_password, verify_password
 from flask_sqlalchemy import SQLAlchemy
@@ -177,6 +180,16 @@ def db_commit(*object_list):
         if isinstance(object, db.Model):
             db.session.add(object)
         else:
-            print('Error')
-            # todo add log
+            logger = logging.getLogger('app_logger')
+            logger.warning('error in creating db object')
     db.session.commit()
+
+
+def get_from_session(key, remote_addr):
+    if key in session:
+        return session[key]
+    else:
+        logger = logging.getLogger('web_logger')
+        logger.warning('tried to access signup_mfa through an invalid path',
+                       extra={'ip': remote_addr, 'user': 'anonym'})
+        abort(404, description='you tried to access that page through an invalid path')

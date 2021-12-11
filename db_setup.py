@@ -6,7 +6,7 @@ import datetime
 from flask_security import hash_password
 
 from app import create_app, user_datastore
-from User import db, Airport, Plane, db_commit, Flight
+from dbModel import db, Airport, Plane, db_commit, Flight
 
 
 def create_standard_admin():

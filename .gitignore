@@ -134,3 +134,6 @@ static/qrcode.png
 config.py
 createDB.py
 /generateAdmin.py
+ca-key.pem
+cert.pem
+key.pem

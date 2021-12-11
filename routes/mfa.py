@@ -1,9 +1,11 @@
 # login route for web interface
+import logging
+
 import pyotp
 from flask_security import current_user, login_required
 from flask_security.utils import login_user
 from flask import Blueprint, render_template, session, abort, flash
-from User import User, db, security
+from dbModel import User, db, security, get_from_session
 from flask import (request, url_for, make_response,
                    redirect, render_template, session)
 from Forms import MfaForm
@@ -11,14 +13,16 @@ import qrcode
 
 app_mfa = Blueprint('app_mfa', __name__)
 
+logger = logging.getLogger('web_logger')
 
-# MFA Zeugs ab hier
+
 @app_mfa.route('/signup/mfa', methods=['GET'])
 def signup_mfa():
-    user = load_user_from_session()
-    if user is None:
-        return redirect(url_for('app_auth.login'))
+    user_id = get_from_session('user_id', request.remote_addr)
+    user = User.query.get_or_404(user_id)
     if user.mfasecretkey is not None:
+        logger.warning('tried to access signup_mfa despite having an mfa key',
+                       extra={'ip': request.remote_addr, 'user':user.id})
         return redirect(url_for('app_auth.login'))
     user.generate_otp()
     db.session.add(user)
@@ -33,44 +37,32 @@ def signup_mfa():
     qr.make(fit=True)
     imgQR = qr.make_image(fill='black', back_color='white')
     imgQR.save('static/qrcode.png', compress_level=1)
+    logger.info('created mfa key',
+                   extra={'ip': request.remote_addr, 'user': user.id})
     return render_template('signup_mfa.html', secret=secret, imgQR=imgQR)
 
 
-def load_user_from_session():
-    if current_user.is_anonymous:
-        if 'user_id' in session:
-            user_id = session['user_id']
-            user = User.query.filter_by(
-                id=user_id).first()
-        else:
-            user = None
-    else:
-        user = current_user
-    return user
+
 
 
 @app_mfa.route('/signup/mfa', methods=['POST'])
 def signup_mfa_form():
-    # TODO UPDATE MFA SIGNUP HTml
     return redirect(url_for('app_auth.login'))
+
 
 @app_mfa.route('/login/mfa', methods=['GET'])
 def login_mfa():
     return render_template('login_mfa.html')
 
+
 @app_mfa.route('/login/mfa', methods=['POST'])
 def login_mfa_form():
-    user = load_user_from_session()
-    if user is None:
-        return redirect(url_for('app_auth.login'))
-
-    # old getting OTP provided by user:
-    # otp = int(request.form.get('otp'))
-
-    # TODO sb has to check if this is right:
-    # TODO WTForms implement
+    user_id = get_from_session('user_id', request.remote_addr)
+    user = User.query.get_or_404(user_id)
     form = MfaForm(request.form)
     if not form.validate():
+        logger.info('invalid input in mfa_form',
+                       extra={'ip': request.remote_addr, 'user': user.id})
         flash('You have supplied an invalid 2FA token!', 'danger')
         return redirect(url_for('app_mfa.login_mfa'))
     otp = form.otp.data
@@ -82,8 +74,11 @@ def login_mfa_form():
     # verifying submitted OTP with PyOTP
     if user.check_otp(otp):
         login_user(user, remember)
+        logger.info('logged_in',
+                       extra={'ip': request.remote_addr, 'user': user.id})
         return redirect(url_for('app_main.profile'))
     else:
+        logger.info('invalid mfa token',
+                    extra={'ip': request.remote_addr, 'user': user.id})
         flash('You have supplied an invalid 2FA token!', 'danger')
         return redirect(url_for('app_mfa.login_mfa'))
-

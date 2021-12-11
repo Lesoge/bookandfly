@@ -1,5 +1,5 @@
 from flask_admin.contrib.sqla import ModelView
-from User import db, User, Flight, Airport, Plane, Booking
+from dbModel import db, User, Flight, Airport, Plane, Booking
 from flask_security import current_user
 from flask_admin.form import SecureForm
 
