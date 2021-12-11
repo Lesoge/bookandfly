@@ -1,70 +1,189 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% from "_formhelpers.html" import render_field %}
-<section class="u-clearfix u-block-8116-1" custom-posts-hash="[]" data-style="blank"
-         data-section-properties="{&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}" id="sec-70d6"
-         data-source="Blank" data-id="8116" style="">
-    <div class="u-clearfix u-sheet u-block-8116-2" style="min-height: 500px" data-block-type="Sheet">
-        <h2 class="u-text u-text-default u-align-center u-block-8116-18" data-block="51"
-            style="margin: 66.5px auto 0px;" data-block-type="Text">Flight Nr. {{flightnr}}<br>Booking Process: Payment
-        </h2>
-        <p class="u-text u-text-default u-align-center u-block-8116-19" data-block="52"
-           style="margin: 20.25px auto 0px;" data-block-type="Text">Enter your details below to book a ticket for flight
-            nr. {{flightnr}}.<br>We will process the payment as soon as possible.</p>
-        <div class="u-form u-block-8116-3" data-block="42"
-             style="height: 183.2px; width: 570px; margin: 20.25px auto 60px;" data-block-type="Form">
-            <form method=post>
-                <div class="u-layout-row">
-                <div style="margin: auto">
-                    {{ render_field(form.first_name, placeholder="John") }}
-                    {{ render_field(form.last_name, placeholder="Doe") }}
-                    {{ render_field(form.street, placeholder="Main Street") }}
-                    {{ render_field(form.street_number, placeholder="XX") }}
-                    {{ render_field(form.town, placeholder="Anytown") }}
-                    {{ render_field(form.zipcode, placeholder="XXXXX") }}
+{% from "_formhelpers.html" import field_errors %}
+<section class="u-clearfix u-block-b8c0-1" custom-posts-hash="[]" data-style="blank"
+         data-section-properties="{&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}" id="sec-45d7"
+         data-source="Blank" data-id="b8c0" style="">
+    <div class="u-clearfix u-sheet u-block-b8c0-2" style="min-height: 1213px"><h2
+            class="u-text u-text-default u-align-center u-block-b8c0-39" data-block="26"
+            style="margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto" data-block-type="Text">
+        Flight Nr. {{ flightnr }}<br>Booking Process: Payment</h2>
+        <p class="u-text u-align-center u-block-b8c0-41" data-block="28"
+           style="width: 720px; margin-top: 2px; margin-left: auto; margin-right: auto; margin-bottom: 0px"
+           data-block-type="Text">Please enter your details below to book a ticket for flight nr. {{flightnr}}.<br>We
+            will process the payment as soon as possible</p>
+        <div class="u-form u-block-b8c0-3"
+             style="height: 318px; width: 720px; margin-top: 2px; margin-left: auto; margin-right: auto; margin-bottom: 60px"
+             data-block="9">
+            <form action="#" method="POST"
+                  class="u-clearfix u-form-custom-backend u-form-spacing-35 u-form-vertical u-inner-form"
+                  source="custom" name="form-2" style="padding: 10px;">
+                <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-0aa2-7" style="margin-bottom: 0px"
+                     data-block="475" data-block-type="FormField">
+                    <label for="first_name" class="u-label u-block-b8c0-5"
+                           style="">First Name</label>
+                    <input type="text" placeholder="John" id="first_name" name="first_name"
+                           class="u-grey-5 u-input u-input-rectangle u-block-0aa2-9" required="" style="">
+                    {{ field_errors(form.first_name) }}
                 </div>
-                <div style="margin: auto">
-                    {{ render_field(form.credit_card_number, placeholder="XXXX XXXX XXXX XXXX") }}
-                    {{ render_field(form.name_on_card, placeholder="John Doe") }}
-                    {{ render_field(form.expiry_date, placeholder="MM/YY") }}
-                    {{ render_field(form.security_code, placeholder="XXX") }}
+                <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-0aa2-7" style="margin-bottom: 0px"
+                     data-block="475" data-block-type="FormField">
+                    <label for="last_name" class="u-label u-block-b8c0-5"
+                           style="">Last Name</label>
+                    <input type="text" placeholder="Doe" id="last_name" name="last_name"
+                           class="u-grey-5 u-input u-input-rectangle u-block-0aa2-9" required="" style="">
+                    {{ field_errors(form.last_name) }}
                 </div>
+                <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-0aa2-7" style="margin-bottom: 0px"
+                     data-block="475" data-block-type="FormField">
+                    <label for="street" class="u-label u-block-b8c0-5"
+                           style="">Street</label>
+                    <input type="text" placeholder="Main Street" id="street" name="street"
+                           class="u-grey-5 u-input u-input-rectangle u-block-0aa2-9" required="" style="">
+                    {{ field_errors(form.street) }}
                 </div>
-                <div class="u-form-group u-form-submit u-align-center u-block-b8c0-13">
-                    <a class="u-btn u-button-style u-btn-submit ui-draggable ui-draggable-handle u-hover-palette-1-dark-1 u-palette-1-base" style="letter-spacing: 1px; border-style: none; font-weight: 700; text-transform: uppercase;">Submit</a>
-                    <input type=submit value="Submit" class="u-form-control-hidden">
+                <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-0aa2-7" style="margin-bottom: 0px"
+                     data-block="475" data-block-type="FormField">
+                    <label for="street_number" class="u-label u-block-b8c0-5"
+                           style="">Street Number</label>
+                    <input type="text" placeholder="XX" id="street_number" name="street_number"
+                           class="u-grey-5 u-input u-input-rectangle u-block-0aa2-9" required="" style="">
+                    {{ field_errors(form.street_number) }}
+                </div>
+                <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-0aa2-7" style="margin-bottom: 0px"
+                     data-block="475" data-block-type="FormField">
+                    <label for="zipcode" class="u-label u-block-b8c0-5"
+                           style="">Postal Code</label>
+                    <input type="text" placeholder="XXXXX" id="zipcode" name="zipcode"
+                           class="u-grey-5 u-input u-input-rectangle u-block-0aa2-9" required="" style="">
+                    {{ field_errors(form.zipcode) }}
+                </div>
+                <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-0aa2-7" style="margin-bottom: 0px"
+                     data-block="475" data-block-type="FormField">
+                    <label for="town" class="u-label u-block-b8c0-5"
+                           style="">Town</label>
+                    <input type="text" placeholder="Anytown" id="town" name="town"
+                           class="u-grey-5 u-input u-input-rectangle u-block-0aa2-9" required="" style="">
+                    {{ field_errors(form.town) }}
+                </div>
+                <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-0aa2-7" style="margin-bottom: 0px"
+                     data-block="475" data-block-type="FormField">
+                    <label for="credit_card_number" class="u-label u-block-b8c0-5"
+                           style="">Credit Card Number</label>
+                    <input type="text" placeholder="XXXXXXXXXXXXXXXX" id="credit_card_number" name="credit_card_number"
+                           class="u-grey-5 u-input u-input-rectangle u-block-0aa2-9" required="" style="">
+                    {{ field_errors(form.credit_card_number) }}
+                </div>
+                <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-0aa2-7" style="margin-bottom: 0px"
+                     data-block="475" data-block-type="FormField">
+                    <label for="name_on_card" class="u-label u-block-b8c0-5"
+                           style="">Credit Card Holder</label>
+                    <input type="text" placeholder="John Doe" id="name_on_card" name="name_on_card"
+                           class="u-grey-5 u-input u-input-rectangle u-block-0aa2-9" required="" style="">
+                    {{ field_errors(form.name_on_card) }}
+                </div>
+                <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-0aa2-7" style="margin-bottom: 0px"
+                     data-block="475" data-block-type="FormField">
+                    <label for="expiry_date" class="u-label u-block-b8c0-5"
+                           style="">Expiry Date</label>
+                    <input type="text" placeholder="MM/YY" id="expiry_date" name="expiry_date"
+                           class="u-grey-5 u-input u-input-rectangle u-block-0aa2-9" required="" style="">
+                    {{ field_errors(form.expiry_date) }}
+                </div>
+                <div class="u-form-group u-form-name ui-draggable ui-draggable-handle u-block-0aa2-7" style="margin-bottom: 0px"
+                     data-block="475" data-block-type="FormField">
+                    <label for="security_code" class="u-label u-block-b8c0-5"
+                           style="">Security Code</label>
+                    <input type="text" placeholder="XXX" id="security_code" name="security_code"
+                           class="u-grey-5 u-input u-input-rectangle u-block-0aa2-9" required="" style="">
+                    {{ field_errors(form.security_code) }}
+                </div>
+                <div class="u-align-center u-form-group u-form-submit u-block-0aa2-15" style=""
+                     data-block="478">
+                    <a href="#"
+                       class="u-btn u-btn-round u-btn-submit u-button-style u-radius-17 ui-draggable ui-draggable-handle u-block-0aa2-16"
+                       style="width: 25%; padding-top: 10px; padding-right: 31px; padding-bottom: 10px; padding-left: 29px"
+                       data-block="479">Submit details</a>
+                    <input type="submit" value="submit" class="u-form-control-hidden">
                 </div>
             </form>
-            <style data-mode="XL">@media (max-width: 0px) { .u-block-8116-2 {min-height: 500px}
-.u-block-8116-18 {margin-top: 66.5px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
-.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
-.u-block-8116-3 {height: 183.2px; width: 570px; margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
-.u-block-8116-13 {margin-left: 0px} }
-            </style>
-            <style data-mode="LG">@media (max-width: 0px) { .u-block-8116-2 {min-height: 500px}
-.u-block-8116-18 {margin-top: 66.5px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
-.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
-.u-block-8116-3 {width: 570px; margin-bottom: 60px; height: 183.2px; margin-top: 20.25px; margin-left: auto; margin-right: auto}
-.u-block-8116-13 {margin-left: 0px} }
-            </style>
-            <style data-mode="MD">@media (max-width: 0px) { .u-block-8116-2 {min-height: 500px}
-.u-block-8116-18 {margin-top: 66.5px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
-.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
-.u-block-8116-3 {width: 570px; margin-bottom: 60px; height: 183.2px; margin-top: 20.25px; margin-left: auto; margin-right: auto}
-.u-block-8116-13 {margin-left: 0px} }
-            </style>
-            <style data-mode="SM">@media (max-width: 0px) { .u-block-8116-2 {min-height: 500px}
-.u-block-8116-18 {margin-top: 66.5px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
-.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
-.u-block-8116-3 {width: 540px; margin-bottom: 60px; height: 183.2px; margin-top: 20.25px; margin-left: auto; margin-right: auto}
-.u-block-8116-13 {margin-left: 0px} }
-            </style>
-            <style data-mode="XS">@media (max-width: 0px) { .u-block-8116-2 {min-height: 500px}
-.u-block-8116-18 {margin-top: 66.5px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
-.u-block-8116-19 {margin-top: 20.25px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
-.u-block-8116-3 {width: 340px; margin-bottom: 60px; height: 183.2px; margin-top: 20.25px; margin-left: auto; margin-right: auto}
-.u-block-8116-13 {margin-left: 0px} }
-            </style>
+        </div>
+    </div>
+    <style data-mode="XL">@media (max-width: 0px) { .u-block-b8c0-2 {min-height: 1213px}
+.u-block-b8c0-39 {margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto}
+.u-block-b8c0-41 {width: 720px; margin-top: 2px; margin-left: auto; margin-right: auto; margin-bottom: 0px}
+.u-block-b8c0-3 {height: 318px; width: 720px; margin-top: 2px; margin-left: auto; margin-right: auto; margin-bottom: 60px}
+.u-block-b8c0-21 {margin-left: 0}
+.u-block-b8c0-24 {margin-left: 0}
+.u-block-b8c0-27 {margin-left: 0}
+.u-block-b8c0-30 {margin-left: 0}
+.u-block-b8c0-33 {margin-left: 0}
+.u-block-b8c0-36 {margin-left: 0}
+.u-block-b8c0-15 {margin-left: 0}
+.u-block-b8c0-18 {margin-left: 0}
+.u-block-b8c0-14 {letter-spacing: 1px; border-style: none; font-weight: 700; text-transform: uppercase} }
+
+    </style>
+    <style data-mode="LG">@media (max-width: 0px) { .u-block-b8c0-2 {min-height: 1213px}
+.u-block-b8c0-39 {margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto}
+.u-block-b8c0-41 {margin-top: 2px; margin-left: auto; margin-right: auto; margin-bottom: 0px; width: 720px}
+.u-block-b8c0-3 {height: 318px; margin-top: 2px; margin-right: auto; margin-bottom: 60px; margin-left: auto; width: 720px}
+.u-block-b8c0-21 {margin-left: 0}
+.u-block-b8c0-24 {margin-left: 0}
+.u-block-b8c0-27 {margin-left: 0}
+.u-block-b8c0-30 {margin-left: 0}
+.u-block-b8c0-33 {margin-left: 0}
+.u-block-b8c0-36 {margin-left: 0}
+.u-block-b8c0-15 {margin-left: 0}
+.u-block-b8c0-18 {margin-left: 0}
+.u-block-b8c0-14 {letter-spacing: 1px; border-style: none; font-weight: 700; text-transform: uppercase} }
+
+    </style>
+    <style data-mode="MD">@media (max-width: 0px) { .u-block-b8c0-2 {min-height: 1213px}
+.u-block-b8c0-39 {margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto}
+.u-block-b8c0-41 {margin-top: 2px; margin-left: auto; margin-right: auto; margin-bottom: 0px; width: 720px}
+.u-block-b8c0-3 {height: 318px; margin-top: 2px; margin-right: auto; margin-bottom: 60px; margin-left: auto; width: 720px}
+.u-block-b8c0-21 {margin-left: 0}
+.u-block-b8c0-24 {margin-left: 0}
+.u-block-b8c0-27 {margin-left: 0}
+.u-block-b8c0-30 {margin-left: 0}
+.u-block-b8c0-33 {margin-left: 0}
+.u-block-b8c0-36 {margin-left: 0}
+.u-block-b8c0-15 {margin-left: 0}
+.u-block-b8c0-18 {margin-left: 0}
+.u-block-b8c0-14 {letter-spacing: 1px; border-style: none; font-weight: 700; text-transform: uppercase} }
+
+    </style>
+    <style data-mode="SM">@media (max-width: 0px) { .u-block-b8c0-2 {min-height: 1213px}
+.u-block-b8c0-39 {margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto}
+.u-block-b8c0-41 {margin-top: 2px; margin-left: auto; margin-right: auto; margin-bottom: 0px; width: 540px}
+.u-block-b8c0-3 {height: 318px; margin-top: 2px; margin-right: auto; margin-bottom: 60px; margin-left: auto; width: 540px}
+.u-block-b8c0-21 {margin-left: 0}
+.u-block-b8c0-24 {margin-left: 0}
+.u-block-b8c0-27 {margin-left: 0}
+.u-block-b8c0-30 {margin-left: 0}
+.u-block-b8c0-33 {margin-left: 0}
+.u-block-b8c0-36 {margin-left: 0}
+.u-block-b8c0-15 {margin-left: 0}
+.u-block-b8c0-18 {margin-left: 0}
+.u-block-b8c0-14 {letter-spacing: 1px; border-style: none; font-weight: 700; text-transform: uppercase} }
+
+    </style>
+    <style data-mode="XS">@media (max-width: 0px) { .u-block-b8c0-2 {min-height: 1213px}
+.u-block-b8c0-39 {margin-top: 0px; margin-bottom: 0px; margin-left: auto; margin-right: auto}
+.u-block-b8c0-41 {margin-top: 2px; margin-left: auto; margin-right: auto; margin-bottom: 0px; width: 340px}
+.u-block-b8c0-3 {height: 318px; margin-top: 2px; margin-right: auto; margin-bottom: 60px; margin-left: auto; width: 340px}
+.u-block-b8c0-21 {margin-left: 0}
+.u-block-b8c0-24 {margin-left: 0}
+.u-block-b8c0-27 {margin-left: 0}
+.u-block-b8c0-30 {margin-left: 0}
+.u-block-b8c0-33 {margin-left: 0}
+.u-block-b8c0-36 {margin-left: 0}
+.u-block-b8c0-15 {margin-left: 0}
+.u-block-b8c0-18 {margin-left: 0}
+.u-block-b8c0-14 {letter-spacing: 1px; border-style: none; font-weight: 700; text-transform: uppercase} }
+
+    </style>
 </section>
 {% endblock %}

@@ -68,7 +68,7 @@ def signup_post():
         flash('Invalid inputs')
         return redirect(url_for('app_auth.signup'))
 
-    email = form.username.data
+    email = form.email.data
     username = form.username.data
     password = form.password.data
 

@@ -13,10 +13,7 @@ app_pay = Blueprint('app_pay', __name__)
 def pay():
     flight_id = get_from_session('flight_id')
     flight = Flight.query.get_or_404(flight_id)
-    # todo remove comment
-    # if flight.check_if_full():
-    #    flash('No more Tickets are available for this flight')
-    #    return redirect(url_for('app_main.flight', flightnr=flight.id))
+
     form = PaymentForm(request.form)
 
     if not form.validate():
@@ -34,7 +31,7 @@ def pay():
         pay_info = Payment_info(
             form.credit_card_number.data,
             form.name_on_card.data,
-            datetime.strptime(form.expiry_date.data, '%m/%y'),
+            form.expiry_date.data,
             form.security_code.data
         )
         db_commit(pay_address, pay_info)
