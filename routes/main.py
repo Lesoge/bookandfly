@@ -21,12 +21,14 @@ def profile():
 
 
 @app_main.route("/flight/<int:flightnr>", methods=['GET'])
+@login_required
 def flight(flightnr):
     flight = Flight.query.get_or_404(flightnr)
     bookings = Booking.query
     return render_template("flight.html", flight=flight, bookings=bookings)
 
 @app_main.route("/flight/<int:flightnr>", methods=['POST'])
+@login_required
 def flight_post(flightnr):
     session['flight_id'] = flightnr
     return redirect(url_for('app_pay.pay'))

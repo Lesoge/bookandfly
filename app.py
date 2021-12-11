@@ -1,4 +1,6 @@
+import logging
 import secrets
+from logging.config import dictConfig
 
 from flask import Flask, render_template
 from flask_login import LoginManager
@@ -11,13 +13,14 @@ from routes.mfa import app_mfa
 from routes.pay import app_pay
 from User import db, User, user_datastore, security
 from flask_admin import Admin
-from OpenSSL import SSL
+from flask_sslify import SSLify
+
 login_manager = LoginManager()
 admin = Admin()
 
-
 def create_app():
     main_app = Flask(__name__)
+    sslify = SSLify(main_app)
     main_app.register_blueprint(app_auth)
     main_app.register_blueprint(app_main)
     main_app.register_blueprint(app_mfa)
@@ -26,16 +29,10 @@ def create_app():
     admin.init_app(main_app)
     db.init_app(main_app)
     security.init_app(main_app, datastore=user_datastore)
-
+    logging.info('Succesfully created App')
     return main_app
-#
-# def create_context():
-#     context = SSL.Context(SSL.TLSv1_2_METHOD)
-#     context.use_certificate('certfile')
-#     context.use_privatekey('privkey')
-#
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    create_app().run(debug=True, ssl_context=('cert.pem', 'ca-key.pem'), host='127.1.1.1')
+    create_app().run(debug=True, ssl_context=(CERT_PATH, KEY_PATH), host='127.1.1.1')

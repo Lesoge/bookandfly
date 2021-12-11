@@ -24,6 +24,8 @@ def create_standard_admin():
 
 
 def create_data():
+    app = create_app()
+    app.app_context().push()
     airport1 = Airport(town='Stuttgart', country='Germany', iata='STR', name='Manfred Rommel Flughafen')
     airport2 = Airport(town='Bangkok', country='Thailand', iata='DMK', name='Suvarnabhumi International Airport ')
     airport3 = Airport(town='Pjöngjang', country='Nord-Korea', iata='FNJ', name='Sunan')
@@ -37,15 +39,15 @@ def create_data():
     plane5 = Plane(planename='NCC-1701-D', seats='430')
 
     flight1 = Flight(depAirport=airport1, arrAirport=airport1, depTime=datetime.datetime.utcfromtimestamp(1670597890),
-                     arrTime=datetime.datetime.utcfromtimestamp(1670697890), plane=plane1, price=2000)
+                     arrTime=datetime.datetime.utcfromtimestamp(1670697890), plane=plane1, ticket_price=200)
     flight2 = Flight(depAirport=airport1, arrAirport=airport2, depTime=datetime.datetime.utcfromtimestamp(1672345513),
-                     arrTime=datetime.datetime.utcfromtimestamp(1672545513), plane=plane2, price=30000)
+                     arrTime=datetime.datetime.utcfromtimestamp(1672545513), plane=plane2, ticket_price=3000)
     flight3 = Flight(depAirport=airport1, arrAirport=airport3, depTime=datetime.datetime.utcfromtimestamp(1670890213),
-                     arrTime=datetime.datetime.utcfromtimestamp(1670990213), plane=plane3, price=900000)
+                     arrTime=datetime.datetime.utcfromtimestamp(1670990213), plane=plane3, ticket_price=9000)
     flight4 = Flight(depAirport=airport1, arrAirport=airport4, depTime=datetime.datetime.utcfromtimestamp(1670591234),
-                     arrTime=datetime.datetime.utcfromtimestamp(1670791234), plane=plane4, price=30000)
+                     arrTime=datetime.datetime.utcfromtimestamp(1670791234), plane=plane4, ticket_price=300)
     flight5 = Flight(depAirport=airport1, arrAirport=airport5, depTime=datetime.datetime.utcfromtimestamp(1670593713),
-                     arrTime=datetime.datetime.utcfromtimestamp(1670693713), plane=plane5, price=0)
+                     arrTime=datetime.datetime.utcfromtimestamp(1670693713), plane=plane5, ticket_price=0)
     db_commit(airport1, airport2, airport3, airport4, airport5, plane1, plane2, plane3, plane4, plane5, flight1,
               flight2, flight3, flight4, flight5)
 

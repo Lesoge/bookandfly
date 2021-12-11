@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from flask import Blueprint, render_template, session, request, redirect, url_for, abort, flash
 from flask_login import current_user, login_required
 
@@ -10,7 +9,7 @@ app_pay = Blueprint('app_pay', __name__)
 
 
 @app_pay.route("/pay", methods=['GET', 'POST'])
-# @login_required todo remove comment login required only for development
+@login_required
 def pay():
     flight_id = get_from_session('flight_id')
     flight = Flight.query.get_or_404(flight_id)
@@ -51,7 +50,7 @@ def pay():
 
 
 @app_pay.route("/booking", methods=['GET', 'POST'])
-# @login_required
+@login_required
 def booking_info():
     booking_id = get_from_session('booking_id')
     booking = Booking.query.get_or_404(booking_id)
