@@ -15,7 +15,6 @@ def create_standard_admin():
     db.create_all()
     user_datastore.find_or_create_role(name='admin', description='Administrator')
     user_datastore.find_or_create_role(name='end-user', description='End user')
-    print('Create Standard Admin')
     admin_username, admin_email, admin_password = get_admin_acc2()
     admin_password = hash_password(admin_password)
     user_datastore.create_user(username=admin_username, email=admin_email, password=admin_password, roles=['admin'])

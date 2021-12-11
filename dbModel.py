@@ -1,11 +1,9 @@
 import logging
 
 import pyotp
-from flask import session, abort
 from flask_security import SQLAlchemyUserDatastore, RoleMixin, UserMixin, Security
-from flask_security.utils import hash_password, verify_password
+from flask_security.utils import verify_password
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 security = Security()
@@ -171,6 +169,7 @@ class Booking(db.Model):
     def __init__(self, user_id, flight_id, booking_address_id, payment_info_id):
         self.user_id = user_id
         self.flight_id = flight_id
+        self.flight_id = flight_id
         self.booking_address_id = booking_address_id
         self.payment_info_id = payment_info_id
 
@@ -185,11 +184,4 @@ def db_commit(*object_list):
     db.session.commit()
 
 
-def get_from_session(key, remote_addr):
-    if key in session:
-        return session[key]
-    else:
-        logger = logging.getLogger('web_logger')
-        logger.warning('tried to access signup_mfa through an invalid path',
-                       extra={'ip': remote_addr, 'user': 'anonym'})
-        abort(404, description='you tried to access that page through an invalid path')
+

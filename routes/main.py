@@ -1,7 +1,9 @@
+
 from flask import Blueprint, render_template, session, redirect, url_for, flash
 from flask_login import login_required, current_user
 from datetime import datetime
 from dbModel import Flight, Booking
+from help_functions import breached
 
 app_main = Blueprint('app_main', __name__)
 
@@ -16,6 +18,7 @@ def index():
 
 @app_main.route('/profile', methods=['GET'])
 @login_required
+@breached
 def profile():
     bookings = Booking.query.filter(Booking.user == current_user, Flight.depTime >= datetime.now(), Booking.payed)
     return render_template('profile.html', user=current_user, bookings=bookings)
@@ -23,6 +26,7 @@ def profile():
 
 @app_main.route("/flight/<int:flightnr>", methods=['GET'])
 @login_required
+@breached
 def flight(flightnr):
     flight = Flight.query.get_or_404(flightnr)
     bookings = Booking.query
@@ -30,6 +34,7 @@ def flight(flightnr):
 
 @app_main.route("/flight/<int:flightnr>", methods=['POST'])
 @login_required
+@breached
 def flight_post(flightnr):
     flight = Flight.query.get_or_404(flightnr)
     bookings = Booking.query

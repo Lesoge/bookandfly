@@ -5,7 +5,8 @@ import pyotp
 from flask_security import current_user, login_required
 from flask_security.utils import login_user
 from flask import Blueprint, render_template, session, abort, flash
-from dbModel import User, db, security, get_from_session
+from dbModel import User, db, security
+from help_functions import get_from_session
 from flask import (request, url_for, make_response,
                    redirect, render_template, session)
 from Forms import MfaForm
@@ -76,6 +77,9 @@ def login_mfa_form():
         login_user(user, remember)
         logger.info('logged_in',
                        extra={'ip': request.remote_addr, 'user': user.id})
+        if 'breached' in session:
+            pass
+            #return redirect(url_for('app_auth.set_new_password'))
         return redirect(url_for('app_main.profile'))
     else:
         logger.info('invalid mfa token',
