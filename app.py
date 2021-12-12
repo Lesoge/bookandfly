@@ -13,8 +13,10 @@ from dbModel import db, user_datastore, security
 from flask_admin import Admin
 from flask_sslify import SSLify
 from logger_config import logger_config
+
 login_manager = LoginManager()
 admin = Admin()
+
 
 def create_app():
     main_app = Flask(__name__)
