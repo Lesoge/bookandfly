@@ -43,3 +43,8 @@ def flight_post(flightnr):
         return redirect(url_for('app_main.flight', flightnr=flight.id))
     session['flight_id'] = flightnr
     return redirect(url_for('app_pay.pay'))
+
+
+@app_main.route('/forgotpw', methods=['GET'])
+def forgot_pw():
+    return render_template('forgot_pw.html')
