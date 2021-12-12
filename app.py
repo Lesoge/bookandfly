@@ -2,6 +2,8 @@ from logging.config import dictConfig
 
 from flask import Flask
 from flask_login import LoginManager
+
+from AdminModel import create_admin
 from config import *
 from routes.auth import app_auth
 from routes.main import app_main
@@ -24,6 +26,7 @@ def create_app():
     main_app.config.from_pyfile('config.py')
     dictConfig(logger_config)
     admin.init_app(main_app)
+    create_admin(admin)
     db.init_app(main_app)
     security.init_app(main_app, datastore=user_datastore)
     return main_app

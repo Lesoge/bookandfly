@@ -122,7 +122,7 @@ class Flight(db.Model):
 
     # todo test function + available seats
     def check_if_full(self):
-        return len(self.booking_list) >= self.plane.seats
+        return Booking.query.filter(Booking.flight == self, Booking.payed).count() >= self.plane.seats
 
     def available_seats(self, bookings):
         return self.plane.seats - bookings.filter(Booking.flight == self, Booking.payed).count()
@@ -157,13 +157,13 @@ class Booking(db.Model):
         primary_key=True,
         autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    user = db.relationship('User', backref='bookinglist')
+    user = db.relationship('User', backref='booking_list')
     flight_id = db.Column(db.Integer, db.ForeignKey('flights.id'))
-    flight = db.relationship('Flight', backref='bookinglist')
+    flight = db.relationship('Flight', backref='booking_list')
     booking_address_id = db.Column(db.Integer, db.ForeignKey('bookingAdress.id'))
-    booking_address = db.relationship('Booking_address', backref='bookingList')
+    booking_address = db.relationship('Booking_address', backref='booking_list')
     payment_info_id = db.Column(db.Integer, db.ForeignKey('paymentInfo.id'))
-    payment_info = db.relationship('Payment_info', backref='bookingList')
+    payment_info = db.relationship('Payment_info', backref='booking_list')
     payed = db.Column(db.Boolean, default=False)
 
     def __init__(self, user_id, flight_id, booking_address_id, payment_info_id):

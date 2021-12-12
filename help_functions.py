@@ -12,7 +12,7 @@ def breached(func):
             return func(*args, **kwargs)
         elif current_app.config.get('LOGIN_DISABLED'):
             return func(*args, **kwargs)
-        elif 'breached' in session:
+        elif 'breached' in session and session['breached']:
             return redirect(url_for('app_auth.set_new_password'))
         return func(*args, **kwargs)
     return decorated_view

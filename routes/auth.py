@@ -44,9 +44,8 @@ def login_post():
     if user.mfasecretkey is None:
         return redirect(url_for('app_mfa.signup_mfa'))
     else:
-        print(check_password_complexity(form.password.data))
         if check_password_complexity(form.password.data) != '':
-            session['breached'] = 'True'
+            session['breached'] = True
         logger.info('Successfully provided Login Data', extra={'ip': request.remote_addr, 'user': 'anonym'})
         return redirect(url_for('app_mfa.login_mfa'))
 
@@ -112,11 +111,11 @@ def set_new_password_post():
         logger.info('tried to create a user with an weak password',
                     extra={'ip': request.remote_addr, 'user': current_user.email})
         flash(text)
-        return redirect(url_for('app_auth.set_new_pw'))
+        return redirect(url_for('app_auth.set_new_password'))
     password = hash_password(password)
     current_user.password = password
     db_commit(current_user)
-    session['breached'] = None
+    session['breached'] = False
     return redirect(url_for('app_main.profile'))
 
 
