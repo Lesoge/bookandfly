@@ -6,7 +6,7 @@ from flask_security import current_user, login_required
 from flask_security.utils import login_user
 from flask import Blueprint, render_template, session, abort, flash
 from dbModel import User, db, security
-from help_functions import get_from_session
+from session import get_from_session
 from flask import (request, url_for, make_response,
                    redirect, render_template, session)
 from Forms import MfaForm

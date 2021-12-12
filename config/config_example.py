@@ -25,3 +25,6 @@ SECURITY_PASSWORD_CHECK_BREACHED = 'best-effort'
 
 CERT_PATH = 'cert.pem'
 KEY_PATH = 'ca-key.pem'
+
+LOGIN_ATTEMPTS_BEFORE_LOCK = 10
+APP_IP = '127.0.0.1'

@@ -6,7 +6,7 @@ from flask import Blueprint, render_template, session, abort, flash
 from flask_security import hash_password, password_breached_validator, password_length_validator
 from flask_security import password_complexity_validator
 from dbModel import User, db, db_commit, user_datastore, security
-from help_functions import get_from_session
+from session import get_from_session
 from flask import (request, url_for, make_response,
                    redirect, render_template, session, current_app)
 from Forms import LogInForm, SignUpForm, ResetPasswordForm
@@ -31,11 +31,24 @@ def login_post():
     user = User.query.filter_by(email=form.email.data).first()
     # check if the user actually exists
     # take the user-supplied password, hash it, and compare it to the hashed password in the database
-    if not user or not user.check_password(form.password.data):
-        logger.info('tried to log in as' + form.email.data, extra={'ip': request.remote_addr, 'user': 'anonym'})
-        flash('Please check your login details and try again.')
+    message = 'Please check your login details and try again. If you entered a wrong password 5 times your account may be locked'
+    if not user:
+        logger.info('tried to log in as an non existing user' + form.email.data, extra={'ip': request.remote_addr, 'user': 'anonym'})
+        flash(message)
         return redirect(url_for('app_auth.login'))  # if the user doesn't exist or password is wrong, reload the page
+    elif not user.check_password(form.password.data):
+        flash(message)
+        logger.info('entered wrong password' + form.email.data,
+                    extra={'ip': request.remote_addr, 'user': 'anonym'})
+        user.login_tries  = user.login_tries + 1
+        db_commit(user)
+        return redirect(url_for('app_auth.login'))
+    elif user.login_locked():
+        logger.info('user account locked because of too many false login attempts' + form.email.data, extra={'ip': request.remote_addr, 'user': 'anonym'})
+        flash(message)
+        return redirect(url_for('app_auth.login'))
 
+    # if the user doesn't exist or password is wrong, reload the page
     # if the above check passes, then we know the user has the right credentials
     remember = True if form.remember.data else False
     session['remember'] = remember

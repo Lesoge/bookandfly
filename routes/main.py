@@ -1,9 +1,9 @@
 
 from flask import Blueprint, render_template, session, redirect, url_for, flash
-from flask_login import login_required, current_user
+from flask_security import login_required, current_user
 from datetime import datetime
 from dbModel import Flight, Booking
-from help_functions import breached
+from decorators import breached
 
 app_main = Blueprint('app_main', __name__)
 

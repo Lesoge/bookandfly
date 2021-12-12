@@ -4,7 +4,6 @@ from flask import Flask
 from flask_login import LoginManager
 
 from AdminModel import create_admin
-from config import *
 from routes.auth import app_auth
 from routes.main import app_main
 from routes.mfa import app_mfa
@@ -12,9 +11,12 @@ from routes.pay import app_pay
 from dbModel import db, user_datastore, security
 from flask_admin import Admin
 from flask_sslify import SSLify
-from logger_config import logger_config
+from config.loggerConfig import logger_config
+from config.config import CERT_NAME, KEY_NAME, APP_IP
+
 login_manager = LoginManager()
 admin = Admin()
+
 
 def create_app():
     main_app = Flask(__name__)
@@ -23,7 +25,7 @@ def create_app():
     main_app.register_blueprint(app_main)
     main_app.register_blueprint(app_mfa)
     main_app.register_blueprint(app_pay)
-    main_app.config.from_pyfile('config.py')
+    main_app.config.from_pyfile('config/config.py')
     dictConfig(logger_config)
     admin.init_app(main_app)
     create_admin(admin)
@@ -34,4 +36,4 @@ def create_app():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    create_app().run(debug=True, ssl_context=(CERT_PATH, KEY_PATH), host='127.1.1.1')
+    create_app().run(debug=True, ssl_context=(CERT_NAME, KEY_NAME), host=APP_IP)

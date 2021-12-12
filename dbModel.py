@@ -1,9 +1,11 @@
 import logging
 
 import pyotp
-from flask_security import SQLAlchemyUserDatastore, RoleMixin, UserMixin, Security
-from flask_security.utils import verify_password
+from flask_security import SQLAlchemyUserDatastore, RoleMixin, UserMixin, Security, verify_password
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy_utils import EncryptedType
+
+from config.config import LOGIN_ATTEMPTS_BEFORE_LOCK
 
 db = SQLAlchemy()
 security = Security()
@@ -23,8 +25,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(1024), nullable=False, unique=True)
     password = db.Column(db.String(1024), nullable=False)
     email = db.Column(db.String(1024), nullable=True, unique=True)
-    mfasecretkey = db.Column(db.String(1024), nullable=True)
+    mfasecretkey = db.Column(EncryptedType(db.String, 'SEcret key'), nullable=True)
     active = db.Column(db.Boolean())
+    login_tries = db.Column(db.Integer(), default=0, nullable=False)
     confirmed_at = db.Column(db.DateTime())
     fs_uniquifier = db.Column(db.String(255), unique=True, nullable=False)
     roles = db.relationship(
@@ -45,6 +48,9 @@ class User(db.Model, UserMixin):
 
     def generate_otp(self):
         self.mfasecretkey = pyotp.random_base32()
+
+    def login_locked(self):
+        return self.login_tries >= LOGIN_ATTEMPTS_BEFORE_LOCK
 
 
 class Role(db.Model, RoleMixin):
@@ -182,6 +188,3 @@ def db_commit(*object_list):
             logger = logging.getLogger('app_logger')
             logger.warning('error in creating db object')
     db.session.commit()
-
-
-

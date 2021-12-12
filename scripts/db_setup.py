@@ -4,7 +4,6 @@ import secrets
 
 import datetime
 from flask_security import hash_password
-
 from app import create_app, user_datastore
 from dbModel import db, Airport, Plane, db_commit, Flight
 
@@ -23,8 +22,6 @@ def create_standard_admin():
 
 
 def create_data():
-    app = create_app()
-    app.app_context().push()
     airport1 = Airport(town='Stuttgart', country='Germany', iata='STR', name='Manfred Rommel Flughafen')
     airport2 = Airport(town='Bangkok', country='Thailand', iata='DMK', name='Suvarnabhumi International Airport ')
     airport3 = Airport(town='Pjöngjang', country='Nord-Korea', iata='FNJ', name='Sunan')
@@ -49,6 +46,12 @@ def create_data():
                      arrTime=datetime.datetime.utcfromtimestamp(1670693713), plane=plane5, ticket_price=0)
     db_commit(airport1, airport2, airport3, airport4, airport5, plane1, plane2, plane3, plane4, plane5, flight1,
               flight2, flight3, flight4, flight5)
+
+
+def create_data_without_app():
+    app = create_app()
+    app.app_context().push()
+    create_data()
 
 
 def get_admin_acc():

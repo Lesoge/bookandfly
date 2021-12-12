@@ -2,10 +2,11 @@ import logging
 import threading
 from datetime import datetime
 from flask import Blueprint, render_template, session, request, redirect, url_for, abort, flash
-from flask_login import current_user, login_required
+from flask_security import current_user, login_required
 
 from dbModel import Payment_info, Booking_address, db_commit, Booking, Flight
-from help_functions import breached, get_from_session
+from decorators import breached
+from session import get_from_session
 from Forms import PaymentForm
 
 app_pay = Blueprint('app_pay', __name__)
