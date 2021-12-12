@@ -76,3 +76,4 @@ def booking_info():
         flash("You successfully finished your order. Have a nice flight!")
         return redirect(url_for('app_main.index'))
     return render_template('booking.html', booking=booking)
+

@@ -2,6 +2,7 @@ from logging.config import dictConfig
 
 from flask import Flask
 from flask_login import LoginManager
+from flask_wtf.csrf import CSRFProtect
 
 from AdminModel import create_admin
 from routes.auth import app_auth
@@ -16,10 +17,13 @@ from config.config import CERT_NAME, KEY_NAME, APP_IP
 
 login_manager = LoginManager()
 admin = Admin()
+csrf = CSRFProtect()
+
 
 
 def create_app():
     main_app = Flask(__name__)
+    csrf.init_app(main_app)
     sslify = SSLify(main_app)
     main_app.register_blueprint(app_auth)
     main_app.register_blueprint(app_main)

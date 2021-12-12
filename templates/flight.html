@@ -27,7 +27,7 @@
                                data-block="16" data-block-type="Text">{{flight.depAirport.town}}&nbsp;&nbsp;<br><span
                                     class="u-icon u-block-787e-13" data-block-type="Icon" data-block="19"
                                     style="color: rgb(17, 17, 17) !important"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 32 32" data-color="rgb(17, 17, 17)" style="width: 1em; height: 1em;"><g data-name="Layer 2" id="Layer_2"><path d="M22,9a1,1,0,0,0,0,1.42l4.6,4.6H3.06a1,1,0,1,0,0,2H26.58L22,21.59A1,1,0,0,0,22,23a1,1,0,0,0,1.41,0l6.36-6.36a.88.88,0,0,0,0-1.27L23.42,9A1,1,0,0,0,22,9Z"></path></g></svg><img></span>​
-                                {{flight.arrAirport.town}}<br><br>{{ flight.depTime.strftime('%d.%m.%Y %H:%M') }}<br>{{flight.available_seats(bookings)}}
+                                &nbsp;{{flight.arrAirport.town}}<br><br>{{ flight.depTime.strftime('%d.%m.%Y %H:%M') }}<br>Plane "{{flight.plane.planename}}"<br>with {{flight.available_seats(bookings)}}
                                 available seats
                             </p>
                             <h2 class="u-align-center u-text u-text-default u-block-787e-10"
@@ -169,7 +169,7 @@
                              data-block-type="">
                             <h3 class="u-text u-align-center u-block-5158-18" data-block="73"
                                 style="margin: 53.25px 0.4px 0px;" data-block-type="Text"><span
-                                    style="font-weight: 700;">{{flight.available_seats(bookings)}}</span> seats left.<br>Get your
+                                    style="font-weight: 700;">{{flight.available_seats(bookings)}}</span> seat(s) left.<br>Get your
                                 ticket now!</h3>
                             <form method="post">
                                 <button class="u-btn u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-round u-block-5158-19"
@@ -177,6 +177,7 @@
                                         style="border-style: none; font-weight: 700; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 1px; margin: 35px auto 0px; padding: 21px 54.0668px 21.6827px 53px;"
                                         data-block-type="Button" name="book">Book Now
                                 </button>
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                             </form>
                         </div>
                     </div>

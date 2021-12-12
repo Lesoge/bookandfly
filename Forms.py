@@ -1,4 +1,18 @@
+from datetime import datetime
+
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, IntegerField, DateField, ValidationError
+
+
+def valid_date(form, field):
+    date = field.data
+    if '/' not in date:
+        raise ValidationError()
+    date = date.split('/')
+    if int(date[1]) + 2000 < datetime.now().year:
+        raise ValidationError('Expiry Date is invalid')
+    elif int(date[0]) <= datetime.now().month:
+        if int(date[1]) + 2000 <= datetime.now().year:
+            raise ValidationError('Expiry Date is invalid')
 
 
 class PaymentForm(Form):
@@ -22,7 +36,8 @@ class PaymentForm(Form):
     # todo adjust to needed input
     expiry_date = StringField('Expiry Date', [validators.InputRequired(),
                                               validators.Regexp('(0[1-9]|1[0-2])[\/](\d{2})$', flags=0,
-                                                                message='Has to be the form mm/yy')])
+                                                                message='Has to be the form mm/yy'), valid_date])
+
     security_code = StringField('Security Code', [validators.InputRequired(), validators.Regexp('\d{3}$', flags=0,
                                                                                                 message='Input has to be a valid CVV number (exactly 3 Numbers)')])
 

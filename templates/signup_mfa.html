@@ -199,6 +199,7 @@
                                            onclick="copySecret()" style="background-image: none; border-style: none;">Copy
                                             Key</a>
                                     </div>
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                                 </form>
                             </div>
                         </div>
