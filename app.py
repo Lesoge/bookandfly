@@ -49,6 +49,7 @@ def create_app(log_conf=logger_config, config_path='config/config.py', ssl=True)
     def apply_caching(response):
         response.headers["X-Frame-Options"] = "SAMEORIGIN"
         response.headers['X-Content-Type-Options'] = 'nosniff'
+        response.headers['Cache-Control'] = 'max-age=300'
         return response
     return main_app
 
