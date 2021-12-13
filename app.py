@@ -40,4 +40,4 @@ def create_app():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    create_app().run(debug=True, ssl_context=(CERT_NAME, KEY_NAME), host=APP_IP)
+    create_app().run(ssl_context=(CERT_NAME, KEY_NAME), host=APP_IP)
