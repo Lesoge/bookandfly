@@ -10,11 +10,10 @@ from dbModel import db, Airport, Plane, db_commit, Flight
 db_setup.py Script um die Datenbank Tabellen zu erstellen und testdaten einzufügen
 __author__:: L. F.
 '''
-def create_standard_admin():
+def create_standard_admin(admin_username, admin_email, admin_password):
     db.create_all()
     user_datastore.find_or_create_role(name='admin', description='Administrator')
     user_datastore.find_or_create_role(name='end-user', description='End user')
-    admin_username, admin_email, admin_password = get_admin_acc()
     admin_password = hash_password(admin_password)
     user_datastore.create_user(username=admin_username, email=admin_email, password=admin_password, roles=['admin'])
     user_datastore.commit()
@@ -23,8 +22,8 @@ def create_standard_admin():
 def create_standard_admin_without_app():
     app = create_app()
     app.app_context().push()
-    db.drop_all()
-    create_standard_admin()
+    admin_username, admin_email, admin_password = get_admin_acc()
+    create_standard_admin(admin_username, admin_email, admin_password)
 
 def create_data():
     airport1 = Airport(town='Stuttgart', country='Germany', iata='STR', name='Manfred Rommel Flughafen')

@@ -1,4 +1,5 @@
 import pyotp
+from flask_security import hash_password
 
 from dbModel import user_datastore, User
 
@@ -14,22 +15,24 @@ def test_home_page(test_client, init_database):
 
 
 def test_login(test_client, init_database):
-    new_user = user_datastore.create_user(username='test', email='test@test.de', password='Saphira1010',
+    password = hash_password('Saphira1010')
+    new_user = user_datastore.create_user(username='test', email='test@test.de', password=password,
                                           roles=['end-user'])
-    new_user2 = user_datastore.create_user(username='test2', email='test2@test.de', password='Saphira1010',
+    new_user2 = user_datastore.create_user(username='test2', email='test2@test.de', password=password,
                                            roles=['end-user'], mfasecretkey='F4NI4XX2OME5P6MMQVRMFN7MYPG3YZNA')
     user_datastore.commit()
-    response1 = test_client.post('/login', data=dict(username='test', password='Saphira1010', email='test@test.de'),
+    response1 = test_client.post('/login', data=dict(password='Saphira1010', email='test@test.de'),
                                  follow_redirects=True)
-    response2 = test_client.post('/login', data=dict(username='test2', password='Saphira1010', email='test2@test.de'),
+    response2 = test_client.post('/login', data=dict(password='Saphira1010', email='test2@test.de'),
                                  follow_redirects=True)
+
     assert response1.request.path == '/signup/mfa'
     assert response2.request.path == '/login/mfa'
 
 
 def test_signup(test_client, init_database):
     email = 'test2@test.de'
-    response = test_client.post('/signup', data=dict(username='test', password='Saphira1010', email=email),
+    response = test_client.post('/signup', data=dict(username='test', password='asdwfalskhfiuqh', email=email),
                                 follow_redirects=True)
     assert response.request.path == '/signup/mfa'
     assert User.query.filter_by(email=email) is not None
@@ -96,7 +99,7 @@ def test_signup_to_profile(test_client, init_database):
     response = test_client.post(response.request.path,
                                 data=dict(username=username, password=password, email=email, otp=otp),
                                 follow_redirects=True)
-    assert response.request.path == 'profile'
+    assert response.request.path == '/profile'
 
 
 def create_test_user():
