@@ -2,14 +2,11 @@ import pyotp
 from flask_security import hash_password
 
 from dbModel import user_datastore, User
-
+'''
+__author__ F. L.
+'''
 
 def test_home_page(test_client, init_database):
-    """
-    GIVEN a Flask application configured for testing
-    WHEN the '/' page is requested (GET)
-    THEN check that the response is valid
-    """
     response = test_client.get('/')
     assert response.status_code == 200
 

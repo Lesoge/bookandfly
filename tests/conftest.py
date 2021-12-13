@@ -4,6 +4,9 @@ from app import create_app
 from scripts.db_setup import create_standard_admin
 from dbModel import db
 
+'''
+__author__ F. L.
+'''
 
 @pytest.fixture(scope='module')
 def test_client():

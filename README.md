@@ -25,13 +25,15 @@ Mit 'python scripts/secret_generator.py' kann ein sicherer Schlüssel generiert 
 DEBUG: Boolean: Falls True wird Flask im Debug modus gestartet
 SESSION_COOKIE_SECURE: Boolean: Falls True werden cookies nur über HTTPS gesendet
 Zertifikat und Schlüssel kann mit
+SESSION_COOKIE_SAMESITE: Boolean: Cookies werden nur auf anfragen der Seite gesendet https://blog.viadee.de/samesite-cookies-strict-oder-lax
+SESSION_COOKIE_HTTPONLY: Boolean: Permit Https Cookies
 SECURITY_PASSWORD_HASH: String: Algorithmus der zum hashen von passwörtern benutzt werden soll
 SECURITY_PASSWORD_SALT: String: Salz für die passwörter. Mit 'python scripts/secret_generator.py' kann ein sicherer Schlüssel generiert werden.
 SECURITY_PASSWORD_LENGTH_MIN: Int: Mindestlänge des Passworts
 SECURITY_PASSWORD_COMPLEXITY_CHECKER: string: definiert ein Modul um die Passwortkomplexität zu testen. 
 Einzig verfügbares Modul
 ist 'zxcvbn'
-SECURITY_PASSWORD_CHECK_BREACHED:  String: Stellt ein OB die haveibeenpwnd Api abgefragt werden soll um zu überprüfen, ob die Passwörter bereits gebrochen sind
+SECURITY_PASSWORD_CHECK_BREACHED: String: Stellt ein OB die haveibeenpwnd Api abgefragt werden soll um zu überprüfen, ob die Passwörter bereits gebrochen sind
 
 CERT_PATH: String: Name der Datei des Zertifikats
 KEY_PATH: String: Name der Datei des Schlüssels
