@@ -18,15 +18,16 @@ login_manager = LoginManager()
 admin = Admin()
 
 
-def create_app():
+def create_app(log_conf=logger_config, config_path='config.py', ssl=True):
     main_app = Flask(__name__)
-    sslify = SSLify(main_app)
+    if ssl:
+        sslify = SSLify(main_app)
     main_app.register_blueprint(app_auth)
     main_app.register_blueprint(app_main)
     main_app.register_blueprint(app_mfa)
     main_app.register_blueprint(app_pay)
-    main_app.config.from_pyfile('config.py')
-    dictConfig(logger_config)
+    main_app.config.from_pyfile(config_path)
+    dictConfig(log_conf)
     admin.init_app(main_app)
     create_admin(admin)
     db.init_app(main_app)

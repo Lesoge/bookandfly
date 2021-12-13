@@ -13,3 +13,5 @@ flask-sqlalchemy~=2.5.1
 zxcvbn~=4.4.28
 flask-sslify~=0.1.5
 WTForms~=3.0.0
+
+pytest~=6.2.5
