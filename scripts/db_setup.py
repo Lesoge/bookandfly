@@ -9,8 +9,6 @@ from dbModel import db, Airport, Plane, db_commit, Flight
 
 
 def create_standard_admin():
-    app = create_app()
-    app.app_context().push()
     db.create_all()
     user_datastore.find_or_create_role(name='admin', description='Administrator')
     user_datastore.find_or_create_role(name='end-user', description='End user')
