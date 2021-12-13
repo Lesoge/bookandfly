@@ -14,6 +14,10 @@ from flask_admin import Admin
 from flask_sslify import SSLify
 from config.loggerConfig import logger_config
 from config.config import CERT_NAME, KEY_NAME, APP_IP
+'''
+Hier wird die Flask app erstellt.
+__author__ = L. F.
+'''
 
 login_manager = LoginManager()
 admin = Admin()
@@ -21,7 +25,11 @@ csrf = CSRFProtect()
 
 
 
-def create_app(log_conf=logger_config, config_path='config.py', ssl=True):
+def create_app(log_conf=logger_config, config_path='config/config.py', ssl=True):
+    '''Funktion zum konfigurieren der app
+    :param log_conf config des Logger
+    :param config_path speicherort der config
+    :param Booelan ob ssl benutzt werden soll'''
     main_app = Flask(__name__)
     csrf.init_app(main_app)
     if ssl:

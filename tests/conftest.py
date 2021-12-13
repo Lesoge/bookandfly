@@ -1,7 +1,6 @@
 import pytest
 
 from app import create_app
-from logger_config import logger_config
 from scripts.db_setup import create_standard_admin
 from dbModel import db
 

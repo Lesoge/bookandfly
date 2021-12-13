@@ -6,6 +6,12 @@ from dbModel import Flight, Booking
 from decorators import breached
 
 app_main = Blueprint('app_main', __name__)
+'''
+Implementiert Routen die Hauptrouten
+__author__ = L. F.
+
+'''
+
 
 
 @app_main.route('/', methods=['GET'])
@@ -20,6 +26,7 @@ def index():
 @login_required
 @breached
 def profile():
+    '''Profilseite des Nutzers'''
     bookings = Booking.query.filter(Booking.user == current_user, Flight.depTime >= datetime.now(), Booking.payed)
     return render_template('profile.html', user=current_user, bookings=bookings)
 
@@ -28,6 +35,7 @@ def profile():
 @login_required
 @breached
 def flight(flightnr):
+    '''Infromationseite eines Fluges'''
     flight = Flight.query.get_or_404(flightnr)
     bookings = Booking.query
     return render_template("flight.html", flight=flight, bookings=bookings)

@@ -1,7 +1,10 @@
 from datetime import datetime
 
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, IntegerField, DateField, ValidationError
+'''
 
+__author__ = F. L., A. S.
+'''
 
 def valid_date(form, field):
     date = field.data

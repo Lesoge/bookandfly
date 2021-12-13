@@ -1,8 +1,15 @@
 from flask import session, abort
 import logging
+'''
+Funktionen zum Session Managment
+__author__ = L. F.
+'''
 
 
 def get_from_session(key, remote_addr):
+    '''Funktion zum Abrufen eines Wertes in der Session, falls nicht vorhanden wird ein 404 error ausgegebn
+    :param key wert der aus der session geholt werden soll
+    :param remote_addr Ip-Adresse des Aufrufenden'''
     if key in session:
         return session[key]
     else:

@@ -6,18 +6,25 @@ import datetime
 from flask_security import hash_password
 from app import create_app, user_datastore
 from dbModel import db, Airport, Plane, db_commit, Flight
-
-
+'''
+db_setup.py Script um die Datenbank Tabellen zu erstellen und testdaten einzufügen
+__author__:: L. F.
+'''
 def create_standard_admin():
     db.create_all()
     user_datastore.find_or_create_role(name='admin', description='Administrator')
     user_datastore.find_or_create_role(name='end-user', description='End user')
-    admin_username, admin_email, admin_password = get_admin_acc2()
+    admin_username, admin_email, admin_password = get_admin_acc()
     admin_password = hash_password(admin_password)
     user_datastore.create_user(username=admin_username, email=admin_email, password=admin_password, roles=['admin'])
     user_datastore.commit()
     create_data()
 
+def create_standard_admin_without_app():
+    app = create_app()
+    app.app_context().push()
+    db.drop_all()
+    create_standard_admin()
 
 def create_data():
     airport1 = Airport(town='Stuttgart', country='Germany', iata='STR', name='Manfred Rommel Flughafen')
@@ -59,10 +66,5 @@ def get_admin_acc():
     admin_password = getpass.getpass(prompt='Admin Password:', stream=None)
     return admin_username, admin_email, admin_password
 
-
-def get_admin_acc2():
-    return 'admin', 'admin@admin.de', '1234'
-
-
 if __name__ == '__main__':
-    create_standard_admin()
+    create_standard_admin_without_app()

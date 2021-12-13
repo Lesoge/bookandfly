@@ -15,6 +15,11 @@ import qrcode
 app_mfa = Blueprint('app_mfa', __name__)
 
 logger = logging.getLogger('web_logger')
+'''
+Implementiert Multifaktor Routen
+__author__ = F. L.
+
+'''
 
 
 @app_mfa.route('/signup/mfa', methods=['GET'])

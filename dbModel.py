@@ -6,7 +6,11 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import EncryptedType
 
 from config.config import LOGIN_ATTEMPTS_BEFORE_LOCK
-
+'''
+Hier wird das Datenbankmodell bzw. die Tabellen in der Datenbank
+definiert und funktionen um die Klassen zu verwalten
+__author__ = L. F., A. S., F. L.
+'''
 db = SQLAlchemy()
 security = Security()
 roles_users = db.Table(
@@ -181,6 +185,8 @@ class Booking(db.Model):
 
 
 def db_commit(*object_list):
+    '''Funktion zum committen von mehreren Datenbankobjekten
+    :param object_list Liste der Objekte die committet werden soll '''
     for object in object_list:
         if isinstance(object, db.Model):
             db.session.add(object)

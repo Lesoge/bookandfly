@@ -1,3 +1,6 @@
+'''Config des Debuggers
+__author__ = L. F.'''
+
 logger_config = {
     'version': 1,
     'formatters': {

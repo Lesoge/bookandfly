@@ -1,8 +1,4 @@
 import pyotp
-import requests as requests
-from flask import request, url_for, session, app
-from flask_login import current_user
-from flask_security import login_user
 
 from dbModel import user_datastore, User
 

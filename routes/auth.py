@@ -13,53 +13,66 @@ from Forms import LogInForm, SignUpForm, ResetPasswordForm
 
 app_auth = Blueprint('app_auth', __name__)
 logger = logging.getLogger('web_logger')
+'''
+Implementiert Routen die Mit der Nutzerverwaltung zu tun haben außer MFA
+__author__ = L. F.
+
+'''
 
 
 @app_auth.route('/login', methods=['GET'])
 def login():
+    '''Route zum Login'''
     return render_template('login.html')
 
 
 @app_auth.route('/login', methods=['POST'])
 def login_post():
+    '''Post des Logins'''
     form = LogInForm(request.form)
+    # input validierung
     if not form.validate():
         logger.info('invalid input in login form', extra={'ip': request.remote_addr, 'user': 'anonym'})
         flash('Invalid inputs')
         return redirect(url_for('app_auth.login'))
 
     user = User.query.filter_by(email=form.email.data).first()
-    # check if the user actually exists
-    # take the user-supplied password, hash it, and compare it to the hashed password in the database
+    # überprüfung des Nutzers
     message = 'Please check your login details and try again. If you entered a wrong password 5 times your account may be locked'
     if not user:
-        logger.info('tried to log in as an non existing user' + form.email.data, extra={'ip': request.remote_addr, 'user': 'anonym'})
+        logger.info('tried to log in as an non existing user' + form.email.data,
+                    extra={'ip': request.remote_addr, 'user': 'anonym'})
         flash(message)
         return redirect(url_for('app_auth.login'))  # if the user doesn't exist or password is wrong, reload the page
+    # überprüfung des Passworts
     elif not user.check_password(form.password.data):
         flash(message)
         logger.info('entered wrong password' + form.email.data,
                     extra={'ip': request.remote_addr, 'user': 'anonym'})
-        user.login_tries  = user.login_tries + 1
+        user.login_tries = user.login_tries + 1
         db_commit(user)
         return redirect(url_for('app_auth.login'))
+    # überprüfung ob Passwort zu oft falsch eingegeben wurde
     elif user.login_locked():
-        logger.info('user account locked because of too many false login attempts' + form.email.data, extra={'ip': request.remote_addr, 'user': 'anonym'})
+        logger.info('user account locked because of too many false login attempts' + form.email.data,
+                    extra={'ip': request.remote_addr, 'user': 'anonym'})
         flash(message)
         return redirect(url_for('app_auth.login'))
 
-    # if the user doesn't exist or password is wrong, reload the page
-    # if the above check passes, then we know the user has the right credentials
+    # Daten speichern um den user nach dem MFA validierung einzuloggen
     remember = True if form.remember.data else False
     session['remember'] = remember
     session['user_id'] = user.id
-
+    # Wenn kein mfa key definiert ist muss einer gesetzt werden
     if user.mfasecretkey is None:
         return redirect(url_for('app_mfa.signup_mfa'))
     else:
+        # Überprüfen, ob Passwort gebrochen wurde(haveibeenpwnd) oder nicht mehr den aktuellen
+        # anforderungen entspricht
         if check_password_complexity(form.password.data) != '':
             session['breached'] = True
         logger.info('Successfully provided Login Data', extra={'ip': request.remote_addr, 'user': 'anonym'})
+        # Weiterleitung zur MFA validierung
         return redirect(url_for('app_mfa.login_mfa'))
 
 
@@ -70,7 +83,9 @@ def signup():
 
 @app_auth.route('/signup', methods=['POST'])
 def signup_post():
+    '''Post Funktion des Signups'''
     form = SignUpForm(request.form)
+    # Validierung des Inputs
     if not form.validate():
         logger.info('invalid input in signup_form', extra={'ip': request.remote_addr, 'user': 'anonym'})
         flash('Invalid inputs')
@@ -81,19 +96,21 @@ def signup_post():
     password = form.password.data
 
     user = User.query.filter((User.email == email) | (
-            User.username == username)).first()  # if this returns a user, then the email already exists in database
-    if user:  # if a user is found, we want to redirect back to signup page so user can try again
+            User.username == username)).first()
+    # Überprüfen ob Nutzer existiert
+    if user:
         logger.info('tried to create a user with an  already existing email or username',
                     extra={'ip': request.remote_addr, 'user': 'anonym'})
         flash('Username or Email is already used')
         return redirect(url_for('app_auth.signup'))
-    # create a new user with the form data. Hash the password so the plaintext version isn't saved.
+    # password Komplexität überprüfen
     text = check_password_complexity(password)
     if text:
         logger.info('tried to create a user with an weak password',
                     extra={'ip': request.remote_addr, 'user': 'anonym'})
         flash(text)
         return redirect(url_for('app_auth.signup'))
+    # user erstellen
     password = hash_password(password)
     new_user = user_datastore.create_user(username=username, email=email, password=password, roles=['end-user'])
     user_datastore.commit()
@@ -103,10 +120,10 @@ def signup_post():
     return redirect(url_for('app_mfa.signup_mfa'))
 
 
-# todo add front end
 @app_auth.route('/setpw', methods=['GET'])
 @login_required
 def set_new_password():
+    '''Route die benutzt wird um ein neues Passwort zu setzen, falls es gebrochen wurden(haveIbeenpwnd)'''
     if 'breached' not in session:
         return redirect(url_for('app_main.index'))
     return render_template('setpw.html')
@@ -142,6 +159,8 @@ def logout():
 
 
 def check_password_complexity(password):
+    '''Funktion, die Passwort auf Lönge, Komplexität und ob es schon gebrochen wurde
+    überprüft'''
     password_message = []
     password_length_message = password_length_validator(password)
     if password_length_message:
