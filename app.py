@@ -44,8 +44,13 @@ def create_app(log_conf=logger_config, config_path='config/config.py', ssl=True)
     create_admin(admin)
     db.init_app(main_app)
     security.init_app(main_app, datastore=user_datastore)
-    return main_app
 
+    @main_app.after_request
+    def apply_caching(response):
+        response.headers["X-Frame-Options"] = "SAMEORIGIN"
+        response.headers['X-Content-Type-Options'] = 'nosniff'
+        return response
+    return main_app
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
